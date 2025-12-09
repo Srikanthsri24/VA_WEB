@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Brain, Mail, Phone, MapPin, Linkedin, Twitter, Github } from "lucide-react";
+import { Brain, Mail, Phone, MapPin, Linkedin, Twitter, Github, ExternalLink } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -19,19 +19,25 @@ const Footer = () => {
     ],
     products: [
       { name: "Our Products", path: "/products" },
-      { name: "Case Studies", path: "/products" },
-      { name: "Pricing", path: "/contact" },
+      { name: "AI Monitoring", path: "/products" },
+      { name: "Energy Systems", path: "/products" },
+      { name: "LMS", path: "/products" },
+    ],
+    legal: [
+      { name: "Privacy Policy", url: "https://visionariesai.com/privacy-policy.html", external: true },
+      { name: "Terms of Service", url: "https://visionariesai.com/terms-of-service.html", external: true },
+      { name: "Refund & Warranty", url: "https://visionariesai.com/refund-warranty-policy.html", external: true },
     ],
   };
 
   return (
     <footer className="bg-card border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+            <Link to="/" className="flex items-center gap-3 mb-6 group">
+              <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-all duration-300 group-hover:scale-110">
                 <Brain className="w-6 h-6 text-primary" />
               </div>
               <span className="font-display font-bold text-xl text-foreground">
@@ -39,16 +45,16 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-muted-foreground mb-6 max-w-sm">
-              Transforming businesses with cutting-edge AI solutions. We build intelligent products that drive innovation and growth.
+              Transforming educational institutions and businesses with cutting-edge AI solutions. We build intelligent products that drive innovation and growth.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all">
+              <a href="#" className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 hover:scale-110">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all">
+              <a href="#" className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 hover:scale-110">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all">
+              <a href="#" className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 hover:scale-110">
                 <Github className="w-5 h-5" />
               </a>
             </div>
@@ -60,7 +66,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.path} className="text-muted-foreground hover:text-primary transition-colors">
+                  <Link to={link.path} className="text-muted-foreground hover:text-primary transition-colors duration-300">
                     {link.name}
                   </Link>
                 </li>
@@ -68,13 +74,13 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Services Links */}
+          {/* Products Links */}
           <div>
-            <h4 className="font-display font-semibold text-foreground mb-4">Services</h4>
+            <h4 className="font-display font-semibold text-foreground mb-4">Products</h4>
             <ul className="space-y-3">
-              {footerLinks.services.map((link) => (
+              {footerLinks.products.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.path} className="text-muted-foreground hover:text-primary transition-colors">
+                  <Link to={link.path} className="text-muted-foreground hover:text-primary transition-colors duration-300">
                     {link.name}
                   </Link>
                 </li>
@@ -83,33 +89,48 @@ const Footer = () => {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="lg:col-span-2">
             <h4 className="font-display font-semibold text-foreground mb-4">Contact</h4>
             <ul className="space-y-3">
-              <li className="flex items-center gap-3 text-muted-foreground">
-                <Mail className="w-4 h-4 text-primary" />
-                <span>hello@visionariesai.com</span>
+              <li>
+                <a href="mailto:contact@visionariesai.com" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors duration-300">
+                  <Mail className="w-4 h-4 text-primary shrink-0" />
+                  <span>contact@visionariesai.com</span>
+                </a>
               </li>
               <li className="flex items-center gap-3 text-muted-foreground">
-                <Phone className="w-4 h-4 text-primary" />
-                <span>+1 (555) 123-4567</span>
+                <Phone className="w-4 h-4 text-primary shrink-0" />
+                <div className="flex flex-col">
+                  <a href="tel:+919849072243" className="hover:text-primary transition-colors">+91 9849072243</a>
+                  <a href="tel:+919849042243" className="hover:text-primary transition-colors">+91 9849042243</a>
+                </div>
               </li>
               <li className="flex items-start gap-3 text-muted-foreground">
-                <MapPin className="w-4 h-4 text-primary mt-1" />
-                <span>123 AI Street, Tech City, TC 12345</span>
+                <MapPin className="w-4 h-4 text-primary mt-1 shrink-0" />
+                <span>3-28, Dubbakavani Peta, Polaki, Srikakulam, Andhra Pradesh, India - 532429</span>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="mt-12 pt-8 border-t border-border flex flex-col lg:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm">
             © {currentYear} VisionariesAI Labs. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-muted-foreground">
-            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
+          <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
+            {footerLinks.legal.map((link) => (
+              <a 
+                key={link.name} 
+                href={link.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:text-primary transition-colors duration-300"
+              >
+                {link.name}
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            ))}
           </div>
         </div>
       </div>
