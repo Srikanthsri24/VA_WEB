@@ -146,6 +146,25 @@ const teamMembers = [
     avatar: "RK",
     icon: Wrench,
   },
+  // Marketing
+  {
+    id: 16,
+    name: "Anil S",
+    title: "Marketing Executive",
+    group: "Marketing",
+    focus: ["Digital Marketing", "Brand Strategy", "Campaign Management", "Analytics"],
+    avatar: "AS",
+    icon: Briefcase,
+  },
+  {
+    id: 17,
+    name: "Chaitanya",
+    title: "Marketing Executive",
+    group: "Marketing",
+    focus: ["Content Marketing", "Social Media", "Lead Generation", "SEO"],
+    avatar: "C",
+    icon: Briefcase,
+  },
 ];
 
 const values = [
@@ -181,6 +200,7 @@ const groupColors = {
   Support: "from-pink-500 to-rose-600",
   Finance: "from-emerald-500 to-green-600",
   Operations: "from-blue-500 to-indigo-600",
+  Marketing: "from-rose-500 to-orange-600",
 };
 
 const About = () => {

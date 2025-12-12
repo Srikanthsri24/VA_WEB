@@ -32,6 +32,20 @@ const teamMembers = [
     focus: ["Team Leadership", "Project Planning", "Delivery"],
     gradient: "from-green-500 to-teal-600",
   },
+  {
+    name: "Anil S",
+    title: "Marketing Executive",
+    group: "Marketing",
+    focus: ["Digital Marketing", "Brand Strategy", "Campaigns"],
+    gradient: "from-orange-500 to-amber-600",
+  },
+  {
+    name: "Chaitanya",
+    title: "Marketing Executive",
+    group: "Marketing",
+    focus: ["Content Marketing", "Social Media", "Lead Generation"],
+    gradient: "from-rose-500 to-pink-600",
+  },
 ];
 
 const TeamPreview = () => {

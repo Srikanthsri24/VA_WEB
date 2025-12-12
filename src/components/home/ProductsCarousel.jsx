@@ -9,6 +9,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import Autoplay from "embla-carousel-autoplay";
+import { useRef } from "react";
 
 const products = [
   {
@@ -80,6 +82,10 @@ const products = [
 const ProductsCarousel = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { ref: carouselRef, isVisible: carouselVisible } = useScrollAnimation();
+  
+  const plugin = useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: true })
+  );
 
   return (
     <section className="py-24 bg-card/50 overflow-hidden">
@@ -114,6 +120,7 @@ const ProductsCarousel = () => {
               align: "start",
               loop: true,
             }}
+            plugins={[plugin.current]}
             className="w-full"
           >
             <CarouselContent className="-ml-4">
