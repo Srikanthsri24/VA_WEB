@@ -27,6 +27,8 @@ const contactInfo = [
     title: "Visit Us",
     content: "3-28, Dubbakavani Peta",
     subtext: "Polaki, Srikakulam, AP - 532429",
+    link: "https://www.google.com/maps/dir/?api=1&destination=18.353620511952187,84.07063065323374",
+    external: true,
   },
   {
     icon: Clock,
@@ -111,7 +113,12 @@ const Contact = () => {
                 </div>
                 <h3 className="font-display font-semibold text-foreground mb-1">{info.title}</h3>
                 {info.link ? (
-                  <a href={info.link} className="text-foreground/90 hover:text-primary transition-colors">
+                  <a 
+                    href={info.link} 
+                    target={info.external ? "_blank" : undefined}
+                    rel={info.external ? "noopener noreferrer" : undefined}
+                    className="text-foreground/90 hover:text-primary transition-colors"
+                  >
                     {info.content}
                   </a>
                 ) : (
@@ -286,7 +293,7 @@ const Contact = () => {
                 <h3 className="font-display text-xl font-bold text-foreground mb-6">Our Location</h3>
                 <div className="aspect-video bg-secondary/50 rounded-xl overflow-hidden relative group">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3789.7893!2d84.0367!3d18.3567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDIxJzI0LjEiTiA4NMKwMDInMTIuMSJF!5e0!3m2!1sen!2sin!4v1234567890"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3789.7893!2d84.07063065323374!3d18.353620511952187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDIxJzEzLjAiTiA4NMKwMDQnMTQuMyJF!5e0!3m2!1sen!2sin!4v1234567890"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
@@ -296,10 +303,21 @@ const Contact = () => {
                     className="absolute inset-0"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent pointer-events-none" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <p className="text-sm font-medium text-foreground">VisionariesAI Labs</p>
-                    <p className="text-xs text-muted-foreground">3-28, Dubbakavani Peta, Polaki, Srikakulam, AP - 532429</p>
-                  </div>
+                  <a 
+                    href="https://www.google.com/maps/dir/?api=1&destination=18.353620511952187,84.07063065323374"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute bottom-4 left-4 right-4 flex items-center justify-between bg-background/90 backdrop-blur-sm rounded-lg p-3 hover:bg-background transition-colors cursor-pointer"
+                  >
+                    <div>
+                      <p className="text-sm font-medium text-foreground">VisionariesAI Labs</p>
+                      <p className="text-xs text-muted-foreground">3-28, Dubbakavani Peta, Polaki, Srikakulam, AP - 532429</p>
+                    </div>
+                    <div className="flex items-center gap-1 text-primary text-sm font-medium">
+                      <ExternalLink className="w-4 h-4" />
+                      Directions
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>

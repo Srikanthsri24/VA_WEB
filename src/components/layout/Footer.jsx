@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Brain, Mail, Phone, MapPin, Linkedin, Twitter, Github, ExternalLink, ArrowRight, Sparkles, Send, Heart, Globe, Shield, Clock } from "lucide-react";
+import { Brain, Mail, Phone, MapPin, Linkedin, Youtube, ExternalLink, ArrowRight, Sparkles, Send, Heart, Globe, Shield, Clock, Navigation } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -131,13 +131,14 @@ const Footer = () => {
               {/* Social Links */}
               <div className="flex gap-3">
                 {[
-                  { icon: Linkedin, label: "LinkedIn" },
-                  { icon: Twitter, label: "Twitter" },
-                  { icon: Github, label: "GitHub" },
+                  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/visionariesai/posts/?feedView=all" },
+                  { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@VisionariesAILabspvtltd" },
                 ].map((social) => (
                   <a 
                     key={social.label}
-                    href="#" 
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 hover:scale-110 transition-all duration-300"
                     aria-label={social.label}
                   >
@@ -216,11 +217,23 @@ const Footer = () => {
                     <a href="tel:+919849042243" className="hover:text-primary transition-colors">+91 9849042243</a>
                   </div>
                 </li>
-                <li className="flex items-start gap-3 text-muted-foreground">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5 text-primary" />
-                  </div>
-                  <span className="text-sm leading-relaxed">3-28, Dubbakavani Peta, Polaki, Srikakulam, Andhra Pradesh, India - 532429</span>
+                <li>
+                  <a 
+                    href="https://www.google.com/maps/dir/?api=1&destination=18.353620511952187,84.07063065323374"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-3 text-muted-foreground hover:text-primary transition-colors duration-300 group"
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                      <MapPin className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-sm leading-relaxed">3-28, Dubbakavani Peta, Polaki, Srikakulam, Andhra Pradesh, India - 532429</span>
+                      <span className="text-xs text-primary flex items-center gap-1 mt-1">
+                        <Navigation className="w-3 h-3" /> Get Directions
+                      </span>
+                    </div>
+                  </a>
                 </li>
               </ul>
             </div>

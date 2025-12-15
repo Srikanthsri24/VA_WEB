@@ -165,6 +165,16 @@ const teamMembers = [
     avatar: "C",
     icon: Briefcase,
   },
+  // Support
+  {
+    id: 18,
+    name: "Geethika J",
+    title: "Support Engineer",
+    group: "Support",
+    focus: ["Technical Support", "Customer Assistance", "Issue Resolution", "Documentation"],
+    avatar: "GJ",
+    icon: Headphones,
+  },
 ];
 
 const values = [
