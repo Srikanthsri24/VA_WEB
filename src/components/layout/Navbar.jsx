@@ -3,7 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Brain, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/useTheme";
-
+// import logo from "../../../public/icon.png"
+import logo from "../../../public/LOGO.jpg"
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
@@ -44,11 +45,14 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/30 to-primary/10 flex items-center justify-center group-hover:from-primary/40 group-hover:to-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
-              <Brain className="w-6 h-6 text-primary" />
+            <div className="w-10 h-10 rounded-xl  from-primary/30 to-primary/10 flex items-center justify-center group-hover:from-primary/40 group-hover:to-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+              {/* <Brain className="w-6 h-6 text-primary" />--
+               */}
+               <img src={logo} alt="" className="w-10 h-10 rounded-xl"/>
+
             </div>
             <span className="font-display font-bold text-xl text-foreground">
-              Visionaries<span className="text-primary">AI</span>
+              VisionariesAI <span className="text-primary">Labs</span>
             </span>
           </Link>
 

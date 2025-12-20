@@ -43,11 +43,12 @@ const Footer = () => {
     ],
   };
 
-  const features = [
-    { icon: Globe, text: "Serving clients across India" },
-    { icon: Shield, text: "Enterprise-grade security" },
-    { icon: Clock, text: "24/7 Support available" },
-  ];
+ const features = [
+  { icon: Globe, text: "Serving clients across India & globally" },
+  { icon: Shield, text: "Enterprise-grade security" },
+  { icon: Clock, text: "24/7 Support available" },
+];
+
 
   return (
     <footer className="relative overflow-hidden">
