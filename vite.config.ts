@@ -4,7 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: "/", // ✅ for https://srikanthsri24.github.io/VA_WEB/
+  base: "/VA_WEB/", // ✅ for https://srikanthsri24.github.io/VA_WEB/
   server: {
     host: "::",
     port: 8080,
