@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ✅ GitHub Pages SPA Refresh Fix -->
+    <script>
+      (function (l) {
+        if (l.search.startsWith("?/")) {
+          const path = l.search.slice(2).replace(/&/g, "?");
+          window.history.replaceState(null, "", "/" + path + l.hash);
+        }
+      })(window.location);
+    </script>
+
+    <title>VisionariesAI Labs Pvt Ltd</title>
+
+    <!-- ✅ Correct paths for Vite (NO /public/) -->
+    <link rel="icon" type="image/png" href="./icon.png" />
+    <link rel="apple-touch-icon" href="./icon.png" />
+    <link rel="manifest" href="./site.webmanifest" />
+
+    <!-- ✅ SEO -->
+    <meta
+      name="description"
+      content="VisionariesAI Labs - Leading AI service and product company. We build intelligent systems that transform businesses. Custom AI solutions, ML products, and enterprise consulting."
+    />
+    <meta name="author" content="VisionariesAI Labs" />
+    <meta
+      name="keywords"
+      content="AI, Artificial Intelligence, Machine Learning, ML, AI Products, AI Services, Enterprise AI, VisionariesAI"
+    />
+    <link rel="canonical" href="https://visionariesai.com/" />
+
+    <!-- ✅ Open Graph -->
+    <meta property="og:title" content="VisionariesAI Labs | AI Solutions & Products" />
+    <meta
+      property="og:description"
+      content="Transform your business with cutting-edge AI solutions. Custom AI development, ML products, and enterprise consulting."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://visionariesai.com/" />
+    <meta property="og:image" content="https://visionariesai.com/og-image.png" />
+
+    <!-- ✅ Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@VisionariesAI" />
+    <meta name="twitter:image" content="https://visionariesai.com/og-image.png" />
+    <script type="module" crossorigin src="/assets/index-CkNikatC.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BUzfsfVR.css">
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
