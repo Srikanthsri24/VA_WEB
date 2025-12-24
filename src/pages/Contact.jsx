@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import emailjs from "@emailjs/browser";
+
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
-import { 
-  Mail, Phone, MapPin, Send, Clock, 
-  MessageSquare, Calendar, Building, ExternalLink
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Clock,
+  MessageSquare,
+  Calendar,
+  Building,
+  ExternalLink,
 } from "lucide-react";
+
+const EMAILJS_PUBLIC_KEY = "9R9VMnwYtqehumZjw";
+const EMAILJS_SERVICE_ID = "service_tvtk2xr";
+const EMAILJS_TEMPLATE_ID = "template_joe8237";
 
 const contactInfo = [
   {
@@ -47,34 +60,73 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    // same as: emailjs.init(PUBLIC_KEY) in HTML
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const getSubjectLabel = (value) => {
+    const map = {
+      general: "General Inquiry",
+      sales: "Sales & Pricing",
+      demo: "Request a Demo",
+      support: "Technical Support",
+      partnership: "Partnership",
+      curriculum: "AI Curriculum Inquiry",
+    };
+    return map[value] || value || "General Inquiry";
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
     setIsSubmitting(true);
-    
-    // Simulate submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for contacting us. We'll get back to you within 24 hours.",
-    });
-    
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      phone: "",
-      subject: "",
-      message: "",
-    });
-    setIsSubmitting(false);
+
+    try {
+      // ✅ Match your HTML EmailJS params:
+      // name, email, mobile, organizationName, subject
+      const templateParams = {
+        name: formData.name?.trim(),
+        email: formData.email?.trim(),
+        mobile: formData.phone?.trim(),
+        organizationName: formData.company?.trim(),
+        subject: `Subject: ${getSubjectLabel(formData.subject)}\n\nMessage:\n${formData.message?.trim()}`,
+      };
+
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for contacting us. We'll get back to you within 24 hours.",
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      toast({
+        title: "Failed to send",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -82,7 +134,7 @@ const Contact = () => {
       {/* Hero Section */}
       <section className="pt-24 pb-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(var(--primary)/0.08)_0%,_transparent_50%)]" />
-        
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider px-4 py-1.5 rounded-full bg-primary/10 animate-fade-up">
@@ -103,8 +155,8 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {contactInfo.map((info, index) => (
-              <div 
-                key={info.title} 
+              <div
+                key={info.title}
                 className="glass-card p-6 text-center hover-lift group animate-fade-up"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
@@ -113,8 +165,8 @@ const Contact = () => {
                 </div>
                 <h3 className="font-display font-semibold text-foreground mb-1">{info.title}</h3>
                 {info.link ? (
-                  <a 
-                    href={info.link} 
+                  <a
+                    href={info.link}
                     target={info.external ? "_blank" : undefined}
                     rel={info.external ? "noopener noreferrer" : undefined}
                     className="text-foreground/90 hover:text-primary transition-colors"
@@ -138,8 +190,10 @@ const Contact = () => {
             {/* Form */}
             <div className="glass-card p-8 lg:p-10 animate-slide-in-left">
               <h2 className="font-display text-2xl font-bold text-foreground mb-2">Send Us a Message</h2>
-              <p className="text-muted-foreground mb-8">Fill out the form below and we'll get back to you shortly.</p>
-              
+              <p className="text-muted-foreground mb-8">
+                Fill out the form below and we'll get back to you shortly.
+              </p>
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="group">
@@ -154,9 +208,10 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
-                      placeholder="John Doe"
+                      placeholder="VisionariesAi Labs"
                     />
                   </div>
+
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                       Email Address *
@@ -169,7 +224,7 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
-                      placeholder="john@example.com"
+                      placeholder="visionaries@gmail.com"
                     />
                   </div>
                 </div>
@@ -189,6 +244,7 @@ const Contact = () => {
                       placeholder="Your Institution/Company"
                     />
                   </div>
+
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
                       Phone Number
@@ -200,7 +256,7 @@ const Contact = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
-                      placeholder="+91 9876543210"
+                      placeholder="+91 9849072243"
                     />
                   </div>
                 </div>
@@ -243,14 +299,14 @@ const Contact = () => {
                   />
                 </div>
 
-                <Button 
-                  variant="hero" 
-                  size="lg" 
-                  type="submit" 
+                <Button
+                  variant="hero"
+                  size="lg"
+                  type="submit"
                   className="w-full sm:w-auto group"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? "Sending..." : "Send Message"}
                   <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </form>
@@ -267,11 +323,11 @@ const Contact = () => {
                     { icon: MessageSquare, title: "WhatsApp Us", desc: "Chat with our team now", link: "https://wa.me/919849072243" },
                     { icon: Building, title: "Enterprise Solutions", desc: "For large organizations", link: "#" },
                   ].map((item, index) => (
-                    <a 
+                    <a
                       key={item.title}
                       href={item.link}
-                      target={item.link.startsWith('http') ? '_blank' : undefined}
-                      rel={item.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      target={item.link.startsWith("http") ? "_blank" : undefined}
+                      rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
                       className="flex items-center gap-4 p-4 rounded-lg bg-secondary/50 hover:bg-secondary transition-all duration-300 group hover:-translate-x-1"
                       style={{ animationDelay: `${index * 100}ms` }}
                     >
@@ -303,7 +359,7 @@ const Contact = () => {
                     className="absolute inset-0"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent pointer-events-none" />
-                  <a 
+                  <a
                     href="https://www.google.com/maps/dir/?api=1&destination=18.353620511952187,84.07063065323374"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -311,7 +367,9 @@ const Contact = () => {
                   >
                     <div>
                       <p className="text-sm font-medium text-foreground">VisionariesAI Labs</p>
-                      <p className="text-xs text-muted-foreground">3-28, Dubbakavani Peta, Polaki, Srikakulam, AP - 532429</p>
+                      <p className="text-xs text-muted-foreground">
+                        3-28, Dubbakavani Peta, Polaki, Srikakulam, AP - 532429
+                      </p>
                     </div>
                     <div className="flex items-center gap-1 text-primary text-sm font-medium">
                       <ExternalLink className="w-4 h-4" />
@@ -321,6 +379,7 @@ const Contact = () => {
                 </div>
               </div>
             </div>
+            {/* /Sidebar */}
           </div>
         </div>
       </section>

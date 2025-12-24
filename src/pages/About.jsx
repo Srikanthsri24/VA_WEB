@@ -321,8 +321,8 @@ const About = () => {
             <div className="glass-card p-8 animate-slide-in-right">
               <div className="grid grid-cols-2 gap-6">
                 {[
-                  { icon: Rocket, value: "50+", label: "Projects Delivered" },
-                  { icon: Users, value: "30+", label: "Happy Clients" },
+                  { icon: Rocket, value: "100+", label: "Projects Delivered" },
+                  { icon: Users, value: "100+", label: "Happy Clients" },
                   { icon: Award, value: "8+", label: "Products Live" },
                   { icon: Target, value: "99%", label: "Success Rate" },
                 ].map((stat, index) => (

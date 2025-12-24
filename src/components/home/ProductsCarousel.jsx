@@ -75,7 +75,7 @@ const products = [
     icon: Users,
     name: "Universal Management System",
     description:
-      "Control labs, lights, fans, and multiple devices from one unified dashboard.",
+      "Empower your school with seamless communication, efficient administration, and engaging learning experiences. Simplify operations, enhance engagement, and foster success across schools, colleges, and campuses with our advanced management platform.",
     goal:
       "Centralize device control and automation for institutions and campuses.",
     features: ["Device Dashboard", "Automation", "Multi-user Access"],

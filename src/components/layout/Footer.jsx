@@ -35,6 +35,7 @@ const Footer = () => {
       { name: "Energy Systems", path: "/products" },
       { name: "LMS Platform", path: "/products" },
       { name: "AI Assistant", path: "/products" },
+            { name: "... More", path: "/products" },
     ],
     legal: [
       { name: "Privacy Policy", url: "https://visionariesai.com/privacy-policy.html", external: true },
@@ -43,18 +44,18 @@ const Footer = () => {
     ],
   };
 
- const features = [
-  { icon: Globe, text: "Serving clients across India & globally" },
-  { icon: Shield, text: "Enterprise-grade security" },
-  { icon: Clock, text: "24/7 Support available" },
-];
+  const features = [
+    { icon: Globe, text: "Serving clients across India & globally" },
+    { icon: Shield, text: "Enterprise-grade security" },
+    { icon: Clock, text: "24/7 Support available" },
+  ];
 
 
   return (
     <footer className="relative overflow-hidden">
       {/* Top gradient border */}
       <div className="h-1 bg-gradient-to-r from-primary via-cyan-500 to-blue-600" />
-      
+
       {/* Newsletter Section */}
       <div className="bg-gradient-to-br from-primary/10 via-card to-card border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -69,7 +70,7 @@ const Footer = () => {
               </h3>
               <p className="text-muted-foreground">Get the latest updates on AI innovations and product releases.</p>
             </div>
-            
+
             <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
               <div className="relative">
                 <input
@@ -116,7 +117,7 @@ const Footer = () => {
               <p className="text-muted-foreground mb-6 leading-relaxed">
                 Transforming educational institutions and businesses with cutting-edge AI solutions. We build intelligent products that drive innovation and growth.
               </p>
-              
+
               {/* Features */}
               <div className="space-y-3 mb-6">
                 {features.map((feature) => (
@@ -135,7 +136,7 @@ const Footer = () => {
                   { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/visionariesai/posts/?feedView=all" },
                   { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@VisionariesAILabspvtltd" },
                 ].map((social) => (
-                  <a 
+                  <a
                     key={social.label}
                     href={social.href}
                     target="_blank"
@@ -158,8 +159,8 @@ const Footer = () => {
               <ul className="space-y-3">
                 {footerLinks.company.map((link) => (
                   <li key={link.name}>
-                    <Link 
-                      to={link.path} 
+                    <Link
+                      to={link.path}
                       className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2 group"
                     >
                       <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
@@ -179,8 +180,8 @@ const Footer = () => {
               <ul className="space-y-3">
                 {footerLinks.products.map((link) => (
                   <li key={link.name}>
-                    <Link 
-                      to={link.path} 
+                    <Link
+                      to={link.path}
                       className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2 group"
                     >
                       <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
@@ -199,8 +200,8 @@ const Footer = () => {
               </h4>
               <ul className="space-y-4">
                 <li>
-                  <a 
-                    href="mailto:contact@visionariesai.com" 
+                  <a
+                    href="mailto:contact@visionariesai.com"
                     className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors duration-300 group"
                   >
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -219,7 +220,7 @@ const Footer = () => {
                   </div>
                 </li>
                 <li>
-                  <a 
+                  <a
                     href="https://www.google.com/maps/dir/?api=1&destination=18.353620511952187,84.07063065323374"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -246,16 +247,17 @@ const Footer = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
               <p className="text-muted-foreground text-sm flex items-center gap-1">
-                © {currentYear} VisionariesAI Labs. Made with 
-                <Heart className="w-4 h-4 text-red-500 fill-red-500 animate-pulse" /> 
+                © Since 2023 – {currentYear} VisionariesAI Labs. Made with
+                <Heart className="w-4 h-4 text-red-500 fill-red-500 animate-pulse" />
                 in India
               </p>
+
               <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
                 {footerLinks.legal.map((link) => (
-                  <a 
-                    key={link.name} 
-                    href={link.url} 
-                    target="_blank" 
+                  <a
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1 hover:text-primary transition-colors duration-300 group"
                   >

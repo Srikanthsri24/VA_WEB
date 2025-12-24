@@ -93,7 +93,7 @@ const products = [
     name: "Universal Management System",
     tag: "Central Device Control",
     description:
-      "A unified system to control and automate labs, lights, fans, and multiple devices from one dashboard with role-based access.",
+      "Empower your school with seamless communication, efficient administration, and engaging learning experiences. Simplify operations, enhance engagement, and foster success across schools, colleges, and campuses with our advanced management platform.",
     goal:
       "Centralize device operations and automation for campuses and institutions.",
     features: [

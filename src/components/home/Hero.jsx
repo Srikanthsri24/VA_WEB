@@ -39,7 +39,7 @@ const Hero = () => {
           {/* Subheading */}
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-up delay-200 leading-relaxed">
             We build cutting-edge AI products and deliver enterprise solutions that drive innovation. 
-            Already powering <span className="text-primary font-medium">30+ institutions</span> across India.
+            Already powering <span className="text-primary font-medium">100+ institutions</span> across India.
           </p>
 
           {/* CTA Buttons */}
