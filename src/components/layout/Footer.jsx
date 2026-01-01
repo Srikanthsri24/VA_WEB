@@ -18,6 +18,8 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+// import logo from "../../../public/icon.png"
+import logo from "../../../public/logo1.jpg"
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -141,7 +143,8 @@ const Footer = () => {
             <div className="lg:col-span-2">
               <Link to="/" className="flex items-center gap-3 mb-6 group">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-cyan-500 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg shadow-primary/20">
-                  <Brain className="w-7 h-7 text-white" />
+                  {/* <Brain className="w-7 h-7 text-white" /> */}
+                      <img src={logo} alt="" className="w-10 h-10 rounded-xl"/>
                 </div>
                 <span className="font-display font-bold text-2xl text-foreground">
                   Visionaries<span className="text-primary">AI</span>
