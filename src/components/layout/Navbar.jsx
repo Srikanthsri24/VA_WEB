@@ -4,7 +4,7 @@ import { Menu, X, Brain, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/useTheme";
 // import logo from "../../../public/icon.png"
-import logo from "../../../public/LOGO.jpg"
+import logo from "../../../public/logo1.jpg"
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
