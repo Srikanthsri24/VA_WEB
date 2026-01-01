@@ -4,22 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- ✅ GitHub Pages SPA Refresh Fix -->
-    <script>
-      (function (l) {
-        if (l.search.startsWith("?/")) {
-          const path = l.search.slice(2).replace(/&/g, "?");
-          window.history.replaceState(null, "", "/" + path + l.hash);
-        }
-      })(window.location);
-    </script>
-
     <title>VisionariesAI Labs Pvt Ltd</title>
 
-    <!-- ✅ Correct paths for Vite (NO /public/) -->
-    <link rel="icon" type="image/png" href="/icon.png" />
+    <!-- ✅ Favicon / Site Icon (Google uses this) -->
+    <link rel="icon" href="/icon.png" />
     <link rel="apple-touch-icon" href="/icon.png" />
-    <link rel="manifest" href="./site.webmanifest" />
 
     <!-- ✅ SEO -->
     <meta
@@ -41,16 +30,16 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://visionariesai.com/" />
-    <meta property="og:image" content="https://visionariesai.com/og-image.png" />
+    <meta property="og:image" content="/icon.png" />
 
     <!-- ✅ Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@VisionariesAI" />
-    <meta name="twitter:image" content="https://visionariesai.com/og-image.png" />
+    <meta name="twitter:image" content="/icon.png" />
   </head>
 
   <body>
     <div id="root"></div>
+    <!-- Dev only (Vite replaces this in build output) -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
