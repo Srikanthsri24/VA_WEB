@@ -1,5 +1,21 @@
 import { Link } from "react-router-dom";
-import { Brain, Mail, Phone, MapPin, Linkedin, Youtube, ExternalLink, ArrowRight, Sparkles, Send, Heart, Globe, Shield, Clock, Navigation } from "lucide-react";
+import {
+  Brain,
+  Mail,
+  Phone,
+  MapPin,
+  Linkedin,
+  Youtube,
+  ExternalLink,
+  ArrowRight,
+  Sparkles,
+  Send,
+  Heart,
+  Globe,
+  Shield,
+  Clock,
+  Navigation,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -35,7 +51,7 @@ const Footer = () => {
       { name: "Energy Systems", path: "/products" },
       { name: "LMS Platform", path: "/products" },
       { name: "AI Assistant", path: "/products" },
-            { name: "... More", path: "/products" },
+      { name: "... More", path: "/products" },
     ],
     legal: [
       { name: "Privacy Policy", url: "https://visionariesai.com/privacy-policy.html", external: true },
@@ -50,6 +66,19 @@ const Footer = () => {
     { icon: Clock, text: "24/7 Support available" },
   ];
 
+  /** ✅ Two branches */
+  const branches = [
+    {
+      label: "Srikakulam (Main Branch)",
+      address: "3-28, Dubbakavani Peta, Polaki, Srikakulam, Andhra Pradesh, India - 532429",
+      mapLink: "https://www.google.com/maps/dir/?api=1&destination=18.353620511952187,84.07063065323374",
+    },
+    {
+      label: "Visakhapatnam (Branch Office)",
+      address: "Visakhapatnam, Andhra Pradesh, India",
+      mapLink: "https://www.google.com/maps/dir/?api=1&destination=17.72724,83.30584",
+    },
+  ];
 
   return (
     <footer className="relative overflow-hidden">
@@ -63,12 +92,16 @@ const Footer = () => {
             <div className="text-center lg:text-left">
               <div className="flex items-center gap-2 justify-center lg:justify-start mb-2">
                 <Sparkles className="w-5 h-5 text-primary" />
-                <span className="text-primary font-medium text-sm uppercase tracking-wider">Stay Updated</span>
+                <span className="text-primary font-medium text-sm uppercase tracking-wider">
+                  Stay Updated
+                </span>
               </div>
               <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2">
                 Subscribe to Our Newsletter
               </h3>
-              <p className="text-muted-foreground">Get the latest updates on AI innovations and product releases.</p>
+              <p className="text-muted-foreground">
+                Get the latest updates on AI innovations and product releases.
+              </p>
             </div>
 
             <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
@@ -114,6 +147,7 @@ const Footer = () => {
                   Visionaries<span className="text-primary">AI</span>
                 </span>
               </Link>
+
               <p className="text-muted-foreground mb-6 leading-relaxed">
                 Transforming educational institutions and businesses with cutting-edge AI solutions. We build intelligent products that drive innovation and growth.
               </p>
@@ -198,6 +232,7 @@ const Footer = () => {
                 <span className="w-2 h-2 rounded-full bg-green-500" />
                 Contact Us
               </h4>
+
               <ul className="space-y-4">
                 <li>
                   <a
@@ -210,33 +245,46 @@ const Footer = () => {
                     <span>contact@visionariesai.com</span>
                   </a>
                 </li>
+
                 <li className="flex items-center gap-3 text-muted-foreground">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                     <Phone className="w-5 h-5 text-primary" />
                   </div>
                   <div className="flex flex-col">
-                    <a href="tel:+919849072243" className="hover:text-primary transition-colors">+91 9849072243</a>
-                    <a href="tel:+919849042243" className="hover:text-primary transition-colors">+91 9849042243</a>
+                    <a href="tel:+919849072243" className="hover:text-primary transition-colors">
+                      +91 9849072243
+                    </a>
+                    <a href="tel:+919849042243" className="hover:text-primary transition-colors">
+                      +91 9849042243
+                    </a>
                   </div>
                 </li>
-                <li>
-                  <a
-                    href="https://www.google.com/maps/dir/?api=1&destination=18.353620511952187,84.07063065323374"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-start gap-3 text-muted-foreground hover:text-primary transition-colors duration-300 group"
-                  >
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-                      <MapPin className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-sm leading-relaxed">3-28, Dubbakavani Peta, Polaki, Srikakulam, Andhra Pradesh, India - 532429</span>
-                      <span className="text-xs text-primary flex items-center gap-1 mt-1">
-                        <Navigation className="w-3 h-3" /> Get Directions
-                      </span>
-                    </div>
-                  </a>
-                </li>
+
+                {/* ✅ Two branch addresses */}
+                {branches.map((b) => (
+                  <li key={b.label}>
+                    <a
+                      href={b.mapLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-start gap-3 text-muted-foreground hover:text-primary transition-colors duration-300 group"
+                    >
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                        <MapPin className="w-5 h-5 text-primary" />
+                      </div>
+
+                      <div className="flex flex-col">
+                        <span className="text-xs font-semibold text-foreground/90">
+                          {b.label}
+                        </span>
+                        <span className="text-sm leading-relaxed">{b.address}</span>
+                        <span className="text-xs text-primary flex items-center gap-1 mt-1">
+                          <Navigation className="w-3 h-3" /> Get Directions
+                        </span>
+                      </div>
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

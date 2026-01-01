@@ -10,6 +10,14 @@ import {
   CheckCircle, Building, Zap, Globe, Award, Star
 } from "lucide-react";
 
+
+const LOCATIONS = {
+  srikakulam: "Srikakulam, AP",
+  vizag: "Visakhapatnam, AP",
+  remote: "Remote",
+  hybrid: "Srikakulam / Visakhapatnam",
+};
+
 const jobs = [
   {
     id: 1,
@@ -103,6 +111,103 @@ const jobs = [
     gradient: "from-green-500 to-teal-600",
     icon: Smartphone,
   },
+  {
+  id: 5,
+  title: "AI Trainer (School Curriculum)",
+  department: "Training",
+  type: "Full-time / Part-time",
+  location: LOCATIONS.hybrid,
+  experience: "1-4 years",
+  description:
+    "Deliver AI curriculum (Class 3–10), conduct hands-on activities (Scratch/Python), and support schools with training & implementation.",
+  responsibilities: [
+    "Teach AI curriculum with activities and projects",
+    "Conduct demos, lab sessions, and workshops",
+    "Support teachers with training materials and guidance",
+    "Track student progress and provide feedback reports",
+  ],
+  requirements: [
+    "Good communication & teaching skills",
+    "Basics of AI concepts + Scratch/Python familiarity",
+    "Comfortable with classroom training / workshops",
+    "Willing to travel to schools when needed",
+  ],
+  gradient: "from-violet-500 to-fuchsia-600",
+  icon: GraduationCap,
+},
+{
+  id: 6,
+  title: "Robotics Trainer (School Programs)",
+  department: "Training",
+  type: "Full-time / Part-time",
+  location: LOCATIONS.vizag,
+  experience: "1-4 years",
+  description:
+    "Train students on robotics basics, sensors, kits, and project-based learning. Conduct robotics lab sessions and competitions support.",
+  responsibilities: [
+    "Teach robotics concepts and hands-on kit sessions",
+    "Guide student mini-projects and troubleshooting",
+    "Coordinate lab setup and demo days in schools",
+    "Support events/workshops and competitions",
+  ],
+  requirements: [
+    "Hands-on experience with robotics kits/sensors",
+    "Basic electronics + troubleshooting skills",
+    "Strong communication and classroom handling",
+    "Ability to conduct workshops independently",
+  ],
+  gradient: "from-amber-500 to-orange-600",
+  icon: Zap,
+},
+{
+  id: 7,
+  title: "Computer Teacher / Digital Skills Trainer",
+  department: "Training",
+  type: "Full-time",
+  location: LOCATIONS.srikakulam,
+  experience: "0-3 years",
+  description:
+    "Teach computer fundamentals, digital literacy, and beginner coding activities for school students with engaging methods.",
+  responsibilities: [
+    "Teach computer basics and digital skills",
+    "Conduct practical sessions and lab activities",
+    "Support AI/Robotics sessions when required",
+    "Maintain class reports and student progress",
+  ],
+  requirements: [
+    "Good teaching & communication skills",
+    "Computer fundamentals + MS Office/Internet",
+    "Basic coding knowledge is a plus (Scratch)",
+    "Passion for working with students",
+  ],
+  gradient: "from-sky-500 to-indigo-600",
+  icon: Laptop,
+},
+{
+  id: 8,
+  title: "Soft Skills / Communication Trainer",
+  department: "Training",
+  type: "Part-time / Full-time",
+  location: LOCATIONS.vizag,
+  experience: "1-5 years",
+  description:
+    "Train students and staff on communication, confidence, presentations, and professional skills through workshops.",
+  responsibilities: [
+    "Conduct communication & personality development sessions",
+    "Run workshops (public speaking, interviews, presentations)",
+    "Create structured training modules and activities",
+    "Track improvements and provide feedback",
+  ],
+  requirements: [
+    "Excellent communication and facilitation skills",
+    "Workshop/training experience preferred",
+    "Comfortable with student and teacher training",
+    "Strong planning and engagement methods",
+  ],
+  gradient: "from-emerald-500 to-teal-600",
+  icon: Users,
+},
+
 ];
 
 const benefits = [
