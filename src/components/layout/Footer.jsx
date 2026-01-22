@@ -56,7 +56,7 @@ const Footer = () => {
       { name: "... More", path: "/products" },
     ],
     legal: [
-      { name: "Privacy Policy", url: "https://visionariesai.com/privacy-policy.html", external: true },
+      // { name: "Privacy Policy", url: "https://visionariesai.com/privacy-policy.html", external: true },
       { name: "Terms of Service", url: "https://visionariesai.com/terms-of-service.html", external: true },
       { name: "Refund & Warranty", url: "https://visionariesai.com/refund-warranty-policy.html", external: true },
     ],
@@ -144,7 +144,7 @@ const Footer = () => {
               <Link to="/" className="flex items-center gap-3 mb-6 group">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-cyan-500 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg shadow-primary/20">
                   {/* <Brain className="w-7 h-7 text-white" /> */}
-                      <img src={logo} alt="" className="w-10 h-10 rounded-xl"/>
+                  <img src={logo} alt="" className="w-10 h-10 rounded-xl" />
                 </div>
                 <span className="font-display font-bold text-2xl text-foreground">
                   Visionaries<span className="text-primary">AI</span>
@@ -304,18 +304,30 @@ const Footer = () => {
               </p>
 
               <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-                {footerLinks.legal.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 hover:text-primary transition-colors duration-300 group"
-                  >
-                    {link.name}
-                    <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                ))}
+
+                <a
+                  href={`${import.meta.env.BASE_URL}privacy-policy.html`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Privacy Policy
+                </a>
+                <a
+                  href={`${import.meta.env.BASE_URL}terms-of-service.html`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Terms of Service
+                </a>
+                <a
+                  href={`${import.meta.env.BASE_URL}refund-warranty-policy.html`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Refund & Warranty
+                </a>
+
+
               </div>
             </div>
           </div>
