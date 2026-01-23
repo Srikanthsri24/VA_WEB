@@ -6,16 +6,18 @@ import {
   MapPin,
   Linkedin,
   Youtube,
-  ExternalLink,
   ArrowRight,
   Sparkles,
   Send,
   Heart,
   Globe,
   Shield,
+  FileText, ShieldCheck, RefreshCcw, ExternalLink,
   Clock,
   Navigation,
 } from "lucide-react";
+// import { FileText, ShieldCheck, RefreshCcw, ExternalLink } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 // import logo from "../../../public/icon.png"
@@ -302,36 +304,41 @@ const Footer = () => {
                 <Heart className="w-4 h-4 text-red-500 fill-red-500 animate-pulse" />
                 in India
               </p>
-
               <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-
                 <a
-                  href={`${import.meta.env.BASE_URL}Documents/privacy-policy.html`}
+                  href={`${import.meta.env.BASE_URL}privacy-policy.html`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 hover:text-primary transition-colors"
                 >
+                  {/* <FileText className="w-4 h-4" /> */}
                   Privacy Policy
+                  <ExternalLink className="w-3.5 h-3.5 opacity-70" />
                 </a>
 
                 <a
-                  href={`${import.meta.env.BASE_URL}Documents/terms-of-service.html`}
+                  href={`${import.meta.env.BASE_URL}terms-of-service.html`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 hover:text-primary transition-colors"
                 >
+                  {/* <ShieldCheck className="w-4 h-4" /> */}
                   Terms of Service
+                  <ExternalLink className="w-3.5 h-3.5 opacity-70" />
                 </a>
 
                 <a
-                  href={`${import.meta.env.BASE_URL}Documents/refund-warranty-policy.html`}
+                  href={`${import.meta.env.BASE_URL}refund-warranty-policy.html`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 hover:text-primary transition-colors"
                 >
+                  {/* <RefreshCcw className="w-4 h-4" /> */}
                   Refund & Warranty
+                  <ExternalLink className="w-3.5 h-3.5 opacity-70" />
                 </a>
-
-
-
               </div>
+
             </div>
           </div>
         </div>
