@@ -306,26 +306,29 @@ const Footer = () => {
               <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
 
                 <a
-                  href={`${import.meta.env.BASE_URL}privacy-policy.html`}
+                  href={`${import.meta.env.BASE_URL}Documents/privacy-policy.html`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   Privacy Policy
                 </a>
+
                 <a
-                  href={`${import.meta.env.BASE_URL}terms-of-service.html`}
+                  href={`${import.meta.env.BASE_URL}Documents/terms-of-service.html`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   Terms of Service
                 </a>
+
                 <a
-                  href={`${import.meta.env.BASE_URL}refund-warranty-policy.html`}
+                  href={`${import.meta.env.BASE_URL}Documents/refund-warranty-policy.html`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   Refund & Warranty
                 </a>
+
 
 
               </div>
