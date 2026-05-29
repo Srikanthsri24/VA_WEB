@@ -13,6 +13,7 @@ import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import Careers from "./pages/Careers";
 import NotFound from "./pages/NotFound";
+import IndustryPage from "./pages/Services/IndustryPage";
 
 const queryClient = new QueryClient();
 
@@ -23,16 +24,16 @@ const App = () => (
         <Toaster />
         <Sonner />
 
-        {/* ✅ basename is important for GH pages / subpaths */}
         <BrowserRouter basename={import.meta.env.BASE_URL}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/services/information-technology" element={<Services />} />
+            <Route path="/services/:industrySlug" element={<IndustryPage />} />
             <Route path="/products" element={<Products />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
-            
             <Route path="/careers" element={<Careers />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
