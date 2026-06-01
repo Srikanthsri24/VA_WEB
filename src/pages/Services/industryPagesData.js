@@ -7,6 +7,7 @@ import {
   BrainCircuit,
   BriefcaseBusiness,
   CalendarCheck,
+  Camera,
   CheckCircle2,
   ClipboardCheck,
   ClipboardList,
@@ -21,15 +22,21 @@ import {
   GraduationCap,
   HeartPulse,
   Hospital,
+  Image,
   Layers3,
   LineChart,
+  Megaphone,
   MonitorSmartphone,
   Network,
   PackageCheck,
+  Palette,
+  PenTool,
   ReceiptText,
   Rocket,
   School,
+  Search,
   Settings,
+  Share2,
   ShieldCheck,
   ShoppingBag,
   ShoppingCart,
@@ -37,7 +44,9 @@ import {
   Store,
   Target,
   Truck,
+  Tv,
   UsersRound,
+  Video,
   Workflow,
   Wrench,
 } from "lucide-react";
@@ -601,6 +610,159 @@ export const industryPagesData = {
     ctaTitle: "Ready to digitize your manufacturing process?",
     ctaDescription:
       "VisionariesAI Labs builds manufacturing ERP systems, production tracking software, inventory platforms, IoT monitoring, automation workflows and industrial dashboards.",
+  },
+
+
+    marketing: {
+    badge: "Marketing & Branding Services",
+    title: "Creative marketing solutions for business growth",
+    description:
+      "VisionariesAI Labs helps schools, colleges, companies, startups, shops and personal brands grow through video creation, social media marketing, offline promotion, branding, content planning and digital campaigns.",
+    buttonText: "Start Marketing",
+    secondaryButtonText: "View All Services",
+    heroIcon: Megaphone,
+    hubSmallTitle: "VisionariesAI Marketing Suite",
+    hubTitle: "Brand Growth Hub",
+    highlightIcon: Sparkles,
+    highlightText:
+      "From social media content to offline campaigns, we help brands reach the right audience with creative marketing strategies.",
+    floatingTitle: "Brand Visibility",
+    floatingText: "Online + Offline growth",
+    floatingIcon: Share2,
+    stats: [
+      { value: "360°", label: "Marketing Support" },
+      { value: "Videos", label: "Creative Content" },
+      { value: "Social", label: "Media Growth" },
+      { value: "Offline", label: "Local Promotion" },
+    ],
+    hubCards: [
+      {
+        title: "Video Creation",
+        text: "Promotional videos, reels, product videos, school videos and brand introduction videos.",
+        icon: Video,
+      },
+      {
+        title: "Social Media",
+        text: "Instagram, Facebook, YouTube, LinkedIn and digital content planning.",
+        icon: Share2,
+      },
+      {
+        title: "Brand Design",
+        text: "Posters, flyers, brochures, banners, thumbnails and complete visual branding.",
+        icon: Palette,
+      },
+      {
+        title: "Campaigns",
+        text: "Online and offline marketing campaigns for better reach and customer engagement.",
+        icon: Megaphone,
+      },
+    ],
+    sectionBadge: "What We Provide",
+    sectionIcon: Megaphone,
+    sectionTitle: "Complete marketing services for every business",
+    sectionDescription:
+      "Our marketing services are designed for schools, colleges, businesses, institutions, startups, brands, shops, service providers and individuals who want more visibility and growth.",
+    solutions: [
+      {
+        title: "Video Creation",
+        description:
+          "We create professional promotional videos, company introduction videos, school videos, product videos, service videos, reels and short-form content.",
+        icon: Video,
+      },
+      {
+        title: "Social Media Marketing",
+        description:
+          "We manage and create content for Instagram, Facebook, YouTube, LinkedIn and other platforms to improve brand visibility and engagement.",
+        icon: Share2,
+      },
+      {
+        title: "Offline Marketing",
+        description:
+          "We support local promotion through flyers, banners, brochures, posters, event promotions, school campaigns and field marketing ideas.",
+        icon: Megaphone,
+      },
+      {
+        title: "Graphic Design",
+        description:
+          "We design attractive posters, flyers, social media creatives, banners, brochures, thumbnails, advertisements and marketing materials.",
+        icon: Palette,
+      },
+      {
+        title: "Branding Support",
+        description:
+          "We help businesses create strong brand identity with logo usage, color themes, content style, campaign messaging and professional presentation.",
+        icon: PenTool,
+      },
+      {
+        title: "Digital Campaign Planning",
+        description:
+          "We plan result-oriented marketing campaigns for admissions, products, services, events, launches, offers and business growth.",
+        icon: Target,
+      },
+    ],
+    modulesBadge: "Marketing Capabilities",
+    modulesIcon: MonitorSmartphone,
+    modulesTitle: "Built for online and offline promotion",
+    modulesDescription:
+      "Our marketing team supports your brand with content creation, creative designs, video production, campaign planning, social media posting, local promotion and digital growth strategies.",
+    modulesHighlightTitle: "Complete creative and marketing partner",
+    modulesHighlightText:
+      "VisionariesAI Labs can support your company with both technology and marketing, helping you build, promote and grow your brand professionally.",
+    modulesHighlightIcon: Rocket,
+    features: [
+      "Company introduction videos",
+      "Promotional videos and reels",
+      "School admission campaign videos",
+      "Product and service videos",
+      "Social media post design",
+      "Instagram and Facebook marketing",
+      "YouTube video content planning",
+      "LinkedIn company branding",
+      "Poster, flyer and brochure design",
+      "Banner and hoarding design",
+      "Offline campaign planning",
+      "Local business promotion",
+      "School and college marketing campaigns",
+      "Event promotion support",
+      "Brand awareness campaigns",
+      "Digital advertisement creatives",
+      "Thumbnail and cover design",
+      "Content writing and captions",
+      "Business profile presentation",
+      "Website and landing page content support",
+      "Lead generation campaign planning",
+      "Festival and offer creatives",
+      "Photography and video shoot planning",
+      "Editing and motion graphics support",
+    ],
+    processTitle: "Simple process for marketing growth",
+    processDescription:
+      "We understand your business, prepare a clear marketing plan, create content and support both online and offline promotion.",
+    steps: [
+      {
+        step: "01",
+        title: "Brand Understanding",
+        text: "We understand your company, target audience, services, products, location, competitors and marketing goals.",
+      },
+      {
+        step: "02",
+        title: "Marketing Plan",
+        text: "We prepare a clear plan for videos, social media posts, offline promotion, branding materials and campaigns.",
+      },
+      {
+        step: "03",
+        title: "Creative Production",
+        text: "We create videos, posters, reels, brochures, captions, banners and campaign creatives based on your brand style.",
+      },
+      {
+        step: "04",
+        title: "Promotion & Growth",
+        text: "We support posting, promotion, campaign improvement, audience reach, branding consistency and long-term marketing growth.",
+      },
+    ],
+    ctaTitle: "Ready to grow your brand with marketing?",
+    ctaDescription:
+      "VisionariesAI Labs provides complete marketing services including video creation, social media marketing, offline marketing, branding, graphic design, campaign planning, promotional content and business growth support.",
   },
 
   "consulting-services": {

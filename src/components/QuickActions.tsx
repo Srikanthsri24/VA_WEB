@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-MousePointerClick,
+  MousePointerClick,
   X,
   GraduationCap,
   HeartPulse,
@@ -9,13 +9,14 @@ MousePointerClick,
   Factory,
   ShoppingBag,
   BriefcaseBusiness,
-  MoreHorizontal,
+  Megaphone,
 } from "lucide-react";
 
 type QuickAction = {
   label: string;
   path: string;
   icon: React.ElementType;
+  bgClass: string;
 };
 
 type Position = {
@@ -28,44 +29,54 @@ const quickActions: QuickAction[] = [
     label: "Education",
     path: "/services/education",
     icon: GraduationCap,
+    bgClass: "bg-sky-500",
   },
   {
     label: "Healthcare",
     path: "/services/healthcare",
     icon: HeartPulse,
+    bgClass: "bg-emerald-500",
   },
   {
     label: "Information Technology",
     path: "/services/information-technology",
     icon: Cpu,
+    bgClass: "bg-blue-600",
   },
   {
     label: "Manufacturing",
     path: "/services/manufacturing",
     icon: Factory,
+    bgClass: "bg-orange-500",
   },
   {
     label: "Retail",
     path: "/services/retail",
     icon: ShoppingBag,
+    bgClass: "bg-pink-500",
   },
   {
     label: "Consulting Services",
     path: "/services/consulting-services",
     icon: BriefcaseBusiness,
+    bgClass: "bg-violet-500",
   },
   {
-    label: "And many more",
-    path: "/services",
-    icon: MoreHorizontal,
+    label: "Marketing",
+    path: "/services/marketing",
+    icon: Megaphone,
+    bgClass: "bg-cyan-500",
   },
 ];
 
 const FAB_SIZE = 64;
-const SCREEN_GAP = 16;
+const SCREEN_GAP = 18;
+const HEADER_SAFE_GAP = 95;
 const MOBILE_BOTTOM_NAV_HEIGHT = 76;
 const MOBILE_BOTTOM_GAP = 20;
-const ACTION_ICON_SIZE = 52;
+const ACTION_SIZE = 54;
+const ACTION_GAP = 12;
+const MENU_PADDING = 12;
 const STORAGE_KEY = "visionaries-quick-actions-position";
 
 const isMobileScreen = () => {
@@ -92,7 +103,7 @@ const clampPosition = (x: number, y: number): Position => {
   const bottomSafeSpace = getBottomSafeSpace();
 
   const minX = SCREEN_GAP;
-  const minY = SCREEN_GAP;
+  const minY = HEADER_SAFE_GAP;
   const maxX = window.innerWidth - FAB_SIZE - SCREEN_GAP;
   const maxY = window.innerHeight - FAB_SIZE - bottomSafeSpace;
 
@@ -123,11 +134,7 @@ const QuickActions = () => {
     if (savedPosition) {
       try {
         const parsed = JSON.parse(savedPosition);
-
-        const safePosition = clampPosition(
-          Number(parsed.x),
-          Number(parsed.y)
-        );
+        const safePosition = clampPosition(Number(parsed.x), Number(parsed.y));
 
         setPosition(safePosition);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(safePosition));
@@ -261,57 +268,40 @@ const QuickActions = () => {
 
   if (!isInitialized) return null;
 
-  const isTopHalf = position.y < window.innerHeight / 2;
-  const isNearLeft = position.x < 120;
-  const isNearRight = position.x > window.innerWidth - 180;
+  const bottomSafeSpace = getBottomSafeSpace();
+
+  const menuHeight =
+    quickActions.length * ACTION_SIZE +
+    (quickActions.length - 1) * ACTION_GAP +
+    MENU_PADDING * 2;
+
+  const preferredMenuTop = position.y + FAB_SIZE / 2 - menuHeight / 2;
+
+  const menuTop = Math.max(
+    HEADER_SAFE_GAP,
+    Math.min(
+      preferredMenuTop,
+      window.innerHeight - bottomSafeSpace - menuHeight
+    )
+  );
+
+  const openMenuOnLeft = position.x > window.innerWidth / 2;
+
+  const menuLeft = openMenuOnLeft
+    ? Math.max(SCREEN_GAP, position.x - 82)
+    : Math.min(window.innerWidth - 82, position.x + FAB_SIZE + 18);
 
   return (
-    <div
-      ref={wrapperRef}
-      style={{
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-      }}
-      className="fixed z-[9999] flex h-16 w-16 items-center justify-center"
-    >
+    <div ref={wrapperRef}>
       {showActions && (
         <div
-          className={`absolute flex gap-3 rounded-[28px] border border-border bg-card/95 p-3 text-card-foreground shadow-2xl backdrop-blur-xl ${
-            isTopHalf
-              ? "top-full mt-4 animate-in fade-in slide-in-from-top-3 duration-300"
-              : "bottom-full mb-4 animate-in fade-in slide-in-from-bottom-3 duration-300"
-          } ${
-            isNearLeft
-              ? "left-0"
-              : isNearRight
-              ? "right-0"
-              : "left-1/2 -translate-x-1/2"
-          }`}
+          className="fixed z-[9998] animate-in fade-in zoom-in-95 duration-300"
+          style={{
+            top: `${menuTop}px`,
+            left: `${menuLeft}px`,
+          }}
         >
-          <button
-            type="button"
-            onClick={() => setShowActions(false)}
-            className="absolute -right-2.5 -top-2.5 flex h-8 w-8 items-center justify-center rounded-full border border-border bg-card text-muted-foreground shadow-lg transition-all duration-300 hover:rotate-90 hover:bg-destructive hover:text-destructive-foreground"
-            aria-label="Close quick actions"
-          >
-            <X className="h-4 w-4" />
-          </button>
-
-          <div
-            className={`absolute h-5 w-5 rotate-45 border-border bg-card ${
-              isTopHalf
-                ? "-top-2.5 border-l border-t"
-                : "-bottom-2.5 border-b border-r"
-            } ${
-              isNearLeft
-                ? "left-5"
-                : isNearRight
-                ? "right-5"
-                : "left-1/2 -translate-x-1/2"
-            }`}
-          />
-
-          <div className="flex max-w-[calc(100vw-40px)] items-center gap-3 overflow-visible">
+          <div className="relative flex flex-col items-center gap-3 rounded-full border border-white/70 bg-white/80 p-3 shadow-[0_20px_60px_rgba(14,165,233,0.28)] backdrop-blur-xl">
             {quickActions.map((action, index) => {
               const Icon = action.icon;
 
@@ -326,22 +316,18 @@ const QuickActions = () => {
                   <button
                     type="button"
                     onClick={() => handleActionClick(action.path)}
-                    className="flex h-[52px] w-[52px] items-center justify-center rounded-2xl border border-border bg-background text-primary shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:scale-110 hover:border-primary/40 hover:bg-primary hover:text-primary-foreground hover:shadow-xl active:scale-95"
+                    className={`flex h-[54px] w-[54px] items-center justify-center rounded-full ${action.bgClass} text-white shadow-[0_10px_24px_rgba(15,23,42,0.18)] ring-4 ring-white transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:shadow-[0_16px_34px_rgba(14,165,233,0.38)] active:scale-95`}
                     aria-label={action.label}
                     title={action.label}
-                    style={{
-                      width: ACTION_ICON_SIZE,
-                      height: ACTION_ICON_SIZE,
-                    }}
                   >
-                    <Icon className="h-6 w-6 transition-all duration-300 group-hover:rotate-12 group-hover:scale-110" />
+                    <Icon className="h-6 w-6 drop-shadow-md transition-all duration-300 group-hover:rotate-12 group-hover:scale-110" />
                   </button>
 
                   <div
-                    className={`pointer-events-none absolute left-1/2 z-[10000] -translate-x-1/2 whitespace-nowrap rounded-full border border-border bg-popover px-3 py-1.5 text-xs font-semibold text-popover-foreground opacity-0 shadow-xl transition-all duration-200 group-hover:opacity-100 ${
-                      isTopHalf
-                        ? "top-[64px] -translate-y-2 group-hover:translate-y-0"
-                        : "bottom-[64px] translate-y-2 group-hover:translate-y-0"
+                    className={`pointer-events-none absolute top-1/2 z-[10000] -translate-y-1/2 whitespace-nowrap rounded-full border border-sky-100 bg-white px-4 py-2 text-xs font-bold text-slate-800 opacity-0 shadow-xl transition-all duration-200 group-hover:opacity-100 ${
+                      openMenuOnLeft
+                        ? "right-[70px] translate-x-2 group-hover:translate-x-0"
+                        : "left-[70px] -translate-x-2 group-hover:translate-x-0"
                     }`}
                   >
                     {action.label}
@@ -353,47 +339,77 @@ const QuickActions = () => {
         </div>
       )}
 
-      <button
-        type="button"
-        onPointerDown={handlePointerDown}
-        onClick={handleToggle}
-        className={`group relative flex h-16 w-16 touch-none cursor-grab items-center justify-center overflow-hidden rounded-[26px] border border-primary/30 bg-primary text-primary-foreground shadow-2xl shadow-primary/30 transition-all active:cursor-grabbing active:scale-95 ${
-          showActions ? "scale-105" : "hover:scale-110 hover:rotate-3"
-        }`}
+      <div
         style={{
-          transition: isDraggingRef.current
-            ? "none"
-            : "transform 0.3s ease, box-shadow 0.3s ease",
+          left: `${position.x}px`,
+          top: `${position.y}px`,
         }}
-        aria-label="Quick actions"
+        className="fixed z-[9999] flex h-16 w-16 items-center justify-center"
       >
-        <span className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-black/20" />
-
-        <span className="absolute -left-7 top-2 h-12 w-12 rounded-full bg-white/25 blur-xl transition-all duration-700 group-hover:left-12" />
-
-        <span className="absolute inset-0 rounded-[26px] border border-white/20" />
-
         {!showActions && (
-          <span className="absolute inset-0 animate-ping rounded-[26px] bg-primary/30" />
+          <div className="pointer-events-none absolute -top-11 left-1/2 hidden -translate-x-1/2 whitespace-nowrap md:block">
+            <div className="relative overflow-hidden rounded-full border border-sky-400/40 bg-slate-950/90 px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-sky-300 shadow-[0_0_22px_rgba(14,165,233,0.35)] backdrop-blur-xl">
+              <span className="quick-action-shine absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+              <span className="relative flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.9)]" />
+                Explore Services
+              </span>
+            </div>
+          </div>
         )}
 
-        <span className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 shadow-inner transition-all duration-300 group-hover:bg-white/25">
-          {showActions ? (
-            <X className="pointer-events-none h-6 w-6 rotate-90 scale-110 transition-all duration-300" />
-          ) : (
-           <MousePointerClick className="pointer-events-none h-7 w-7 transition-all duration-500 group-hover:-rotate-12 group-hover:scale-110" />
+        <button
+          type="button"
+          onPointerDown={handlePointerDown}
+          onClick={handleToggle}
+          className={`group quick-action-float relative flex h-16 w-16 touch-none cursor-grab items-center justify-center overflow-hidden rounded-full border border-white/40 bg-gradient-to-br from-sky-400 via-blue-600 to-violet-600 text-white shadow-[0_16px_38px_rgba(37,99,235,0.45)] transition-all duration-500 active:cursor-grabbing active:scale-95 ${
+            showActions
+              ? "scale-105 rotate-0"
+              : "hover:scale-[1.15] hover:-rotate-6"
+          }`}
+          style={{
+            transition: isDraggingRef.current
+              ? "none"
+              : "transform 0.35s ease, box-shadow 0.35s ease",
+          }}
+          aria-label="Quick actions"
+        >
+          <span className="absolute inset-0 bg-gradient-to-br from-white/45 via-transparent to-black/30" />
+
+          <span className="absolute inset-[-10px] rounded-full bg-sky-400/20 blur-xl transition-all duration-500 group-hover:bg-violet-400/30" />
+
+          {!showActions && (
+            <>
+              <span className="absolute inset-[-7px] animate-ping rounded-full bg-sky-400/30" />
+              <span className="absolute inset-[-14px] rounded-full border border-sky-300/25" />
+              <span className="absolute inset-[-22px] rounded-full border border-violet-400/15" />
+            </>
           )}
-        </span>
-      </button>
 
-      {!showActions && (
-        <span className="pointer-events-none absolute -right-1 -top-1 flex h-4 w-4">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
-          <span className="relative inline-flex h-4 w-4 rounded-full border border-primary bg-background" />
-        </span>
-      )}
+          <span className="quick-action-shine absolute top-0 h-full w-8 bg-white/35 blur-sm" />
 
-      <div className="pointer-events-none absolute -bottom-2 left-1/2 h-2 w-11 -translate-x-1/2 rounded-full bg-black/25 blur-md" />
+          <span className="absolute -left-8 top-2 h-16 w-16 rounded-full bg-white/30 blur-2xl transition-all duration-700 group-hover:left-14" />
+
+          <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white/20 shadow-inner ring-1 ring-white/35 transition-all duration-300 group-hover:bg-white/30">
+            {showActions ? (
+              <X className="pointer-events-none h-7 w-7 rotate-90 scale-110 transition-all duration-300" />
+            ) : (
+              <MousePointerClick className="pointer-events-none h-7 w-7 drop-shadow-lg transition-all duration-500 group-hover:-rotate-12 group-hover:scale-125" />
+            )}
+          </span>
+
+          <span className="absolute inset-0 rounded-full border border-white/30" />
+        </button>
+
+        {!showActions && (
+          <span className="pointer-events-none absolute -right-1 -top-1 flex h-4 w-4">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-yellow-400 opacity-75" />
+            <span className="relative inline-flex h-4 w-4 rounded-full border border-white bg-yellow-400 shadow-md" />
+          </span>
+        )}
+
+        <div className="pointer-events-none absolute -bottom-2 left-1/2 h-2 w-11 -translate-x-1/2 rounded-full bg-black/35 blur-md" />
+      </div>
     </div>
   );
 };

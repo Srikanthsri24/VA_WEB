@@ -190,17 +190,37 @@ const teamMembers = [
   // Business
   {
     id: 8,
-    name: "Jallu Gopal",
-    title: "Business Developer",
+    name: "Gopal & Team",
+    title: "Business Development Team",
     group: "Business",
-    focus: ["Client Acquisition", "Institution Partnerships", "Product Demos", "Sales Strategy"],
+    focus: [
+      "Client Acquisition",
+      "Institution Partnerships",
+      "Product Demos",
+      "Sales Strategy",
+    ],
     avatar: "BD",
     icon: Briefcase,
   },
 
   // Marketing
+
   {
-    id: 16,
+    id: 24,
+    name: "Arangi Murali & Team",
+    title: "Marketing Team",
+    group: "Marketing",
+    focus: [
+      "Field Marketing",
+      "Brand Promotion",
+      "School Campaigns",
+      "Lead Generation",
+    ],
+    avatar: "MK",
+    icon: Megaphone,
+  },
+  {
+    id: 17,
     name: "Anil S",
     title: "Marketing Executive",
     group: "Marketing",
@@ -208,8 +228,9 @@ const teamMembers = [
     avatar: "MK",
     icon: Briefcase,
   },
+
   {
-    id: 17,
+    id: 18,
     name: "Chaitanya",
     title: "Marketing Executive",
     group: "Marketing",
@@ -224,7 +245,12 @@ const teamMembers = [
     name: "Girish & Team",
     title: "Digital Marketing Team",
     group: "Digital Marketing",
-    focus: ["Social Media", "Digital Campaigns", "Brand Promotion", "Lead Generation"],
+    focus: [
+      "Social Media",
+      "Digital Campaigns",
+      "Brand Promotion",
+      "Lead Generation",
+    ],
     avatar: "DM",
     icon: Megaphone,
   },
@@ -250,6 +276,21 @@ const teamMembers = [
   },
 
   // Finance
+
+  {
+    id: 25,
+    name: "Thejesh & Team",
+    title: "Accountants Team",
+    group: "Finance",
+    focus: [
+      "Accounting",
+      "Billing",
+      "GST & Tax Filing",
+      "Financial Reporting",
+    ],
+    avatar: "AC",
+    icon: Calculator,
+  },
   {
     id: 13,
     name: "Hari Krishna",
@@ -496,112 +537,109 @@ const About = () => {
       </section>
 
       {/* Team */}
-    {/* Team */}
-<section id="team" className="py-16 bg-card/50">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="text-center mb-14">
-      <span className="text-primary font-medium text-sm uppercase tracking-wider">
-        Our Team
-      </span>
+      {/* Team */}
+      <section id="team" className="py-16 bg-card/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <span className="text-primary font-medium text-sm uppercase tracking-wider">
+              Our Team
+            </span>
 
-      <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mt-4 mb-4">
-        Meet the <span className="gradient-text">Visionaries</span>
-      </h2>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mt-4 mb-4">
+              Meet the <span className="gradient-text">Visionaries</span>
+            </h2>
 
-      <p className="text-muted-foreground max-w-2xl mx-auto">
-        Our diverse team brings expertise across engineering, AI, business
-        development, management, operations, content, marketing, and support
-        to deliver exceptional solutions.
-      </p>
-    </div>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Our diverse team brings expertise across engineering, AI, business
+              development, management, operations, content, marketing, and support
+              to deliver exceptional solutions.
+            </p>
+          </div>
 
-    {Object.entries(groupedTeam).map(([group, members], groupIndex) => (
-      <div key={group} className="mb-16 last:mb-0">
-        <div className="flex items-center gap-3 mb-8">
-          <div
-            className={`h-1.5 w-16 rounded-full bg-gradient-to-r ${
-              groupColors[group] || "from-primary to-primary"
-            }`}
-          />
-
-          <h3 className="font-display text-2xl font-bold text-foreground">
-            {group}
-          </h3>
-
-          <span className="text-sm text-muted-foreground">
-            ({members.length})
-          </span>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-          {members.map((member, index) => {
-            const MemberIcon = member.icon;
-
-            return (
-              <div
-                key={member.id}
-                className="glass-card relative overflow-hidden p-7 min-h-[285px] hover-lift group animate-fade-up border border-border/70"
-                style={{
-                  animationDelay: `${groupIndex * 100 + index * 50}ms`,
-                }}
-              >
+          {Object.entries(groupedTeam).map(([group, members], groupIndex) => (
+            <div key={group} className="mb-16 last:mb-0">
+              <div className="flex items-center gap-3 mb-8">
                 <div
-                  className={`absolute -top-16 -right-16 w-44 h-44 rounded-full bg-gradient-to-br ${
-                    groupColors[member.group] || "from-primary to-primary"
-                  } opacity-10 group-hover:opacity-20 transition-all duration-300`}
+                  className={`h-1.5 w-16 rounded-full bg-gradient-to-r ${groupColors[group] || "from-primary to-primary"
+                    }`}
                 />
 
-                <div className="relative flex items-start gap-5">
-                  <div
-                    className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${
-                      groupColors[member.group] || "from-primary to-primary"
-                    } flex items-center justify-center shrink-0 shadow-lg group-hover:scale-105 transition-transform duration-300`}
-                  >
-                    <span className="font-display text-xl font-bold text-white">
-                      {member.avatar}
-                    </span>
-                  </div>
+                <h3 className="font-display text-2xl font-bold text-foreground">
+                  {group}
+                </h3>
 
-                  <div className="flex-1 min-w-0">
-                    <h4 className="font-display text-xl font-bold text-foreground leading-snug mb-1">
-                      {member.name}
-                    </h4>
-
-                    <p className="text-primary text-base font-medium leading-snug mb-3">
-                      {member.title}
-                    </p>
-
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <MemberIcon className="w-4 h-4 text-primary shrink-0" />
-                      <span>{member.group}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="relative mt-6">
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                    Focused on {member.focus.slice(0, 2).join(" and ").toLowerCase()}.
-                  </p>
-
-                  <div className="flex flex-wrap gap-2">
-                    {member.focus.map((skill) => (
-                      <span
-                        key={skill}
-                        className="text-sm px-3 py-1.5 rounded-full bg-secondary/80 text-muted-foreground border border-border/50"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <span className="text-sm text-muted-foreground">
+                  ({members.length})
+                </span>
               </div>
-            );
-          })}
+
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                {members.map((member, index) => {
+                  const MemberIcon = member.icon;
+
+                  return (
+                    <div
+                      key={member.id}
+                      className="glass-card relative overflow-hidden p-7 min-h-[285px] hover-lift group animate-fade-up border border-border/70"
+                      style={{
+                        animationDelay: `${groupIndex * 100 + index * 50}ms`,
+                      }}
+                    >
+                      <div
+                        className={`absolute -top-16 -right-16 w-44 h-44 rounded-full bg-gradient-to-br ${groupColors[member.group] || "from-primary to-primary"
+                          } opacity-10 group-hover:opacity-20 transition-all duration-300`}
+                      />
+
+                      <div className="relative flex items-start gap-5">
+                        <div
+                          className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${groupColors[member.group] || "from-primary to-primary"
+                            } flex items-center justify-center shrink-0 shadow-lg group-hover:scale-105 transition-transform duration-300`}
+                        >
+                          <span className="font-display text-xl font-bold text-white">
+                            {member.avatar}
+                          </span>
+                        </div>
+
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-display text-xl font-bold text-foreground leading-snug mb-1">
+                            {member.name}
+                          </h4>
+
+                          <p className="text-primary text-base font-medium leading-snug mb-3">
+                            {member.title}
+                          </p>
+
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <MemberIcon className="w-4 h-4 text-primary shrink-0" />
+                            <span>{member.group}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="relative mt-6">
+                        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                          Focused on {member.focus.slice(0, 2).join(" and ").toLowerCase()}.
+                        </p>
+
+                        <div className="flex flex-wrap gap-2">
+                          {member.focus.map((skill) => (
+                            <span
+                              key={skill}
+                              className="text-sm px-3 py-1.5 rounded-full bg-secondary/80 text-muted-foreground border border-border/50"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-    ))}
-  </div>
-</section>
+      </section>
     </Layout>
   );
 };

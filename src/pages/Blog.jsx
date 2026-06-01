@@ -1,937 +1,1490 @@
 import { Link } from "react-router-dom";
-import { useMemo, useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
-  Clock,
-  User,
-  Tag,
-  Send,
-  Search,
-  TrendingUp,
+  Award,
   Bookmark,
-  Share2,
-  Eye,
-  MessageCircle,
+  BriefcaseBusiness,
   Calendar,
+  CheckCircle2,
+  ChevronLeft,
   ChevronRight,
+  Clock,
+  Cpu,
+  Eye,
+  GraduationCap,
+  Mail,
+  MessageCircle,
+  Rocket,
+  Search,
+  Send,
+  Share2,
+  Sparkles,
+  TrendingUp,
+  User,
+  Users,
   X,
+  Zap,
 } from "lucide-react";
-import { useScrollAnimation, useScrollAnimationGroup } from "@/hooks/useScrollAnimation";
 import { toast } from "@/hooks/use-toast";
 import { motion, AnimatePresence } from "framer-motion";
 
-/** ----------------------------
- *  ✅ Demo Data (replace later with API)
- *  ---------------------------- */
 const blogPosts = [
   {
     id: 1,
-    slug: "future-of-ai-in-education-2025",
-    title: "The Future of AI in Education: Trends to Watch in 2025",
+    slug: "rajasab-project-successfully-delivered",
+    title: "Rajasab Project Successfully Delivered",
     excerpt:
-      "From personalized learning to automated assessments—here are the most practical AI trends schools can adopt this year.",
-    author: "Srikanth Dubbaka",
-    dateLabel: "Dec 15, 2025",
-    publishedAt: "2025-12-15",
-    readTime: "8 min read",
-    category: "Industry Trends",
-    tags: ["AI in Education", "EdTech Trends", "Personalization"],
-    featured: true,
-    gradient: "from-cyan-500 to-blue-600",
-    views: 2400,
-    comments: 45,
-    icon: "📊",
-  },
-  {
-    id: 2,
-    slug: "production-ready-ai-monitoring-systems",
-    title: "Building Production-Ready AI Monitoring Systems",
-    excerpt:
-      "A field-tested guide to implementing AI-powered CCTV monitoring for campus safety—with real deployment lessons.",
-    author: "Engineering Team",
-    dateLabel: "Dec 10, 2025",
-    publishedAt: "2025-12-10",
-    readTime: "12 min read",
-    category: "Technical",
-    tags: ["Smart Campus", "AI CCTV", "Security"],
-    featured: false,
-    gradient: "from-purple-500 to-pink-600",
-    views: 1800,
-    comments: 32,
-    icon: "💻",
-  },
-  {
-    id: 3,
-    slug: "ai-teaching-assistants-transform-learning",
-    title: "How AI Teaching Assistants are Transforming Learning",
-    excerpt:
-      "See how an AI doubt-solving assistant improves engagement, reduces teacher load, and boosts confidence in students.",
+      "VisionariesAI Labs successfully delivered the Rajasab project with complete application setup, deployment, production configuration, and technical support.",
     author: "VisionariesAI Team",
-    dateLabel: "Dec 05, 2025",
-    publishedAt: "2025-12-05",
-    readTime: "6 min read",
-    category: "Case Studies",
-    tags: ["AI Assistant", "Student Engagement", "Ask AI"],
-    featured: false,
-    gradient: "from-green-500 to-teal-600",
-    views: 3100,
-    comments: 58,
-    icon: "📈",
-  },
-  {
-    id: 4,
-    slug: "energy-monitoring-reduce-costs-iot-ai",
-    title: "Energy Monitoring: Reducing Costs with IoT & AI",
-    excerpt:
-      "How smart energy monitoring helps institutions cut waste, track peak load, and reduce electricity bills significantly.",
-    author: "IoT Team",
-    dateLabel: "Nov 28, 2025",
-    publishedAt: "2025-11-28",
-    readTime: "10 min read",
-    category: "Technical",
-    tags: ["Energy Monitoring", "IoT", "Cost Saving"],
-    featured: false,
-    gradient: "from-orange-500 to-red-600",
-    views: 1500,
-    comments: 28,
-    icon: "⚡",
-  },
-  {
-    id: 5,
-    slug: "implementing-ai-curriculum-in-schools",
-    title: "Implementing AI Curriculum in Schools: A Success Playbook",
-    excerpt:
-      "A step-by-step rollout plan to introduce AI curriculum from classes 3–10 without overwhelming teachers or students.",
-    author: "Srikanth Dubbaka",
-    dateLabel: "Nov 20, 2025",
-    publishedAt: "2025-11-20",
+    dateLabel: "May 30, 2026",
+    publishedAt: "2026-05-30",
     readTime: "7 min read",
-    category: "Case Studies",
-    tags: ["AI Curriculum", "Schools", "Teacher Training"],
-    featured: false,
-    gradient: "from-indigo-500 to-purple-600",
-    views: 2200,
-    comments: 41,
-    icon: "📚",
-  },
-  {
-    id: 6,
-    slug: "complete-guide-lms-implementation",
-    title: "The Complete Guide to LMS Implementation",
-    excerpt:
-      "Best practices to deploy an LMS successfully—from onboarding and content strategy to analytics and adoption.",
-    author: "Development Team",
-    dateLabel: "Nov 15, 2025",
-    publishedAt: "2025-11-15",
-    readTime: "9 min read",
-    category: "Technical",
-    tags: ["LMS", "Implementation", "EdTech"],
-    featured: false,
-    gradient: "from-pink-500 to-rose-600",
-    views: 1900,
-    comments: 35,
-    icon: "🧩",
-  },
-  {
-    id: 7,
-    slug: "smart-attendance-systems-beyond-biometrics",
-    title: "Smart Attendance Systems: Beyond Biometrics",
-    excerpt:
-      "Explore next-gen attendance using face recognition, geo-fencing, and audit-friendly reports—without headaches.",
-    author: "Product Team",
-    dateLabel: "Nov 10, 2025",
-    publishedAt: "2025-11-10",
-    readTime: "8 min read",
-    category: "Product Updates",
-    tags: ["Attendance", "Face Recognition", "Automation"],
-    featured: false,
-    gradient: "from-teal-500 to-cyan-600",
-    views: 1300,
-    comments: 22,
+    category: "Delivered Projects",
+    tags: ["Rajasab Project", "Web Application", "Deployment"],
+    featured: true,
+    views: 5200,
+    comments: 68,
     icon: "🚀",
   },
   {
-    id: 8,
-    slug: "scaling-ai-for-rural-institutions",
-    title: "Scaling AI Solutions for Rural Educational Institutions",
+    id: 2,
+    slug: "email-server-delivered-for-business-communication",
+    title: "Email Server Delivered for Business Communication",
     excerpt:
-      "What works in tier-2/tier-3 deployments: connectivity challenges, training models, and realistic rollout plans.",
+      "A professional email server setup delivered with domain configuration, reliable communication flow, and business-ready technical support.",
     author: "VisionariesAI Team",
-    dateLabel: "Nov 05, 2025",
-    publishedAt: "2025-11-05",
-    readTime: "11 min read",
-    category: "Industry Trends",
-    tags: ["Rural EdTech", "Deployment", "Smart Campus"],
+    dateLabel: "May 28, 2026",
+    publishedAt: "2026-05-28",
+    readTime: "6 min read",
+    category: "Delivered Projects",
+    tags: ["Email Server", "Business Communication", "Domain Setup"],
     featured: false,
-    gradient: "from-amber-500 to-orange-600",
-    views: 2700,
+    views: 4100,
+    comments: 54,
+    icon: "📧",
+  },
+  {
+    id: 3,
+    slug: "iot-dental-project-delivered",
+    title: "IoT Dental Project Delivered with Smart Automation",
+    excerpt:
+      "An IoT-based dental project delivered with smart device connectivity, real-time control, monitoring flow, and automation support.",
+    author: "IoT Team",
+    dateLabel: "May 25, 2026",
+    publishedAt: "2026-05-25",
+    readTime: "8 min read",
+    category: "IoT Solutions",
+    tags: ["IoT", "Dental Project", "Smart Automation"],
+    featured: false,
+    views: 4650,
+    comments: 72,
+    icon: "🦷",
+  },
+  {
+    id: 4,
+    slug: "ai-chatbots-delivered-for-businesses",
+    title: "AI Chatbots Delivered for Smarter Customer Support",
+    excerpt:
+      "AI chatbot solutions delivered to automate customer replies, improve response speed, and support businesses with intelligent communication.",
+    author: "AI Team",
+    dateLabel: "May 22, 2026",
+    publishedAt: "2026-05-22",
+    readTime: "6 min read",
+    category: "AI Solutions",
+    tags: ["AI Chatbots", "Automation", "Customer Support"],
+    featured: false,
+    views: 6100,
+    comments: 88,
+    icon: "🤖",
+  },
+  {
+    id: 5,
+    slug: "providing-services-to-100-plus-schools",
+    title: "Providing Technology Services to 100+ Schools",
+    excerpt:
+      "VisionariesAI Labs is supporting 100+ schools with AI curriculum, LMS, school management systems, workshops, and smart education tools.",
+    author: "VisionariesAI Team",
+    dateLabel: "May 20, 2026",
+    publishedAt: "2026-05-20",
+    readTime: "7 min read",
+    category: "Education Services",
+    tags: ["100+ Schools", "AI Curriculum", "School Solutions"],
+    featured: false,
+    views: 7800,
+    comments: 102,
+    icon: "🏫",
+  },
+  {
+    id: 6,
+    slug: "500-plus-satisfied-clients-journey",
+    title: "500+ Satisfied Clients: Our Journey of Trust",
+    excerpt:
+      "Till now, VisionariesAI Labs has served 500+ satisfied clients through software, AI, IoT, automation, and education technology services.",
+    author: "VisionariesAI Team",
+    dateLabel: "May 18, 2026",
+    publishedAt: "2026-05-18",
+    readTime: "5 min read",
+    category: "Company Updates",
+    tags: ["500+ Clients", "Client Success", "Technology Services"],
+    featured: false,
+    views: 6900,
+    comments: 96,
+    icon: "🌟",
+  },
+  {
+    id: 7,
+    slug: "school-workshops-for-future-ready-students",
+    title: "Workshops at Schools for Future-Ready Students",
+    excerpt:
+      "Practical school workshops on AI, robotics, IoT, coding, automation, and modern technologies to prepare students for future careers.",
+    author: "Training Team",
+    dateLabel: "May 15, 2026",
+    publishedAt: "2026-05-15",
+    readTime: "7 min read",
+    category: "Workshops",
+    tags: ["School Workshops", "Robotics", "AI Training"],
+    featured: false,
+    views: 5700,
+    comments: 81,
+    icon: "🎓",
+  },
+  {
+    id: 8,
+    slug: "automation-to-applications-delivered",
+    title: "From Automation to Applications: Projects Delivered",
+    excerpt:
+      "Multiple automation systems and web/mobile applications delivered for businesses, institutions, and individual client requirements.",
+    author: "Development Team",
+    dateLabel: "May 12, 2026",
+    publishedAt: "2026-05-12",
+    readTime: "8 min read",
+    category: "Automation",
+    tags: ["Automation", "Applications", "Software Development"],
+    featured: false,
+    views: 6400,
+    comments: 91,
+    icon: "⚙️",
+  },
+  {
+    id: 9,
+    slug: "many-projects-running-live",
+    title: "Many Projects Running Live with Real-Time Users",
+    excerpt:
+      "Several VisionariesAI projects are running live with dashboards, automation flows, digital platforms, and real-time user operations.",
+    author: "VisionariesAI Team",
+    dateLabel: "May 10, 2026",
+    publishedAt: "2026-05-10",
+    readTime: "6 min read",
+    category: "Company Updates",
+    tags: ["Live Projects", "Production Systems", "Digital Platforms"],
+    featured: false,
+    views: 5900,
+    comments: 74,
+    icon: "🌐",
+  },
+  {
+    id: 10,
+    slug: "ai-curriculum-services-for-schools",
+    title: "AI Curriculum Services for Schools",
+    excerpt:
+      "AI academic curriculum support for schools with practical learning, LMS activities, classroom examples, and student-friendly content.",
+    author: "Education Team",
+    dateLabel: "May 08, 2026",
+    publishedAt: "2026-05-08",
+    readTime: "7 min read",
+    category: "Education Services",
+    tags: ["AI Curriculum", "Schools", "LMS"],
+    featured: false,
+    views: 7200,
+    comments: 99,
+    icon: "📚",
+  },
+  {
+    id: 11,
+    slug: "lms-solutions-for-modern-schools",
+    title: "LMS Solutions for Modern Schools",
+    excerpt:
+      "LMS solutions to manage lessons, quizzes, student activities, digital learning, teacher workflows, and academic progress tracking.",
+    author: "Product Team",
+    dateLabel: "May 05, 2026",
+    publishedAt: "2026-05-05",
+    readTime: "6 min read",
+    category: "Education Services",
+    tags: ["LMS", "Digital Learning", "School Platform"],
+    featured: false,
+    views: 5300,
+    comments: 63,
+    icon: "🧩",
+  },
+  {
+    id: 12,
+    slug: "school-management-software-delivered",
+    title: "School Management Software Delivered",
+    excerpt:
+      "Complete school management software delivered with admissions, students, staff, fees, exams, attendance, reports, and academic workflows.",
+    author: "Development Team",
+    dateLabel: "May 02, 2026",
+    publishedAt: "2026-05-02",
+    readTime: "8 min read",
+    category: "Software Development",
+    tags: ["School Management", "ERP", "Web Application"],
+    featured: false,
+    views: 5600,
+    comments: 77,
+    icon: "🏢",
+  },
+  {
+    id: 13,
+    slug: "smart-attendance-solutions-for-schools",
+    title: "Smart Attendance Solutions for Schools",
+    excerpt:
+      "Smart attendance systems using face recognition, biometric devices, RFID support, and digital reports for better institutional tracking.",
+    author: "IoT Team",
+    dateLabel: "Apr 29, 2026",
+    publishedAt: "2026-04-29",
+    readTime: "6 min read",
+    category: "IoT Solutions",
+    tags: ["Smart Attendance", "Biometric", "Face Recognition"],
+    featured: false,
+    views: 4900,
+    comments: 58,
+    icon: "🆔",
+  },
+  {
+    id: 14,
+    slug: "robotics-and-iot-training-at-schools",
+    title: "Robotics and IoT Training for Students",
+    excerpt:
+      "Robotics and IoT training to help students understand sensors, automation, coding, devices, and real-world project development.",
+    author: "Training Team",
+    dateLabel: "Apr 26, 2026",
+    publishedAt: "2026-04-26",
+    readTime: "7 min read",
+    category: "Workshops",
+    tags: ["Robotics", "IoT Training", "Student Projects"],
+    featured: false,
+    views: 6200,
+    comments: 84,
+    icon: "🦾",
+  },
+  {
+    id: 15,
+    slug: "ai-based-student-projects-delivered",
+    title: "AI-Based Student Projects Delivered",
+    excerpt:
+      "Student AI projects delivered with practical examples, easy tools, guided implementation, and project-based learning methods.",
+    author: "AI Team",
+    dateLabel: "Apr 23, 2026",
+    publishedAt: "2026-04-23",
+    readTime: "6 min read",
+    category: "AI Solutions",
+    tags: ["AI Projects", "Students", "Practical Learning"],
+    featured: false,
+    views: 5800,
+    comments: 71,
+    icon: "🧠",
+  },
+  {
+    id: 16,
+    slug: "business-automation-solutions-delivered",
+    title: "Business Automation Solutions Delivered",
+    excerpt:
+      "Automation systems delivered to reduce manual work, improve accuracy, increase speed, and support business operations efficiently.",
+    author: "Automation Team",
+    dateLabel: "Apr 20, 2026",
+    publishedAt: "2026-04-20",
+    readTime: "7 min read",
+    category: "Automation",
+    tags: ["Business Automation", "Workflow", "Operations"],
+    featured: false,
+    views: 5400,
+    comments: 66,
+    icon: "🔄",
+  },
+  {
+    id: 17,
+    slug: "custom-web-applications-for-clients",
+    title: "Custom Web Applications for Client Needs",
+    excerpt:
+      "Custom web applications developed with dashboards, admin panels, user roles, APIs, reports, and secure backend systems.",
+    author: "Development Team",
+    dateLabel: "Apr 17, 2026",
+    publishedAt: "2026-04-17",
+    readTime: "8 min read",
+    category: "Software Development",
+    tags: ["Web Applications", "React", "Django"],
+    featured: false,
+    views: 5100,
+    comments: 59,
+    icon: "💻",
+  },
+  {
+    id: 18,
+    slug: "mobile-application-development-services",
+    title: "Mobile Application Development Services",
+    excerpt:
+      "Mobile app development services with clean UI, smooth performance, backend integration, and scalable business workflows.",
+    author: "Mobile Team",
+    dateLabel: "Apr 14, 2026",
+    publishedAt: "2026-04-14",
+    readTime: "6 min read",
+    category: "Software Development",
+    tags: ["Mobile Apps", "React Native", "Business Apps"],
+    featured: false,
+    views: 4700,
     comments: 52,
-    icon: "🌍",
+    icon: "📱",
+  },
+  {
+    id: 19,
+    slug: "ai-powered-school-transformation-services",
+    title: "Helping Schools Move Towards AI and Digital Transformation",
+    excerpt:
+      "Supporting schools with AI learning, digital systems, smart classrooms, LMS platforms, workshops, and future-ready technology services.",
+    author: "VisionariesAI Team",
+    dateLabel: "Apr 11, 2026",
+    publishedAt: "2026-04-11",
+    readTime: "7 min read",
+    category: "Education Services",
+    tags: ["AI Schools", "Digital Transformation", "Smart Classrooms"],
+    featured: false,
+    views: 6600,
+    comments: 90,
+    icon: "✨",
+  },
+  {
+    id: 20,
+    slug: "teacher-training-programs-for-ai-education",
+    title: "Teacher Training Programs for AI-Based Education",
+    excerpt:
+      "Teacher training programs to help educators understand AI concepts, LMS usage, classroom tools, and practical teaching methods.",
+    author: "Training Team",
+    dateLabel: "Apr 08, 2026",
+    publishedAt: "2026-04-08",
+    readTime: "6 min read",
+    category: "Workshops",
+    tags: ["Teacher Training", "AI Education", "LMS Training"],
+    featured: false,
+    views: 4950,
+    comments: 57,
+    icon: "👩‍🏫",
+  },
+  {
+    id: 21,
+    slug: "iot-device-control-and-monitoring-solutions",
+    title: "IoT Device Control and Monitoring Solutions",
+    excerpt:
+      "IoT systems developed for device control, monitoring, automation, real-time data, and smart decision-making across industries.",
+    author: "IoT Team",
+    dateLabel: "Apr 05, 2026",
+    publishedAt: "2026-04-05",
+    readTime: "8 min read",
+    category: "IoT Solutions",
+    tags: ["IoT Devices", "Monitoring", "Smart Control"],
+    featured: false,
+    views: 5600,
+    comments: 69,
+    icon: "📡",
+  },
+  {
+    id: 22,
+    slug: "digital-marketing-and-school-branding-services",
+    title: "Digital Marketing and School Branding Services",
+    excerpt:
+      "Branding, websites, promotional content, digital campaigns, and technology-focused visibility support for schools and businesses.",
+    author: "Marketing Team",
+    dateLabel: "Apr 02, 2026",
+    publishedAt: "2026-04-02",
+    readTime: "5 min read",
+    category: "Company Updates",
+    tags: ["Branding", "Digital Marketing", "School Promotion"],
+    featured: false,
+    views: 4300,
+    comments: 49,
+    icon: "📢",
+  },
+  {
+    id: 23,
+    slug: "cloud-deployment-and-server-management",
+    title: "Cloud Deployment and Server Management",
+    excerpt:
+      "Deployment, server setup, domain configuration, API hosting, database setup, production support, and technical maintenance.",
+    author: "Engineering Team",
+    dateLabel: "Mar 30, 2026",
+    publishedAt: "2026-03-30",
+    readTime: "7 min read",
+    category: "Software Development",
+    tags: ["Cloud Deployment", "Server Setup", "Production"],
+    featured: false,
+    views: 5100,
+    comments: 61,
+    icon: "☁️",
+  },
+  {
+    id: 24,
+    slug: "end-to-end-technology-partner-for-institutions",
+    title: "End-to-End Technology Partner for Institutions",
+    excerpt:
+      "From idea to deployment, VisionariesAI Labs supports planning, design, development, automation, AI, IoT, and long-term technical support.",
+    author: "VisionariesAI Team",
+    dateLabel: "Mar 27, 2026",
+    publishedAt: "2026-03-27",
+    readTime: "8 min read",
+    category: "Company Updates",
+    tags: ["Technology Partner", "AI", "IoT", "Software"],
+    featured: false,
+    views: 6000,
+    comments: 82,
+    icon: "🤝",
+  },
+  {
+    id: 25,
+    slug: "visionariesai-labs-building-future-ready-solutions",
+    title: "Building Future-Ready Technology Solutions",
+    excerpt:
+      "With delivered projects, live platforms, 100+ schools served, and 500+ satisfied clients, VisionariesAI Labs continues building future-ready solutions.",
+    author: "VisionariesAI Team",
+    dateLabel: "Mar 24, 2026",
+    publishedAt: "2026-03-24",
+    readTime: "7 min read",
+    category: "Company Updates",
+    tags: ["VisionariesAI Labs", "Future Technology", "Client Success"],
+    featured: false,
+    views: 7500,
+    comments: 105,
+    icon: "🏆",
   },
 ];
 
-const DEFAULT_CATEGORIES = ["All", "Industry Trends", "Technical", "Case Studies", "Product Updates"];
+const heroSlides = [
+  {
+    title: "Rajasab Project Successfully Delivered",
+    subtitle: "Complete application setup, deployment and production support.",
+    category: "Delivered Project",
+    icon: "🚀",
+    link: "/blog/rajasab-project-successfully-delivered",
+    views: "5.2K",
+    comments: "68",
+    date: "May 30, 2026",
+    gradient: "from-blue-600 via-sky-500 to-cyan-500",
+  },
+  {
+    title: "Email Server Delivered",
+    subtitle: "Professional domain-based email server setup for business communication.",
+    category: "Server Setup",
+    icon: "📧",
+    link: "/blog/email-server-delivered-for-business-communication",
+    views: "4.1K",
+    comments: "54",
+    date: "May 28, 2026",
+    gradient: "from-violet-600 via-purple-500 to-fuchsia-500",
+  },
+  {
+    title: "IoT Dental Project Delivered",
+    subtitle: "Smart IoT automation with device connectivity and monitoring workflow.",
+    category: "IoT Solution",
+    icon: "🦷",
+    link: "/blog/iot-dental-project-delivered",
+    views: "4.6K",
+    comments: "72",
+    date: "May 25, 2026",
+    gradient: "from-emerald-600 via-teal-500 to-cyan-500",
+  },
+  {
+    title: "AI Chatbots Delivered",
+    subtitle: "AI chatbot systems delivered for faster support and automated customer replies.",
+    category: "AI Solution",
+    icon: "🤖",
+    link: "/blog/ai-chatbots-delivered-for-businesses",
+    views: "6.1K",
+    comments: "88",
+    date: "May 22, 2026",
+    gradient: "from-indigo-600 via-purple-500 to-pink-500",
+  },
+  {
+    title: "Technology Services to 100+ Schools",
+    subtitle: "AI curriculum, LMS, workshops, school software and digital transformation.",
+    category: "Education Services",
+    icon: "🏫",
+    link: "/blog/providing-services-to-100-plus-schools",
+    views: "7.8K",
+    comments: "102",
+    date: "May 20, 2026",
+    gradient: "from-orange-500 via-amber-500 to-yellow-500",
+  },
+  {
+    title: "500+ Satisfied Clients",
+    subtitle: "Trusted by clients across AI, IoT, automation, software and education services.",
+    category: "Client Success",
+    icon: "🌟",
+    link: "/blog/500-plus-satisfied-clients-journey",
+    views: "6.9K",
+    comments: "96",
+    date: "May 18, 2026",
+    gradient: "from-rose-600 via-pink-500 to-fuchsia-500",
+  },
+  {
+    title: "Workshops at Schools",
+    subtitle: "Practical AI, robotics, IoT, coding and automation workshops for students.",
+    category: "Workshops",
+    icon: "🎓",
+    link: "/blog/school-workshops-for-future-ready-students",
+    views: "5.7K",
+    comments: "81",
+    date: "May 15, 2026",
+    gradient: "from-cyan-600 via-blue-500 to-indigo-500",
+  },
+  {
+    title: "Automation to Applications Delivered",
+    subtitle: "From workflow automation to complete web and mobile applications.",
+    category: "Automation",
+    icon: "⚙️",
+    link: "/blog/automation-to-applications-delivered",
+    views: "6.4K",
+    comments: "91",
+    date: "May 12, 2026",
+    gradient: "from-slate-800 via-blue-700 to-cyan-600",
+  },
+];
 
-const formatCompact = (n) => {
-  const num = Number(n || 0);
-  if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`.replace(".0", "");
+const CATEGORY_STYLES = {
+  "Delivered Projects": {
+    icon: Rocket,
+    chip: "bg-blue-50 text-blue-700 border-blue-200",
+    bg: "from-blue-600 to-cyan-500",
+  },
+  "AI Solutions": {
+    icon: Cpu,
+    chip: "bg-violet-50 text-violet-700 border-violet-200",
+    bg: "from-violet-600 to-fuchsia-500",
+  },
+  "IoT Solutions": {
+    icon: Zap,
+    chip: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    bg: "from-emerald-600 to-teal-500",
+  },
+  "Education Services": {
+    icon: GraduationCap,
+    chip: "bg-orange-50 text-orange-700 border-orange-200",
+    bg: "from-orange-500 to-amber-500",
+  },
+  Workshops: {
+    icon: Users,
+    chip: "bg-pink-50 text-pink-700 border-pink-200",
+    bg: "from-pink-600 to-rose-500",
+  },
+  Automation: {
+    icon: BriefcaseBusiness,
+    chip: "bg-cyan-50 text-cyan-700 border-cyan-200",
+    bg: "from-cyan-600 to-blue-500",
+  },
+  "Software Development": {
+    icon: CheckCircle2,
+    chip: "bg-indigo-50 text-indigo-700 border-indigo-200",
+    bg: "from-indigo-600 to-blue-600",
+  },
+  "Company Updates": {
+    icon: Award,
+    chip: "bg-slate-100 text-slate-700 border-slate-200",
+    bg: "from-slate-800 to-slate-600",
+  },
+};
+
+const DEFAULT_CATEGORIES = [
+  "All",
+  "Delivered Projects",
+  "AI Solutions",
+  "IoT Solutions",
+  "Education Services",
+  "Workshops",
+  "Automation",
+  "Software Development",
+  "Company Updates",
+];
+
+const stats = [
+  {
+    label: "Satisfied Clients",
+    value: "500+",
+    icon: Award,
+  },
+  {
+    label: "Schools Served",
+    value: "100+",
+    icon: GraduationCap,
+  },
+  {
+    label: "Delivered Projects",
+    value: "25+",
+    icon: Rocket,
+  },
+  {
+    label: "Core Services",
+    value: "AI + IoT",
+    icon: Cpu,
+  },
+];
+
+const BOOKMARK_KEY = "visionaries_blog_bookmarks_v3";
+
+const formatCompact = (value) => {
+  const num = Number(value || 0);
   if (num >= 1000) return `${(num / 1000).toFixed(1)}K`.replace(".0", "");
   return `${num}`;
 };
 
-const BOOKMARK_KEY = "vx_blog_bookmarks";
+const getCategoryStyle = (category) => {
+  return (
+    CATEGORY_STYLES[category] || {
+      icon: Sparkles,
+      chip: "bg-primary/10 text-primary border-primary/20",
+      bg: "from-primary to-blue-600",
+    }
+  );
+};
 
-/** ----------------------------
- *  ✅ Component
- *  ---------------------------- */
+const BlogCard = ({
+  post,
+  index,
+  isBookmarked,
+  onBookmark,
+  onShare,
+  onTopicClick,
+}) => {
+  const style = getCategoryStyle(post.category);
+  const CategoryIcon = style.icon;
+
+  return (
+    <motion.article
+      layout
+      initial={{ opacity: 0, y: 22 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.96 }}
+      transition={{ duration: 0.35, delay: Math.min(index * 0.04, 0.2) }}
+      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border/80 bg-background shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl"
+    >
+      <Link to={`/blog/${post.slug}`} className="block">
+        <div className={`relative h-48 overflow-hidden bg-gradient-to-br ${style.bg}`}>
+          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-white/20 blur-2xl" />
+          <div className="absolute -bottom-12 left-8 h-32 w-32 rounded-full bg-white/10 blur-2xl" />
+
+          <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full bg-white/20 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur">
+            <CategoryIcon className="h-3.5 w-3.5" />
+            {post.category}
+          </div>
+
+          <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+            <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-white/20 text-4xl shadow-lg backdrop-blur">
+              {post.icon}
+            </div>
+
+            <div className="flex gap-2 text-white">
+              <span className="flex items-center gap-1 rounded-full bg-white/20 px-2.5 py-1 text-xs backdrop-blur">
+                <Eye className="h-3 w-3" />
+                {formatCompact(post.views)}
+              </span>
+              <span className="flex items-center gap-1 rounded-full bg-white/20 px-2.5 py-1 text-xs backdrop-blur">
+                <MessageCircle className="h-3 w-3" />
+                {post.comments}
+              </span>
+            </div>
+          </div>
+        </div>
+      </Link>
+
+      <div className="flex flex-1 flex-col p-5">
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <span
+            className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold ${style.chip}`}
+          >
+            {post.category}
+          </span>
+
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={() => onBookmark(post.slug)}
+              className="rounded-xl p-2 text-muted-foreground transition hover:bg-secondary hover:text-primary"
+              aria-label="Bookmark post"
+            >
+              <Bookmark
+                className={`h-4 w-4 ${
+                  isBookmarked(post.slug) ? "fill-primary text-primary" : ""
+                }`}
+              />
+            </button>
+
+            <button
+              type="button"
+              onClick={() => onShare(post)}
+              className="rounded-xl p-2 text-muted-foreground transition hover:bg-secondary hover:text-primary"
+              aria-label="Share post"
+            >
+              <Share2 className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+
+        <Link to={`/blog/${post.slug}`}>
+          <h3 className="line-clamp-2 text-xl font-bold leading-snug text-foreground transition group-hover:text-primary">
+            {post.title}
+          </h3>
+        </Link>
+
+        <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted-foreground">
+          {post.excerpt}
+        </p>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {post.tags.slice(0, 3).map((tag) => (
+            <button
+              key={tag}
+              type="button"
+              onClick={() => onTopicClick(tag)}
+              className="rounded-full bg-secondary/70 px-3 py-1 text-xs font-medium text-muted-foreground transition hover:bg-primary/10 hover:text-primary"
+            >
+              #{tag}
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-auto pt-5">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-t border-border pt-4 text-xs text-muted-foreground">
+            <span className="flex items-center gap-1.5">
+              <User className="h-3.5 w-3.5" />
+              {post.author}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Clock className="h-3.5 w-3.5" />
+              {post.readTime}
+            </span>
+          </div>
+
+          <Button asChild variant="outline" className="w-full justify-between rounded-2xl">
+            <Link >
+              Read Article
+              <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+            </Link>
+          </Button>
+        </div>
+      </div>
+    </motion.article>
+  );
+};
+
+const HeroSlider = ({ activeSlide, setActiveSlide }) => {
+  const slide = heroSlides[activeSlide];
+
+  const nextSlide = () => {
+    setActiveSlide((prev) => (prev + 1) % heroSlides.length);
+  };
+
+  const prevSlide = () => {
+    setActiveSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+  };
+
+  return (
+    <div className="relative rounded-[2rem] border border-border bg-white p-4 shadow-2xl">
+      <div className="absolute -bottom-6 -right-6 hidden rounded-2xl bg-slate-950 px-5 py-3 text-sm font-bold text-cyan-300 shadow-xl lg:block">
+        <span className="mr-2 inline-flex h-2 w-2 rounded-full bg-cyan-400" />
+        EXPLORE SERVICES
+      </div>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={slide.title}
+          initial={{ opacity: 0, x: 35, scale: 0.98 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          exit={{ opacity: 0, x: -35, scale: 0.98 }}
+          transition={{ duration: 0.45 }}
+          className={`relative min-h-[430px] overflow-hidden rounded-[1.5rem] bg-gradient-to-br ${slide.gradient} p-7 text-white sm:p-8`}
+        >
+          <div className="absolute inset-0 bg-black/5" />
+          <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-white/15 blur-2xl" />
+          <div className="absolute -bottom-20 left-6 h-60 w-60 rounded-full bg-white/10 blur-3xl" />
+
+          <div className="relative z-10 flex h-full min-h-[380px] flex-col">
+            <div className="flex items-start justify-between">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-bold backdrop-blur">
+                <Rocket className="h-4 w-4" />
+                {slide.category}
+              </span>
+
+              <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-white/20 text-4xl shadow-lg backdrop-blur">
+                {slide.icon}
+              </div>
+            </div>
+
+            <div className="mt-auto">
+              <h2 className="max-w-xl text-3xl font-extrabold leading-tight sm:text-4xl">
+                {slide.title}
+              </h2>
+
+              <p className="mt-5 max-w-2xl text-sm leading-7 text-white/90 sm:text-base">
+                {slide.subtitle}
+              </p>
+
+              <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-white/90">
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="h-4 w-4" />
+                  {slide.date}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Eye className="h-4 w-4" />
+                  {slide.views}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <MessageCircle className="h-4 w-4" />
+                  {slide.comments}
+                </span>
+              </div>
+
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <Button asChild className="rounded-2xl bg-white text-slate-900 hover:bg-white/90">
+                  <Link >
+                    Read Details
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+
+                <button
+                  type="button"
+                  onClick={prevSlide}
+                  className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/30 bg-white/15 backdrop-blur transition hover:bg-white/25"
+                  aria-label="Previous slide"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={nextSlide}
+                  className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/30 bg-white/15 backdrop-blur transition hover:bg-white/25"
+                  aria-label="Next slide"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+              </div>
+
+              <div className="mt-7 flex flex-wrap gap-2">
+                {heroSlides.map((item, index) => (
+                  <button
+                    key={item.title}
+                    type="button"
+                    onClick={() => setActiveSlide(index)}
+                    className={`h-2.5 rounded-full transition-all ${
+                      index === activeSlide
+                        ? "w-9 bg-white"
+                        : "w-2.5 bg-white/40 hover:bg-white/70"
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+};
+
 const Blog = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
-  const [visibleCount, setVisibleCount] = useState(6);
-
-  // Separate newsletter inputs (top + bottom)
-  const [emailTop, setEmailTop] = useState("");
-  const [emailBottom, setEmailBottom] = useState("");
+  const [visibleCount, setVisibleCount] = useState(9);
+  const [email, setEmail] = useState("");
+  const [activeSlide, setActiveSlide] = useState(0);
 
   const [bookmarks, setBookmarks] = useState(() => {
     try {
-      const raw = localStorage.getItem(BOOKMARK_KEY);
-      const arr = raw ? JSON.parse(raw) : [];
-      return Array.isArray(arr) ? arr : [];
+      const stored = localStorage.getItem(BOOKMARK_KEY);
+      const parsed = stored ? JSON.parse(stored) : [];
+      return Array.isArray(parsed) ? parsed : [];
     } catch {
       return [];
     }
   });
 
   useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 4500);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
     try {
       localStorage.setItem(BOOKMARK_KEY, JSON.stringify(bookmarks));
     } catch {
-      // ignore
+      // localStorage unavailable
     }
   }, [bookmarks]);
 
+  useEffect(() => {
+    setVisibleCount(9);
+  }, [activeCategory, searchQuery]);
+
   const categories = useMemo(() => {
-    const set = new Set(blogPosts.map((p) => p.category));
-    const dynamic = ["All", ...Array.from(set)];
-    // Keep your order preference if you want
-    return DEFAULT_CATEGORIES.filter((c) => dynamic.includes(c)).concat(dynamic.filter((c) => !DEFAULT_CATEGORIES.includes(c)));
+    const found = new Set(blogPosts.map((post) => post.category));
+    return DEFAULT_CATEGORIES.filter(
+      (category) => category === "All" || found.has(category)
+    );
   }, []);
 
+  const filteredPosts = useMemo(() => {
+    const keyword = searchQuery.trim().toLowerCase();
+
+    return blogPosts
+      .filter((post) => {
+        const categoryMatch =
+          activeCategory === "All" || post.category === activeCategory;
+
+        const keywordMatch =
+          !keyword ||
+          post.title.toLowerCase().includes(keyword) ||
+          post.excerpt.toLowerCase().includes(keyword) ||
+          post.category.toLowerCase().includes(keyword) ||
+          post.author.toLowerCase().includes(keyword) ||
+          post.tags.some((tag) => tag.toLowerCase().includes(keyword));
+
+        return categoryMatch && keywordMatch;
+      })
+      .sort(
+        (a, b) =>
+          new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+      );
+  }, [activeCategory, searchQuery]);
+
+  const visiblePosts = filteredPosts.slice(0, visibleCount);
+
   const trendingTopics = useMemo(() => {
-    // Build topics from tags (count)
-    const counter = new Map();
-    blogPosts.forEach((p) => {
-      (p.tags || []).forEach((t) => counter.set(t, (counter.get(t) || 0) + 1));
+    const map = new Map();
+
+    blogPosts.forEach((post) => {
+      post.tags.forEach((tag) => {
+        map.set(tag, (map.get(tag) || 0) + 1);
+      });
     });
-    return Array.from(counter.entries())
+
+    return Array.from(map.entries())
       .sort((a, b) => b[1] - a[1])
-      .slice(0, 8)
+      .slice(0, 10)
       .map(([name, count]) => ({ name, count }));
   }, []);
 
-  const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
-  const { ref: featuredRef, isVisible: featuredVisible } = useScrollAnimation();
-  const { ref: sidebarRef, isVisible: sidebarVisible } = useScrollAnimation();
-  const { ref: newsletterRef, isVisible: newsletterVisible } = useScrollAnimation();
+  const popularPosts = useMemo(() => {
+    return [...blogPosts].sort((a, b) => b.views - a.views).slice(0, 5);
+  }, []);
 
-  // Using the max length keeps the hook stable
-  const { setRef, isVisible } = useScrollAnimationGroup(blogPosts.length);
-
-  const featuredPost = useMemo(() => blogPosts.find((p) => p.featured), []);
-  const regularPosts = useMemo(() => blogPosts.filter((p) => !p.featured), []);
-
-  const filteredPosts = useMemo(() => {
-    const q = searchQuery.trim().toLowerCase();
-    return regularPosts
-      .filter((post) => {
-        const matchesCategory = activeCategory === "All" || post.category === activeCategory;
-        const matchesSearch =
-          !q ||
-          post.title.toLowerCase().includes(q) ||
-          post.excerpt.toLowerCase().includes(q) ||
-          (post.tags || []).some((t) => t.toLowerCase().includes(q));
-        return matchesCategory && matchesSearch;
-      })
-      .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
-  }, [regularPosts, activeCategory, searchQuery]);
-
-  const visiblePosts = useMemo(() => filteredPosts.slice(0, visibleCount), [filteredPosts, visibleCount]);
-
-  useEffect(() => {
-    // reset pagination when filters change
-    setVisibleCount(6);
-  }, [activeCategory, searchQuery]);
+  const savedPosts = useMemo(() => {
+    return bookmarks
+      .map((slug) => blogPosts.find((post) => post.slug === slug))
+      .filter(Boolean)
+      .slice(0, 5);
+  }, [bookmarks]);
 
   const isBookmarked = (slug) => bookmarks.includes(slug);
 
   const toggleBookmark = (slug) => {
     setBookmarks((prev) => {
       const exists = prev.includes(slug);
-      const next = exists ? prev.filter((s) => s !== slug) : [...prev, slug];
+      const next = exists
+        ? prev.filter((item) => item !== slug)
+        : [...prev, slug];
+
       toast({
-        title: exists ? "Removed bookmark" : "Saved bookmark",
-        description: exists ? "Post removed from bookmarks." : "Post saved to bookmarks.",
+        title: exists ? "Bookmark removed" : "Bookmark saved",
+        description: exists
+          ? "This article was removed from saved posts."
+          : "This article was added to saved posts.",
       });
+
       return next;
     });
   };
 
   const sharePost = async (post) => {
     const url = `${window.location.origin}/blog/${post.slug}`;
+
     try {
       if (navigator.share) {
-        await navigator.share({ title: post.title, text: post.excerpt, url });
+        await navigator.share({
+          title: post.title,
+          text: post.excerpt,
+          url,
+        });
         return;
       }
+
       await navigator.clipboard.writeText(url);
-      toast({ title: "Link copied", description: "Post link copied to clipboard." });
+
+      toast({
+        title: "Link copied",
+        description: "Blog link copied to clipboard.",
+      });
     } catch {
-      toast({ title: "Share failed", description: "Could not share. Try copying the URL manually." });
+      toast({
+        title: "Unable to share",
+        description: "Please copy the page link manually.",
+      });
     }
   };
 
-  const handleSubscribe = (which, e) => {
-    e.preventDefault();
-    const value = which === "top" ? emailTop : emailBottom;
+  const applyTopic = (topic) => {
+    setActiveCategory("All");
+    setSearchQuery(topic);
+  };
 
-    // minimal validation
-    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
-    if (!ok) {
-      toast({ title: "Invalid email", description: "Please enter a valid email address." });
+  const clearFilters = () => {
+    setActiveCategory("All");
+    setSearchQuery("");
+  };
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+
+    if (!valid) {
+      toast({
+        title: "Invalid email",
+        description: "Please enter a valid email address.",
+      });
       return;
     }
 
     toast({
-      title: "Subscribed!",
-      description: "Thank you for subscribing to our newsletter.",
+      title: "Subscribed successfully",
+      description: "You will receive VisionariesAI updates.",
     });
 
-    if (which === "top") setEmailTop("");
-    else setEmailBottom("");
+    setEmail("");
   };
-
-  const onTopicClick = (topic) => {
-    setActiveCategory("All");
-    setSearchQuery(topic);
-    toast({ title: "Filtered", description: `Showing results for “${topic}”.` });
-  };
-
-  const clearSearch = () => setSearchQuery("");
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="pt-24 pb-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(var(--primary)/0.08)_0%,_transparent_50%)]" />
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse" />
-        <div
-          className="absolute bottom-10 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "1s" }}
-        />
+      <main className="min-h-screen bg-background">
+        <section className="relative overflow-hidden border-b border-border">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,hsl(var(--primary)/0.18),transparent_32%),radial-gradient(circle_at_80%_20%,rgba(14,165,233,0.16),transparent_35%)]" />
 
-        <motion.div
-          ref={heroRef}
-          initial={{ opacity: 0, y: 20 }}
-          animate={heroVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.7 }}
-          className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-        >
-          <div className="text-center max-w-3xl mx-auto">
-            <motion.span
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={heroVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="inline-block text-primary font-medium text-sm uppercase tracking-wider px-4 py-1.5 rounded-full bg-primary/10 mb-6"
-            >
-              VisionariesAI Blog
-            </motion.span>
+          <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+            <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55 }}
+              >
+                <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+                  <Sparkles className="h-4 w-4" />
+                  VisionariesAI Labs Blogs
+                </div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6"
-            >
-              Insights & <span className="gradient-text">Updates</span>
-            </motion.h1>
+                <h1 className="max-w-4xl text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+                  Delivered Projects,{" "}
+                  <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+                    AI Services
+                  </span>{" "}
+                  & Live Success Stories
+                </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-lg text-muted-foreground mb-8"
-            >
-              Practical AI, EdTech, Smart Campus deployments, and product updates—written for schools and institutions.
-            </motion.p>
+                <p className="mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
+                  Explore our delivered projects like Rajasab, email server,
+                  IoT dental project, AI chatbots, school services, workshops,
+                  automation systems, and live applications.
+                </p>
 
-            {/* Search Bar */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="max-w-xl mx-auto"
-            >
-              <div className="relative group">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                <div className="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+                  {stats.map((item) => {
+                    const Icon = item.icon;
+
+                    return (
+                      <div
+                        key={item.label}
+                        className="rounded-3xl border border-border bg-card/90 p-4 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:shadow-lg"
+                      >
+                        <Icon className="mb-3 h-5 w-5 text-primary" />
+                        <div className="text-2xl font-bold text-foreground">
+                          {item.value}
+                        </div>
+                        <div className="mt-1 text-xs font-semibold text-muted-foreground">
+                          {item.label}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.1 }}
+              >
+                <HeroSlider
+                  activeSlide={activeSlide}
+                  setActiveSlide={setActiveSlide}
+                />
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        <section className="sticky top-16 z-40 border-b border-border bg-background/90 backdrop-blur-xl">
+          <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
+            <div className="grid gap-4 lg:grid-cols-[420px_1fr_auto] lg:items-center">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
                 <input
                   type="text"
-                  placeholder="Search articles, tags, topics..."
+                  placeholder="Search blogs, projects, services..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-12 py-4 rounded-2xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-lg"
+                  className="h-12 w-full rounded-2xl border border-border bg-card pl-12 pr-12 text-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
                 />
-                {searchQuery?.length > 0 && (
+                {searchQuery && (
                   <button
                     type="button"
-                    onClick={clearSearch}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-xl hover:bg-secondary transition-colors"
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-xl p-2 text-muted-foreground hover:bg-secondary hover:text-foreground"
                     aria-label="Clear search"
                   >
-                    <X className="w-4 h-4 text-muted-foreground" />
+                    <X className="h-4 w-4" />
                   </button>
                 )}
               </div>
-              <div className="mt-3 flex flex-wrap gap-2 justify-center">
-                <span className="text-xs text-muted-foreground">Quick filters:</span>
-                {["AI in Education", "Smart Campus", "Energy Monitoring"].map((t) => (
+
+              <div className="flex gap-2 overflow-x-auto pb-1 lg:pb-0">
+                {categories.map((category) => {
+                  const active = activeCategory === category;
+                  const style =
+                    category === "All"
+                      ? { icon: Sparkles }
+                      : getCategoryStyle(category);
+                  const Icon = style.icon;
+
+                  return (
+                    <button
+                      key={category}
+                      type="button"
+                      onClick={() => setActiveCategory(category)}
+                      className={`inline-flex shrink-0 items-center gap-2 rounded-2xl border px-4 py-2.5 text-sm font-semibold transition ${
+                        active
+                          ? "border-primary bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                          : "border-border bg-card text-muted-foreground hover:border-primary/30 hover:text-foreground"
+                      }`}
+                    >
+                      <Icon className="h-4 w-4" />
+                      {category}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <Button
+                type="button"
+                variant="outline"
+                onClick={clearFilters}
+                className="rounded-2xl"
+              >
+                Clear
+              </Button>
+            </div>
+
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm text-muted-foreground">
+              <span>
+                Showing{" "}
+                <strong className="text-foreground">
+                  {filteredPosts.length}
+                </strong>{" "}
+                articles
+                {searchQuery ? (
+                  <>
+                    {" "}
+                    for{" "}
+                    <strong className="text-foreground">
+                      “{searchQuery}”
+                    </strong>
+                  </>
+                ) : null}
+              </span>
+
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "Rajasab Project",
+                  "AI Chatbots",
+                  "100+ Schools",
+                  "500+ Clients",
+                ].map((topic) => (
                   <button
-                    key={t}
+                    key={topic}
                     type="button"
-                    onClick={() => onTopicClick(t)}
-                    className="text-xs px-3 py-1 rounded-full bg-secondary/60 hover:bg-secondary text-muted-foreground hover:text-foreground transition"
+                    onClick={() => applyTopic(topic)}
+                    className="rounded-full bg-secondary px-3 py-1 text-xs font-medium transition hover:bg-primary/10 hover:text-primary"
                   >
-                    {t}
+                    {topic}
                   </button>
                 ))}
               </div>
-            </motion.div>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Categories */}
-      <section className="py-6 border-b border-border sticky top-16 bg-background/80 backdrop-blur-xl z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap gap-2 justify-center">
-            {categories.map((category, index) => (
-              <motion.button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.04 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                  category === activeCategory
-                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                    : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80"
-                }`}
-              >
-                {category}
-              </motion.button>
-            ))}
-          </div>
-
-          <div className="mt-4 text-center text-sm text-muted-foreground">
-            Showing <span className="text-foreground font-medium">{filteredPosts.length}</span> results
-            {searchQuery ? (
-              <>
-                {" "}
-                for <span className="text-foreground font-medium">“{searchQuery}”</span>
-              </>
-            ) : null}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Post */}
-      {featuredPost && (
-        <section className="py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              ref={featuredRef}
-              initial={{ opacity: 0, y: 30 }}
-              animate={featuredVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.7 }}
-              className="glass-card overflow-hidden group"
-            >
-              <div className={`h-2 bg-gradient-to-r ${featuredPost.gradient} group-hover:h-3 transition-all duration-300`} />
-              <div className="p-8 lg:p-12">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                    className={`aspect-video bg-gradient-to-br ${featuredPost.gradient} rounded-xl flex items-center justify-center shadow-2xl relative overflow-hidden`}
-                  >
-                    <div className="absolute inset-0 bg-black/20" />
-                    <span className="text-6xl relative z-10">{featuredPost.icon}</span>
-
-                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                      <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur text-white text-xs font-medium">
-                        Featured
-                      </span>
-                      <div className="flex gap-2">
-                        <span className="px-2 py-1 rounded-full bg-white/20 backdrop-blur text-white text-xs flex items-center gap-1">
-                          <Eye className="w-3 h-3" /> {formatCompact(featuredPost.views)}
-                        </span>
-                        <span className="px-2 py-1 rounded-full bg-white/20 backdrop-blur text-white text-xs flex items-center gap-1">
-                          <MessageCircle className="w-3 h-3" /> {formatCompact(featuredPost.comments)}
-                        </span>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  <div>
-                    <div className="flex flex-wrap items-center gap-2 mb-4">
-                      <span className="px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-medium">
-                        Featured
-                      </span>
-                      <span className="px-3 py-1 rounded-full bg-secondary text-muted-foreground text-xs font-medium">
-                        {featuredPost.category}
-                      </span>
-                      {(featuredPost.tags || []).slice(0, 2).map((t) => (
-                        <button
-                          key={t}
-                          type="button"
-                          onClick={() => onTopicClick(t)}
-                          className="px-3 py-1 rounded-full bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground text-xs transition"
-                        >
-                          #{t}
-                        </button>
-                      ))}
-                    </div>
-
-                    <h2 className="font-display text-2xl lg:text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
-                      {featuredPost.title}
-                    </h2>
-
-                    <p className="text-muted-foreground mb-6 leading-relaxed">{featuredPost.excerpt}</p>
-
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-primary/50 flex items-center justify-center">
-                          <User className="w-4 h-4 text-primary-foreground" />
-                        </div>
-                        {featuredPost.author}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-primary" />
-                        {featuredPost.dateLabel}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-primary" />
-                        {featuredPost.readTime}
-                      </div>
-                    </div>
-
-                    <div className="flex gap-3">
-                      <Button asChild variant="hero" size="default" className="group/btn">
-                        <Link >
-                          Read Article
-                          <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                        </Link>
-                      </Button>
-
-                      <Button
-                        variant="outline"
-                        size="default"
-                        className="group/btn"
-                        onClick={() => toggleBookmark(featuredPost.slug)}
-                        aria-label="Bookmark"
-                      >
-                        <Bookmark
-                          className={`w-4 h-4 transition-all ${
-                            isBookmarked(featuredPost.slug) ? "fill-current text-primary" : ""
-                          }`}
-                        />
-                      </Button>
-
-                      <Button
-                        variant="outline"
-                        size="default"
-                        className="group/btn"
-                        onClick={() => sharePost(featuredPost)}
-                        aria-label="Share"
-                      >
-                        <Share2 className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            </div>
           </div>
         </section>
-      )}
 
-      {/* Blog Grid with Sidebar */}
-      <section className="py-16 bg-card/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            {/* Main Content */}
-            <div className="lg:col-span-3">
-              <div className="flex items-center justify-between mb-8">
-                <h2 className="font-display text-2xl font-bold text-foreground">
-                  {activeCategory === "All" ? "Latest Articles" : activeCategory}
-                </h2>
-                <span className="text-sm text-muted-foreground">{filteredPosts.length} articles</span>
+        <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[1fr_340px]">
+            <div>
+              <div className="mb-6 flex items-end justify-between gap-4">
+                <div>
+                  <p className="mb-2 flex items-center gap-2 text-sm font-semibold text-primary">
+                    <CheckCircle2 className="h-4 w-4" />
+                    Updated Blogs
+                  </p>
+                  <h2 className="text-3xl font-bold text-foreground">
+                    {activeCategory === "All"
+                      ? "Latest Articles"
+                      : activeCategory}
+                  </h2>
+                </div>
               </div>
 
               <AnimatePresence mode="popLayout">
                 {visiblePosts.length === 0 ? (
                   <motion.div
-                    key="no-results"
-                    initial={{ opacity: 0, y: 10 }}
+                    key="empty"
+                    initial={{ opacity: 0, y: 18 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
-                    className="glass-card p-10 text-center"
+                    className="rounded-3xl border border-border bg-card p-10 text-center"
                   >
-                    <p className="text-foreground font-semibold mb-2">No articles found</p>
-                    <p className="text-muted-foreground text-sm mb-6">
-                      Try changing category or searching with different keywords.
+                    <Search className="mx-auto mb-4 h-10 w-10 text-muted-foreground" />
+                    <h3 className="text-xl font-bold text-foreground">
+                      No blogs found
+                    </h3>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      Try another keyword or clear the selected filter.
                     </p>
-                    <div className="flex items-center justify-center gap-3">
-                      <Button variant="outline" onClick={() => setActiveCategory("All")}>
-                        Reset Category
-                      </Button>
-                      <Button variant="hero" onClick={clearSearch}>
-                        Clear Search
-                      </Button>
-                    </div>
+                    <Button onClick={clearFilters} className="mt-6 rounded-2xl">
+                      Clear Filters
+                    </Button>
                   </motion.div>
                 ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <motion.div
+                    layout
+                    className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
+                  >
                     {visiblePosts.map((post, index) => (
-                      <motion.article
+                      <BlogCard
                         key={post.slug}
-                        ref={setRef(index)}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isVisible(index) ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.45, delay: Math.min(index * 0.06, 0.3) }}
-                        whileHover={{ y: -6 }}
-                        className="glass-card overflow-hidden group"
-                      >
-                        {/* Cover */}
-                        <Link  className="block">
-                          <div
-                            className={`aspect-video bg-gradient-to-br ${post.gradient} flex items-center justify-center relative overflow-hidden`}
-                          >
-                            <motion.span
-                              initial={{ scale: 1 }}
-                              whileHover={{ scale: 1.18, rotate: 8 }}
-                              transition={{ duration: 0.25 }}
-                              className="text-4xl relative z-10"
-                            >
-                              {post.icon}
-                            </motion.span>
-
-                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-
-                            <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                              <span className="px-2 py-1 rounded-full bg-white/20 backdrop-blur text-white text-xs flex items-center gap-1">
-                                <Eye className="w-3 h-3" /> {formatCompact(post.views)}
-                              </span>
-                              <span className="px-2 py-1 rounded-full bg-white/20 backdrop-blur text-white text-xs flex items-center gap-1">
-                                <MessageCircle className="w-3 h-3" /> {formatCompact(post.comments)}
-                              </span>
-                            </div>
-                          </div>
-                        </Link>
-
-                        {/* Content */}
-                        <div className="p-6">
-                          <div className="flex items-center justify-between gap-3 mb-3">
-                            <div className="flex items-center gap-2">
-                              <Tag className="w-3 h-3 text-primary" />
-                              <span className="text-xs font-medium text-primary">{post.category}</span>
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                              <button
-                                type="button"
-                                onClick={() => toggleBookmark(post.slug)}
-                                className="p-2 rounded-xl hover:bg-secondary transition-colors"
-                                aria-label="Bookmark"
-                              >
-                                <Bookmark
-                                  className={`w-4 h-4 ${
-                                    isBookmarked(post.slug) ? "fill-current text-primary" : "text-muted-foreground"
-                                  }`}
-                                />
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => sharePost(post)}
-                                className="p-2 rounded-xl hover:bg-secondary transition-colors"
-                                aria-label="Share"
-                              >
-                                <Share2 className="w-4 h-4 text-muted-foreground" />
-                              </button>
-                            </div>
-                          </div>
-
-                          <Link >
-                            <h3 className="font-display text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                              {post.title}
-                            </h3>
-                          </Link>
-
-                          <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{post.excerpt}</p>
-
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            {(post.tags || []).slice(0, 3).map((t) => (
-                              <button
-                                key={t}
-                                type="button"
-                                onClick={() => onTopicClick(t)}
-                                className="text-xs px-2.5 py-1 rounded-full bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground transition"
-                              >
-                                #{t}
-                              </button>
-                            ))}
-                          </div>
-
-                          <div className="flex items-center justify-between text-xs text-muted-foreground pt-4 border-t border-border">
-                            <span className="flex items-center gap-1 min-w-0">
-                              <User className="w-3 h-3" />
-                              <span className="truncate">{post.author}</span>
-                            </span>
-                            <div className="flex items-center gap-3">
-                              <span className="flex items-center gap-1">
-                                <Clock className="w-3 h-3" />
-                                {post.readTime}
-                              </span>
-                              <span className="flex items-center gap-1">
-                                <Calendar className="w-3 h-3" />
-                                {post.dateLabel}
-                              </span>
-                            </div>
-                          </div>
-
-                          <div className="mt-4">
-                            <Button asChild variant="outline" size="sm" className="w-full group">
-                              <Link >
-                                Read
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                              </Link>
-                            </Button>
-                          </div>
-                        </div>
-
-                        <div className={`h-1 bg-gradient-to-r ${post.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                      </motion.article>
+                        post={post}
+                        index={index}
+                        isBookmarked={isBookmarked}
+                        onBookmark={toggleBookmark}
+                        onShare={sharePost}
+                        onTopicClick={applyTopic}
+                      />
                     ))}
-                  </div>
+                  </motion.div>
                 )}
               </AnimatePresence>
 
-              {/* Load More */}
               {filteredPosts.length > visibleCount && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.25 }}
-                  className="text-center mt-12"
-                >
+                <div className="mt-10 text-center">
                   <Button
+                    type="button"
                     variant="outline"
                     size="lg"
-                    className="group"
-                    onClick={() => setVisibleCount((c) => Math.min(c + 4, filteredPosts.length))}
+                    onClick={() =>
+                      setVisibleCount((count) =>
+                        Math.min(count + 6, filteredPosts.length)
+                      )
+                    }
+                    className="rounded-2xl"
                   >
                     Load More Articles
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="h-4 w-4" />
                   </Button>
-                </motion.div>
+                </div>
               )}
             </div>
 
-            {/* Sidebar */}
-            <motion.div
-              ref={sidebarRef}
-              initial={{ opacity: 0, x: 30 }}
-              animate={sidebarVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-              transition={{ duration: 0.7 }}
-              className="space-y-8"
-            >
-              {/* Trending Topics */}
-              <div className="glass-card p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <TrendingUp className="w-5 h-5 text-primary" />
-                  <h3 className="font-display font-semibold text-foreground">Trending Topics</h3>
+            <aside className="space-y-6 lg:sticky lg:top-40 lg:self-start">
+              <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+                <div className="mb-4 flex items-center gap-2">
+                  <Rocket className="h-5 w-5 text-primary" />
+                  <h3 className="font-bold text-foreground">
+                    Delivered Highlights
+                  </h3>
                 </div>
 
                 <div className="space-y-3">
-                  {trendingTopics.map((topic, index) => (
-                    <motion.button
-                      key={topic.name}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={sidebarVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-                      transition={{ duration: 0.3, delay: index * 0.06 }}
-                      whileHover={{ x: 5 }}
-                      onClick={() => onTopicClick(topic.name)}
-                      className="w-full flex items-center justify-between p-3 rounded-lg bg-secondary/50 hover:bg-secondary transition-colors text-left group"
+                  {[
+                    "Rajasab project delivered",
+                    "Email server delivered",
+                    "IoT dental project delivered",
+                    "AI chatbots delivered",
+                    "Automation to applications delivered",
+                    "Many live projects running",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-center gap-3 rounded-2xl bg-secondary/60 p-3 text-sm font-medium text-foreground"
                     >
-                      <span className="text-sm text-foreground group-hover:text-primary transition-colors">
-                        {topic.name}
-                      </span>
-                      <span className="text-xs text-muted-foreground bg-background px-2 py-1 rounded-full">
-                        {topic.count}
-                      </span>
-                    </motion.button>
+                      <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                      {item}
+                    </div>
                   ))}
                 </div>
               </div>
 
-              {/* Popular Posts */}
-              <div className="glass-card p-6">
-                <h3 className="font-display font-semibold text-foreground mb-4">Popular Posts</h3>
-                <div className="space-y-4">
-                  {[...blogPosts]
-                    .sort((a, b) => (b.views || 0) - (a.views || 0))
-                    .slice(0, 4)
-                    .map((post, index) => (
-                      <motion.div
-                        key={post.slug}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={sidebarVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                        transition={{ duration: 0.3, delay: index * 0.08 }}
-                        whileHover={{ x: 5 }}
-                        className="flex gap-3 group"
-                      >
-                        <Link  className="flex gap-3 w-full">
-                          <div
-                            className={`w-16 h-16 rounded-lg bg-gradient-to-br ${post.gradient} flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform`}
-                          >
-                            <span className="text-lg">{post.icon}</span>
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h4 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2">
-                              {post.title}
-                            </h4>
-                            <p className="text-xs text-muted-foreground mt-1 flex items-center gap-2">
-                              <span className="inline-flex items-center gap-1">
-                                <Calendar className="w-3 h-3" /> {post.dateLabel}
-                              </span>
-                              <span className="inline-flex items-center gap-1">
-                                <Eye className="w-3 h-3" /> {formatCompact(post.views)}
-                              </span>
-                            </p>
-                          </div>
-                        </Link>
-                      </motion.div>
-                    ))}
+              <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+                <div className="mb-4 flex items-center gap-2">
+                  <TrendingUp className="h-5 w-5 text-primary" />
+                  <h3 className="font-bold text-foreground">
+                    Trending Topics
+                  </h3>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {trendingTopics.map((topic) => (
+                    <button
+                      key={topic.name}
+                      type="button"
+                      onClick={() => applyTopic(topic.name)}
+                      className="rounded-full border border-border bg-background px-3 py-2 text-xs font-medium text-muted-foreground transition hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
+                    >
+                      {topic.name} ({topic.count})
+                    </button>
+                  ))}
                 </div>
               </div>
 
-              {/* Bookmarks quick view */}
-              <div className="glass-card p-6">
-                <h3 className="font-display font-semibold text-foreground mb-3">Saved</h3>
-                {bookmarks.length === 0 ? (
-                  <p className="text-sm text-muted-foreground">No bookmarks yet. Save posts to read later.</p>
-                ) : (
-                  <div className="space-y-2">
-                    {bookmarks
-                      .map((slug) => blogPosts.find((p) => p.slug === slug))
-                      .filter(Boolean)
-                      .slice(0, 4)
-                      .map((p) => (
-                        <Link
-                          key={p.slug}
-                          
-                          className="block p-3 rounded-lg bg-secondary/40 hover:bg-secondary transition"
+              <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+                <h3 className="mb-4 font-bold text-foreground">
+                  Popular Posts
+                </h3>
+
+                <div className="space-y-4">
+                  {popularPosts.map((post) => {
+                    const style = getCategoryStyle(post.category);
+
+                    return (
+                      <Link
+                        key={post.slug}
+                        to={`/blog/${post.slug}`}
+                        className="group flex gap-3 rounded-2xl p-2 transition hover:bg-secondary"
+                      >
+                        <div
+                          className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${style.bg} text-xl`}
                         >
-                          <div className="text-sm text-foreground font-medium line-clamp-1">{p.title}</div>
-                          <div className="text-xs text-muted-foreground mt-1">{p.dateLabel}</div>
-                        </Link>
-                      ))}
+                          {post.icon}
+                        </div>
+                        <div className="min-w-0">
+                          <h4 className="line-clamp-2 text-sm font-semibold text-foreground group-hover:text-primary">
+                            {post.title}
+                          </h4>
+                          <p className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
+                            <Eye className="h-3 w-3" />
+                            {formatCompact(post.views)}
+                          </p>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+                <h3 className="mb-4 font-bold text-foreground">Saved Posts</h3>
+
+                {savedPosts.length === 0 ? (
+                  <p className="text-sm leading-6 text-muted-foreground">
+                    No saved posts yet. Click bookmark icon on any blog card.
+                  </p>
+                ) : (
+                  <div className="space-y-3">
+                    {savedPosts.map((post) => (
+                      <Link
+                        key={post.slug}
+                        to={`/blog/${post.slug}`}
+                        className="block rounded-2xl bg-secondary/70 p-3 transition hover:bg-secondary"
+                      >
+                        <p className="line-clamp-1 text-sm font-semibold text-foreground">
+                          {post.title}
+                        </p>
+                        <p className="mt-1 text-xs text-muted-foreground">
+                          {post.dateLabel}
+                        </p>
+                      </Link>
+                    ))}
                   </div>
                 )}
               </div>
 
-              {/* Newsletter Card */}
-              <div className="glass-card p-6 bg-gradient-to-br from-primary/10 to-primary/5">
-                <h3 className="font-display font-semibold text-foreground mb-2">Stay Updated</h3>
-                <p className="text-sm text-muted-foreground mb-4">Get weekly insights delivered to your inbox</p>
-                <form onSubmit={(e) => handleSubscribe("top", e)} className="space-y-3">
+              <div className="overflow-hidden rounded-3xl border border-primary/20 bg-primary p-6 text-primary-foreground shadow-lg">
+                <Mail className="mb-4 h-8 w-8" />
+                <h3 className="text-xl font-bold">Stay Updated</h3>
+                <p className="mt-2 text-sm leading-6 text-primary-foreground/80">
+                  Get updates on AI, IoT, school workshops, automation, and live
+                  projects.
+                </p>
+
+                <form onSubmit={handleSubscribe} className="mt-5 space-y-3">
                   <input
                     type="email"
-                    placeholder="Your email"
-                    value={emailTop}
-                    onChange={(e) => setEmailTop(e.target.value)}
-                    required
-                    className="w-full px-4 py-2.5 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm transition-all"
+                    placeholder="Enter email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="h-12 w-full rounded-2xl border border-white/20 bg-white/15 px-4 text-sm text-white placeholder:text-white/65 outline-none focus:bg-white/20"
                   />
-                  <Button variant="hero" size="sm" type="submit" className="w-full group">
+
+                  <Button
+                    type="submit"
+                    className="w-full rounded-2xl bg-white text-primary hover:bg-white/90"
+                  >
                     Subscribe
-                    <Send className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                    <Send className="h-4 w-4" />
                   </Button>
                 </form>
               </div>
-            </motion.div>
+            </aside>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Bottom Newsletter */}
-      <section className="py-20">
-        <motion.div
-          ref={newsletterRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={newsletterVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.7 }}
-          className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
-        >
-          <div className="glass-card p-10 lg:p-14 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/5 rounded-full blur-2xl" />
+        <section className="border-t border-border bg-card/50">
+          <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+            <div className="rounded-[2rem] border border-border bg-background p-8 shadow-sm lg:p-10">
+              <div className="grid items-center gap-6 lg:grid-cols-[1fr_auto]">
+                <div>
+                  <p className="mb-2 text-sm font-semibold text-primary">
+                    Your Idea, Our Solution
+                  </p>
+                  <h2 className="text-3xl font-bold text-foreground">
+                    Need AI, IoT, automation, school services or application
+                    development?
+                  </h2>
+                  <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
+                    VisionariesAI Labs Private Limited supports businesses,
+                    schools, institutions, and individuals with complete
+                    technology solutions from planning to deployment.
+                  </p>
+                </div>
 
-            <div className="relative text-center">
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={newsletterVisible ? { scale: 1 } : { scale: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6"
-              >
-                <Send className="w-8 h-8 text-primary" />
-              </motion.div>
-
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">
-                Never Miss an Update
-              </h2>
-
-              <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
-                Join our newsletter for AI insights, product updates, and real deployment learnings.
-              </p>
-
-              <form
-                onSubmit={(e) => handleSubscribe("bottom", e)}
-                className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
-              >
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={emailBottom}
-                  onChange={(e) => setEmailBottom(e.target.value)}
-                  required
-                  className="flex-1 px-5 py-4 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-                />
-                <Button variant="hero" size="lg" type="submit" className="group whitespace-nowrap">
-                  Subscribe
-                  <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <Button asChild size="lg" className="rounded-2xl">
+                  <Link to="/contact">
+                    Contact Us
+                    <ChevronRight className="h-5 w-5" />
+                  </Link>
                 </Button>
-              </form>
-
-              <p className="text-xs text-muted-foreground mt-4">No spam. Unsubscribe anytime.</p>
+              </div>
             </div>
           </div>
-        </motion.div>
-      </section>
+        </section>
+      </main>
     </Layout>
   );
 };

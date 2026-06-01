@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Mail,
@@ -5,6 +6,7 @@ import {
   MapPin,
   Linkedin,
   Youtube,
+  Instagram,
   ArrowRight,
   Sparkles,
   Send,
@@ -14,42 +16,42 @@ import {
   ExternalLink,
   Clock,
   Navigation,
+  CheckCircle2,
+  AlertCircle,
+  ArrowUp,
+  Share2,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import logo from "../../../public/logo1.jpg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
   const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
+  const [subscribeStatus, setSubscribeStatus] = useState({
+    type: "",
+    message: "",
+  });
 
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-
-    if (email.trim()) {
-      setSubscribed(true);
-      setEmail("");
-      setTimeout(() => setSubscribed(false), 3000);
-    }
-  };
-
-  const footerLinks = {
-    company: [
-      { name: "About Us", path: "/about" },
-      { name: "Our Team", path: "/about#team" },
-      { name: "Careers", path: "/careers" },
-      { name: "Blog", path: "/blog" },
-    ],
-    products: [
-      { name: "AI Monitoring", path: "/products" },
-      { name: "Energy Systems", path: "/products" },
-      { name: "LMS Platform", path: "/products" },
-      { name: "AI Assistant", path: "/products" },
-      { name: "... More", path: "/products" },
-    ],
-  };
+  const footerLinks = useMemo(
+    () => ({
+      company: [
+        { name: "About Us", path: "/about" },
+        { name: "Our Team", path: "/about#team" },
+        { name: "Careers", path: "/careers" },
+        { name: "Blog", path: "/blog" },
+      ],
+      products: [
+        { name: "AI Monitoring", path: "/products" },
+        { name: "Energy Systems", path: "/products" },
+        { name: "LMS Platform", path: "/products" },
+        { name: "AI Assistant", path: "/products" },
+        { name: "... More", path: "/products" },
+      ],
+    }),
+    []
+  );
 
   const features = [
     { icon: Globe, text: "Serving clients across India & globally" },
@@ -59,17 +61,35 @@ const Footer = () => {
 
   const branches = [
     {
-      label: "Srikakulam (Main Branch)",
+      label: "Srikakulam",
+      subtitle: "Main Branch",
       address:
         "3-28, Dubbakavani Peta, Polaki, Srikakulam, Andhra Pradesh, India - 532429",
       mapLink:
         "https://www.google.com/maps/dir/?api=1&destination=18.353620511952187,84.07063065323374",
+      showDirections: true,
     },
     {
-      label: "Visakhapatnam (Branch Office)",
+      label: "Visakhapatnam",
+      subtitle: "Branch Office",
       address: "Visakhapatnam, Andhra Pradesh, India",
       mapLink:
         "https://www.google.com/maps/dir/?api=1&destination=17.72724,83.30584",
+      showDirections: true,
+    },
+    {
+      label: "Vijayawada",
+      subtitle: "Service Location",
+      address: "Andhra Pradesh, India",
+      mapLink: "",
+      showDirections: false,
+    },
+    {
+      label: "Hyderabad",
+      subtitle: "Service Location",
+      address: "Telangana, India",
+      mapLink: "",
+      showDirections: false,
     },
   ];
 
@@ -78,6 +98,11 @@ const Footer = () => {
       icon: Linkedin,
       label: "LinkedIn",
       href: "https://www.linkedin.com/company/visionariesai/posts/?feedView=all",
+    },
+    {
+      icon: Instagram,
+      label: "Instagram",
+      href: "https://www.instagram.com/visionariesai?igsh=M3MxNWt2NzNtbmo2&utm_source=qr",
     },
     {
       icon: Youtube,
@@ -101,22 +126,82 @@ const Footer = () => {
     },
   ];
 
+  const isValidEmail = (value) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+  };
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+
+    const trimmedEmail = email.trim();
+
+    if (!trimmedEmail) {
+      setSubscribeStatus({
+        type: "error",
+        message: "Please enter your email address.",
+      });
+      return;
+    }
+
+    if (!isValidEmail(trimmedEmail)) {
+      setSubscribeStatus({
+        type: "error",
+        message: "Please enter a valid email address.",
+      });
+      return;
+    }
+
+    setSubscribeStatus({
+      type: "success",
+      message: "Thank you! You have subscribed successfully.",
+    });
+
+    setEmail("");
+
+    setTimeout(() => {
+      setSubscribeStatus({
+        type: "",
+        message: "",
+      });
+    }, 3500);
+  };
+
+  const handleBackToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const FooterTitle = ({ dotClass, icon: Icon, children }) => {
+    return (
+      <h4 className="mb-5 flex items-center gap-2 font-display text-lg font-bold text-foreground">
+        {Icon ? (
+          <Icon className="h-5 w-5 text-primary" />
+        ) : (
+          <span className={`h-2.5 w-2.5 rounded-full ${dotClass}`} />
+        )}
+        {children}
+      </h4>
+    );
+  };
+
   const FooterLinkList = ({ title, colorClass, links }) => {
     return (
-      <div className="w-full">
-        <h4 className="font-display font-semibold text-foreground mb-4 flex items-center gap-2 text-base sm:text-lg">
-          <span className={`w-2 h-2 rounded-full ${colorClass}`} />
+      <div>
+        <h5 className="mb-3 flex items-center gap-2 text-base font-semibold text-foreground">
+          <span className={`h-2.5 w-2.5 rounded-full ${colorClass}`} />
           {title}
-        </h4>
+        </h5>
 
-        <ul className="space-y-2.5 sm:space-y-3">
+        <ul className="space-y-2.5">
           {links.map((link) => (
             <li key={link.name}>
               <Link
                 to={link.path}
-                className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2 group text-sm sm:text-base"
+                className="group inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-all duration-300 hover:translate-x-1 hover:text-primary"
               >
-                <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 shrink-0" />
+                <ArrowRight className="h-3.5 w-3.5 shrink-0 opacity-0 transition-all duration-300 group-hover:opacity-100" />
                 <span>{link.name}</span>
               </Link>
             </li>
@@ -126,246 +211,362 @@ const Footer = () => {
     );
   };
 
+  const InfoRow = ({ icon: Icon, label, children, href }) => {
+    const content = (
+      <div className="group flex items-start gap-3 rounded-2xl border border-border/60 bg-background/35 p-4 transition-all duration-300 hover:border-primary/40 hover:bg-primary/5">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 transition-colors duration-300 group-hover:bg-primary/20">
+          <Icon className="h-5 w-5 text-primary" />
+        </div>
+
+        <div className="min-w-0 flex-1">
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+            {label}
+          </p>
+          <div className="mt-1 text-sm font-semibold leading-relaxed text-foreground">
+            {children}
+          </div>
+        </div>
+      </div>
+    );
+
+    if (href) {
+      return (
+        <a href={href} className="block">
+          {content}
+        </a>
+      );
+    }
+
+    return content;
+  };
+
+  const LocationCard = ({ branch }) => {
+    const cardContent = (
+      <div className="group flex h-full min-h-[175px] flex-col rounded-3xl border border-border/70 bg-background/40 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:bg-primary/5 hover:shadow-xl hover:shadow-primary/10">
+        <div className="mb-4 flex items-start gap-3">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary/10 transition-colors duration-300 group-hover:bg-primary/20">
+            <MapPin className="h-5 w-5 text-primary" />
+          </div>
+
+          <div className="min-w-0">
+            <h5 className="text-base font-bold leading-tight text-foreground">
+              {branch.label}
+            </h5>
+
+            {branch.subtitle && (
+              <span className="mt-1 inline-flex rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">
+                {branch.subtitle}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
+          {branch.address}
+        </p>
+
+        {branch.showDirections && (
+          <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+            <Navigation className="h-4 w-4 shrink-0" />
+            Get Directions
+          </span>
+        )}
+      </div>
+    );
+
+    if (branch.showDirections && branch.mapLink) {
+      return (
+        <a
+          href={branch.mapLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block h-full"
+          aria-label={`Get directions to ${branch.label}`}
+        >
+          {cardContent}
+        </a>
+      );
+    }
+
+    return <div className="h-full">{cardContent}</div>;
+  };
+
   return (
-    <footer className="relative overflow-hidden">
-      <div className="h-1 bg-gradient-to-r from-primary via-cyan-500 to-blue-600" />
+    <footer className="relative overflow-hidden bg-card">
+      <div className="h-1.5 bg-gradient-to-r from-primary via-cyan-500 to-blue-600" />
 
       {/* Newsletter Section */}
-      <div className="bg-gradient-to-br from-primary/10 via-card to-card border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8">
-            <div className="text-center lg:text-left max-w-2xl">
-              <div className="flex items-center gap-2 justify-center lg:justify-start mb-2">
-                <Sparkles className="w-5 h-5 text-primary shrink-0" />
-                <span className="text-primary font-medium text-xs sm:text-sm uppercase tracking-wider">
+      <section className="relative border-b border-border bg-gradient-to-br from-primary/10 via-card to-card">
+        <div className="pointer-events-none absolute -left-24 top-0 h-64 w-64 rounded-full bg-primary/10 blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-cyan-500/10 blur-3xl" />
+
+        <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-6 rounded-3xl border border-border/70 bg-background/40 p-5 shadow-sm sm:p-7 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
+            <div className="text-center lg:text-left">
+              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5">
+                <Sparkles className="h-4 w-4 text-primary" />
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
                   Stay Updated
                 </span>
               </div>
 
-              <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2 leading-tight">
+              <h3 className="font-display text-2xl font-bold leading-tight text-foreground sm:text-3xl lg:text-4xl">
                 Subscribe to Our Newsletter
               </h3>
 
-              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                Get the latest updates on AI innovations and product releases.
+              <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base lg:mx-0">
+                Get the latest updates on AI innovations, product releases,
+                education technology, automation, and business solutions.
               </p>
             </div>
 
             <form
               onSubmit={handleSubscribe}
-              className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto"
+              className="mx-auto w-full max-w-xl lg:mx-0 lg:ml-auto"
             >
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="w-full sm:w-80 lg:w-96 px-4 py-3 rounded-xl bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 text-foreground placeholder:text-muted-foreground text-sm sm:text-base"
-                required
-              />
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
 
-              <Button
-                type="submit"
-                variant="hero"
-                className="group whitespace-nowrap w-full sm:w-auto min-h-[46px]"
-              >
-                {subscribed ? (
-                  <>
-                    Subscribed!
-                    <Heart className="w-4 h-4 ml-2 fill-current" />
-                  </>
-                ) : (
-                  <>
-                    Subscribe
-                    <Send className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </>
-                )}
-              </Button>
+                    if (subscribeStatus.message) {
+                      setSubscribeStatus({
+                        type: "",
+                        message: "",
+                      });
+                    }
+                  }}
+                  placeholder="Enter your email"
+                  className="h-12 w-full rounded-2xl border border-border bg-background px-4 text-sm text-foreground outline-none transition-all duration-300 placeholder:text-muted-foreground focus:border-primary focus:ring-4 focus:ring-primary/15 sm:text-base"
+                  aria-label="Email address"
+                />
+
+                <Button
+                  type="submit"
+                  className="group h-12 rounded-2xl bg-primary px-6 font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/25 disabled:cursor-not-allowed disabled:opacity-70 sm:min-w-[150px]"
+                  disabled={subscribeStatus.type === "success"}
+                >
+                  {subscribeStatus.type === "success" ? (
+                    <>
+                      Subscribed
+                      <CheckCircle2 className="ml-2 h-4 w-4" />
+                    </>
+                  ) : (
+                    <>
+                      Subscribe
+                      <Send className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    </>
+                  )}
+                </Button>
+              </div>
+
+              {subscribeStatus.message && (
+                <div
+                  className={`mt-3 flex items-center gap-2 rounded-xl px-3 py-2 text-sm ${
+                    subscribeStatus.type === "success"
+                      ? "bg-green-500/10 text-green-600"
+                      : "bg-red-500/10 text-red-600"
+                  }`}
+                >
+                  {subscribeStatus.type === "success" ? (
+                    <CheckCircle2 className="h-4 w-4 shrink-0" />
+                  ) : (
+                    <AlertCircle className="h-4 w-4 shrink-0" />
+                  )}
+
+                  <span>{subscribeStatus.message}</span>
+                </div>
+              )}
             </form>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Main Footer Content */}
-      <div className="bg-card">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 lg:py-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 sm:gap-10 lg:gap-12">
+      {/* Main Footer Content - Clean Layout */}
+      <section className="relative border-b border-border/70">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.18fr_0.78fr_1fr_0.82fr] xl:gap-12">
             {/* Brand */}
-            <div className="sm:col-span-2 lg:col-span-2">
-              <Link
-                to="/"
-                className="flex items-center justify-center sm:justify-start gap-3 mb-5 sm:mb-6 group"
-              >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-cyan-500 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg shadow-primary/20 shrink-0">
+            <div>
+              <Link to="/" className="group mb-5 inline-flex items-center gap-3">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-cyan-500 shadow-lg shadow-primary/20 transition-all duration-500 group-hover:rotate-6 group-hover:scale-105">
                   <img
                     src={logo}
                     alt="VisionariesAI Logo"
-                    className="w-10 h-10 rounded-xl object-cover"
+                    className="h-11 w-11 rounded-xl object-cover"
                   />
                 </div>
 
-                <span className="font-display font-bold text-xl sm:text-2xl text-foreground">
+                <span className="font-display text-2xl font-bold tracking-tight text-foreground">
                   Visionaries<span className="text-primary">AI</span>
                 </span>
               </Link>
 
-              <p className="text-muted-foreground mb-6 leading-relaxed text-center sm:text-left text-sm sm:text-base">
+              <p className="mb-6 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
                 Transforming educational institutions and businesses with
                 cutting-edge AI solutions. We build intelligent products that
-                drive innovation and growth.
+                drive innovation, automation, and growth.
               </p>
 
-              <div className="space-y-3 mb-6">
+              <div className="space-y-3">
                 {features.map((feature) => (
                   <div
                     key={feature.text}
                     className="flex items-center gap-3 text-sm text-muted-foreground"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                      <feature.icon className="w-4 h-4 text-primary" />
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                      <feature.icon className="h-[18px] w-[18px] text-primary" />
                     </div>
-                    <span className="leading-relaxed">{feature.text}</span>
+
+                    <span>{feature.text}</span>
                   </div>
                 ))}
               </div>
+            </div>
 
-              <div className="flex justify-center sm:justify-start gap-3">
+            {/* Quick Links */}
+            <div>
+              <FooterTitle dotClass="bg-primary">Quick Links</FooterTitle>
+
+              <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-1">
+                <FooterLinkList
+                  title="Company"
+                  colorClass="bg-primary"
+                  links={footerLinks.company}
+                />
+
+                <FooterLinkList
+                  title="Products"
+                  colorClass="bg-cyan-500"
+                  links={footerLinks.products}
+                />
+              </div>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <FooterTitle dotClass="bg-green-500">Contact Us</FooterTitle>
+
+              <div className="space-y-4">
+                <InfoRow icon={Mail} label="Email" href="mailto:contact@visionariesai.com">
+                  <span className="break-words">contact@visionariesai.com</span>
+                </InfoRow>
+
+                <InfoRow icon={Phone} label="Phone">
+                  <div className="flex flex-col gap-1">
+                    <a
+                      href="tel:+919849072243"
+                      className="transition-colors duration-300 hover:text-primary"
+                    >
+                      +91 9849072243
+                    </a>
+
+                    <a
+                      href="tel:+919849042243"
+                      className="transition-colors duration-300 hover:text-primary"
+                    >
+                      +91 9849042243
+                    </a>
+                  </div>
+                </InfoRow>
+              </div>
+            </div>
+
+            {/* Social Media */}
+            <div>
+              <FooterTitle icon={Share2}>Follow Us</FooterTitle>
+
+              <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
+                Connect with VisionariesAI Labs for latest updates, products,
+                services, and technology news.
+              </p>
+
+              <div className="space-y-3">
                 {socialLinks.map((social) => (
                   <a
                     key={social.label}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 hover:scale-110 transition-all duration-300"
+                    className="group flex items-center gap-3 rounded-2xl border border-border/60 bg-background/35 p-3 text-muted-foreground transition-all duration-300 hover:border-primary/40 hover:bg-primary/10 hover:text-primary"
                     aria-label={social.label}
+                    title={social.label}
                   >
-                    <social.icon className="w-5 h-5" />
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Company Links */}
-            <FooterLinkList
-              title="Company"
-              colorClass="bg-primary"
-              links={footerLinks.company}
-            />
-
-            {/* Products Links */}
-            <FooterLinkList
-              title="Products"
-              colorClass="bg-cyan-500"
-              links={footerLinks.products}
-            />
-
-            {/* Contact */}
-            <div className="sm:col-span-2 lg:col-span-2">
-              <h4 className="font-display font-semibold text-foreground mb-4 flex items-center gap-2 text-base sm:text-lg">
-                <span className="w-2 h-2 rounded-full bg-green-500" />
-                Contact Us
-              </h4>
-
-              <ul className="space-y-4">
-                <li>
-                  <a
-                    href="mailto:contact@visionariesai.com"
-                    className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors duration-300 group"
-                  >
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors shrink-0">
-                      <Mail className="w-5 h-5 text-primary" />
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 transition-all duration-300 group-hover:bg-primary/20">
+                      <social.icon className="h-5 w-5" />
                     </div>
 
-                    <span className="text-sm sm:text-base break-all">
-                      contact@visionariesai.com
-                    </span>
-                  </a>
-                </li>
+                    <span className="text-sm font-semibold">{social.label}</span>
 
-                <li className="flex items-start gap-3 text-muted-foreground">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                    <Phone className="w-5 h-5 text-primary" />
-                  </div>
-
-                  <div className="flex flex-col gap-1 text-sm sm:text-base">
-                    <a
-                      href="tel:+919849072243"
-                      className="hover:text-primary transition-colors"
-                    >
-                      +91 9849072243
-                    </a>
-                    <a
-                      href="tel:+919849042243"
-                      className="hover:text-primary transition-colors"
-                    >
-                      +91 9849042243
-                    </a>
-                  </div>
-                </li>
-
-                {branches.map((branch) => (
-                  <li key={branch.label}>
-                    <a
-                      href={branch.mapLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-start gap-3 text-muted-foreground hover:text-primary transition-colors duration-300 group"
-                    >
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-                        <MapPin className="w-5 h-5 text-primary" />
-                      </div>
-
-                      <div className="flex flex-col min-w-0">
-                        <span className="text-xs sm:text-sm font-semibold text-foreground/90 leading-relaxed">
-                          {branch.label}
-                        </span>
-
-                        <span className="text-sm leading-relaxed break-words">
-                          {branch.address}
-                        </span>
-
-                        <span className="text-xs text-primary flex items-center gap-1 mt-1">
-                          <Navigation className="w-3 h-3 shrink-0" />
-                          Get Directions
-                        </span>
-                      </div>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Section */}
-        <div className="border-t border-border">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6">
-            <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
-              <p className="text-muted-foreground text-xs sm:text-sm flex flex-wrap items-center justify-center lg:justify-start gap-1 text-center lg:text-left leading-relaxed">
-                <span>© Since 2023 – {currentYear} VisionariesAI Labs.</span>
-                <span>Made with</span>
-                <Heart className="w-4 h-4 text-red-500 fill-red-500 animate-pulse" />
-                <span>in India</span>
-              </p>
-
-              <div className="flex flex-wrap justify-center lg:justify-end gap-x-5 gap-y-2 text-xs sm:text-sm text-muted-foreground">
-                {legalLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"
-                  >
-                    {link.name}
-                    <ExternalLink className="w-3.5 h-3.5 opacity-70 shrink-0" />
+                    <ExternalLink className="ml-auto h-4 w-4 opacity-60 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </a>
                 ))}
               </div>
             </div>
           </div>
+
+          {/* Locations Bottom Horizontal */}
+          <div className="mt-10 border-t border-border/70 pt-8">
+            <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h4 className="flex items-center gap-2 font-display text-lg font-semibold text-foreground">
+                  <Globe className="h-5 w-5 text-primary" />
+                  Our Locations
+                </h4>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Visit our branches and service locations across India.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              {branches.map((branch) => (
+                <LocationCard key={branch.label} branch={branch} />
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* Bottom Section */}
+      <section className="bg-background/40">
+        <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
+            <p className="flex flex-wrap items-center justify-center gap-1.5 text-center text-xs leading-relaxed text-muted-foreground sm:text-sm lg:justify-start lg:text-left">
+              <span>© Since 2023 – {currentYear} VisionariesAI Labs.</span>
+              <span>Made with</span>
+              <Heart className="h-4 w-4 fill-red-500 text-red-500" />
+              <span>in India</span>
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground sm:text-sm lg:justify-end">
+              {legalLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-medium transition-colors duration-300 hover:text-primary"
+                >
+                  {link.name}
+                  <ExternalLink className="h-3.5 w-3.5 shrink-0 opacity-70" />
+                </a>
+              ))}
+
+              <button
+                type="button"
+                onClick={handleBackToTop}
+                className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 font-medium text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/10 hover:text-primary"
+              >
+                <ArrowUp className="h-3.5 w-3.5" />
+                Top
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </footer>
   );
 };
