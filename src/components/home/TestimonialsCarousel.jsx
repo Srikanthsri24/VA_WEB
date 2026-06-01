@@ -78,7 +78,7 @@ const testimonials = [
     name: "Academic Coordinator",
     role: "Srikakulam, Andhra Pradesh",
     content:
-      "The AI curriculum for classes 3–10 is engaging and structured. Students are curious and confident, and teachers find it easy to deliver.",
+      "The AI curriculum for classes 1-10 is engaging and structured. Students are curious and confident, and teachers find it easy to deliver.",
     rating: 5,
     avatar: "AC",
     gradient: "from-sky-500 to-indigo-600",

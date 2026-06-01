@@ -18,10 +18,10 @@ import {
   Megaphone,
   UserCog,
   GraduationCap,
+  Palette,
 } from "lucide-react";
 
 const teamMembers = [
-  // Leadership
   {
     id: 1,
     name: "Raghu Dubbaka",
@@ -49,56 +49,56 @@ const teamMembers = [
     avatar: "CEO",
     icon: Rocket,
   },
-
-  // Management
   {
-    id: 9,
+    id: 4,
+    name: "Geethika J",
+    title: "Director of Next-Gen",
+    group: "Leadership",
+    focus: ["Next-Gen Strategy", "Operations", "Team Coordination", "Growth Planning"],
+    avatar: "NG",
+    icon: Briefcase,
+  },
+  {
+    id: 5,
+    name: "Gayathri D",
+    title: "Director of VisionicX",
+    group: "Leadership",
+    focus: ["VisionicX Strategy", "Technology Direction", "Operations", "Brand Growth"],
+    avatar: "VX",
+    icon: Briefcase,
+  },
+
+  {
+    id: 6,
     name: "Shiva Sai Srinivas",
     title: "Sr. Manager",
     group: "Management",
-    focus: [
-      "Team Leadership",
-      "Project Planning",
-      "Client Coordination",
-      "Delivery Management",
-    ],
+    focus: ["Team Leadership", "Project Planning", "Client Coordination", "Delivery Management"],
     avatar: "SM",
     icon: Users,
   },
   {
-    id: 21,
+    id: 7,
     name: "Harsh Chandan Bendalam",
     title: "Chief Operational Manager",
     group: "Management",
-    focus: [
-      "Operations Management",
-      "Team Coordination",
-      "Process Planning",
-      "Execution",
-    ],
+    focus: ["Operations Management", "Team Coordination", "Process Planning", "Execution"],
     avatar: "COM",
     icon: UserCog,
   },
 
-  // Operations
   {
-    id: 15,
+    id: 8,
     name: "Ram Krishna & Team",
     title: "Technician Team",
     group: "Operations",
-    focus: [
-      "Hardware Installation",
-      "Device Maintenance",
-      "On-site Support",
-      "Networking",
-    ],
+    focus: ["Hardware Installation", "Device Maintenance", "On-site Support", "Networking"],
     avatar: "OPS",
     icon: Wrench,
   },
 
-  // Engineering
   {
-    id: 5,
+    id: 9,
     name: "Lalith Kumar",
     title: "Full-Stack Developer",
     group: "Engineering",
@@ -107,7 +107,7 @@ const teamMembers = [
     icon: Code,
   },
   {
-    id: 6,
+    id: 10,
     name: "Narasing",
     title: "Full-Stack Developer",
     group: "Engineering",
@@ -116,16 +116,7 @@ const teamMembers = [
     icon: Code,
   },
   {
-    id: 4,
-    name: "Gayathri",
-    title: "DevOps Engineer",
-    group: "Engineering",
-    focus: ["CI/CD Pipelines", "Cloud Infrastructure", "Server Monitoring", "Security"],
-    avatar: "DO",
-    icon: Database,
-  },
-  {
-    id: 22,
+    id: 11,
     name: "Chandrakala",
     title: "Python Developer",
     group: "Engineering",
@@ -134,9 +125,8 @@ const teamMembers = [
     icon: Code,
   },
 
-  // AI & Data
   {
-    id: 7,
+    id: 12,
     name: "Harsh & Team",
     title: "AI Developer Team",
     group: "AI & Data",
@@ -145,9 +135,8 @@ const teamMembers = [
     icon: Brain,
   },
 
-  // AI Training
   {
-    id: 23,
+    id: 13,
     name: "Anil Sajja",
     title: "AI Trainer",
     group: "AI Training",
@@ -156,9 +145,17 @@ const teamMembers = [
     icon: GraduationCap,
   },
 
-  // Editorial
   {
-    id: 19,
+    id: 14,
+    name: "Sirisha",
+    title: "UI/UX Designer & Video Editor",
+    group: "Creative",
+    focus: ["UI/UX Design", "Video Editing", "Creative Design", "Visual Content"],
+    avatar: "UX",
+    icon: Palette,
+  },
+  {
+    id: 15,
     name: "Uday & Team",
     title: "Editorial Team",
     group: "Editorial",
@@ -167,9 +164,8 @@ const teamMembers = [
     icon: Video,
   },
 
-  // QA
   {
-    id: 11,
+    id: 16,
     name: "Pothala Santhosi",
     title: "Test Engineer",
     group: "QA",
@@ -178,7 +174,7 @@ const teamMembers = [
     icon: FlaskConical,
   },
   {
-    id: 12,
+    id: 17,
     name: "Nikitha",
     title: "Automation Engineer",
     group: "QA",
@@ -187,50 +183,27 @@ const teamMembers = [
     icon: FlaskConical,
   },
 
-  // Business
   {
-    id: 8,
+    id: 18,
     name: "Gopal & Team",
     title: "Business Development Team",
     group: "Business",
-    focus: [
-      "Client Acquisition",
-      "Institution Partnerships",
-      "Product Demos",
-      "Sales Strategy",
-    ],
+    focus: ["Client Acquisition", "Institution Partnerships", "Product Demos", "Sales Strategy"],
     avatar: "BD",
     icon: Briefcase,
   },
 
-  // Marketing
-
   {
-    id: 24,
+    id: 19,
     name: "Arangi Murali & Team",
     title: "Marketing Team",
     group: "Marketing",
-    focus: [
-      "Field Marketing",
-      "Brand Promotion",
-      "School Campaigns",
-      "Lead Generation",
-    ],
+    focus: ["Field Marketing", "Brand Promotion", "School Campaigns", "Lead Generation"],
     avatar: "MK",
     icon: Megaphone,
   },
   {
-    id: 17,
-    name: "Anil S",
-    title: "Marketing Executive",
-    group: "Marketing",
-    focus: ["Digital Marketing", "Brand Strategy", "Campaign Management", "Analytics"],
-    avatar: "MK",
-    icon: Briefcase,
-  },
-
-  {
-    id: 18,
+    id: 20,
     name: "Chaitanya",
     title: "Marketing Executive",
     group: "Marketing",
@@ -239,25 +212,18 @@ const teamMembers = [
     icon: Briefcase,
   },
 
-  // Digital Marketing
   {
-    id: 20,
+    id: 21,
     name: "Girish & Team",
     title: "Digital Marketing Team",
     group: "Digital Marketing",
-    focus: [
-      "Social Media",
-      "Digital Campaigns",
-      "Brand Promotion",
-      "Lead Generation",
-    ],
+    focus: ["Social Media", "Digital Campaigns", "Brand Promotion", "Lead Generation"],
     avatar: "DM",
     icon: Megaphone,
   },
 
-  // Support
   {
-    id: 10,
+    id: 22,
     name: "Ratnakar & Team",
     title: "Support Team",
     group: "Support",
@@ -265,34 +231,18 @@ const teamMembers = [
     avatar: "SP",
     icon: Headphones,
   },
-  {
-    id: 18,
-    name: "Geethika J",
-    title: "Support Engineer",
-    group: "Support",
-    focus: ["Technical Support", "Customer Assistance", "Issue Resolution", "Documentation"],
-    avatar: "SE",
-    icon: Headphones,
-  },
-
-  // Finance
 
   {
-    id: 25,
+    id: 23,
     name: "Thejesh & Team",
     title: "Accountants Team",
     group: "Finance",
-    focus: [
-      "Accounting",
-      "Billing",
-      "GST & Tax Filing",
-      "Financial Reporting",
-    ],
+    focus: ["Accounting", "Billing", "GST & Tax Filing", "Financial Reporting"],
     avatar: "AC",
     icon: Calculator,
   },
   {
-    id: 13,
+    id: 24,
     name: "Hari Krishna",
     title: "Chartered Accountant",
     group: "Finance",
@@ -301,7 +251,7 @@ const teamMembers = [
     icon: Calculator,
   },
   {
-    id: 14,
+    id: 25,
     name: "Midhun",
     title: "Chartered Accountant",
     group: "Finance",
@@ -344,6 +294,7 @@ const groupColors = {
   Engineering: "from-green-500 to-teal-600",
   "AI & Data": "from-orange-500 to-red-600",
   "AI Training": "from-sky-500 to-cyan-600",
+  Creative: "from-pink-500 to-purple-600",
   Editorial: "from-violet-500 to-purple-600",
   QA: "from-indigo-500 to-purple-600",
   Business: "from-yellow-500 to-orange-600",
@@ -363,7 +314,6 @@ const About = () => {
 
   return (
     <Layout>
-      {/* Hero Section */}
       <section className="pt-24 pb-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(var(--primary)/0.08)_0%,_transparent_50%)]" />
 
@@ -387,7 +337,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Mission & Vision */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -427,7 +376,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Values */}
       <section className="py-16 bg-card/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -468,7 +416,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Story */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -495,9 +442,9 @@ const About = () => {
                 </p>
 
                 <p>
-                  Today, our products are being used by schools, colleges, and
-                  businesses to automate processes, enhance learning experiences,
-                  and deliver exceptional results.
+                  Today, our products are being used by schools, institutions,
+                  and businesses to automate processes, enhance learning
+                  experiences, and deliver exceptional results.
                 </p>
               </div>
             </div>
@@ -536,8 +483,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team */}
-      {/* Team */}
       <section id="team" className="py-16 bg-card/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
@@ -550,9 +495,9 @@ const About = () => {
             </h2>
 
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Our diverse team brings expertise across engineering, AI, business
-              development, management, operations, content, marketing, and support
-              to deliver exceptional solutions.
+              Our diverse team brings expertise across leadership, engineering,
+              AI, business development, management, operations, creative design,
+              marketing, finance, and support.
             </p>
           </div>
 
@@ -560,8 +505,9 @@ const About = () => {
             <div key={group} className="mb-16 last:mb-0">
               <div className="flex items-center gap-3 mb-8">
                 <div
-                  className={`h-1.5 w-16 rounded-full bg-gradient-to-r ${groupColors[group] || "from-primary to-primary"
-                    }`}
+                  className={`h-1.5 w-16 rounded-full bg-gradient-to-r ${
+                    groupColors[group] || "from-primary to-primary"
+                  }`}
                 />
 
                 <h3 className="font-display text-2xl font-bold text-foreground">
@@ -586,14 +532,16 @@ const About = () => {
                       }}
                     >
                       <div
-                        className={`absolute -top-16 -right-16 w-44 h-44 rounded-full bg-gradient-to-br ${groupColors[member.group] || "from-primary to-primary"
-                          } opacity-10 group-hover:opacity-20 transition-all duration-300`}
+                        className={`absolute -top-16 -right-16 w-44 h-44 rounded-full bg-gradient-to-br ${
+                          groupColors[member.group] || "from-primary to-primary"
+                        } opacity-10 group-hover:opacity-20 transition-all duration-300`}
                       />
 
                       <div className="relative flex items-start gap-5">
                         <div
-                          className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${groupColors[member.group] || "from-primary to-primary"
-                            } flex items-center justify-center shrink-0 shadow-lg group-hover:scale-105 transition-transform duration-300`}
+                          className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${
+                            groupColors[member.group] || "from-primary to-primary"
+                          } flex items-center justify-center shrink-0 shadow-lg group-hover:scale-105 transition-transform duration-300`}
                         >
                           <span className="font-display text-xl font-bold text-white">
                             {member.avatar}
@@ -618,7 +566,8 @@ const About = () => {
 
                       <div className="relative mt-6">
                         <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                          Focused on {member.focus.slice(0, 2).join(" and ").toLowerCase()}.
+                          Focused on{" "}
+                          {member.focus.slice(0, 2).join(" and ").toLowerCase()}.
                         </p>
 
                         <div className="flex flex-wrap gap-2">

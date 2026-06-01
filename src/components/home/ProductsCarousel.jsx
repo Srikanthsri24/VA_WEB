@@ -111,7 +111,7 @@ const products = [
     icon: BookOpen,
     name: "Learning Management System (LMS)",
     description:
-      "A unified learning platform delivering your Class 3–10 AI syllabus end-to-end with assignments, exams, and tracking.",
+      "A unified learning platform delivering your Class 1-10 AI syllabus end-to-end with assignments, exams, and tracking.",
     goal:
       "Make AI education faster to teach, personalized, and easy to monitor for all roles.",
     features: ["AI Curriculum Hosting", "Assignments & Exams", "Analytics Dashboards"],
@@ -121,7 +121,7 @@ const products = [
   },
   {
     icon: GraduationCap,
-    name: "AI Curriculum (Classes 3–10)",
+    name: "AI Curriculum (Classes 1-10)",
     description:
       "A structured, progressive AI syllabus from Classes 3 to 10 with hands-on learning, projects, and real examples.",
     goal:

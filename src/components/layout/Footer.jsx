@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import emailjs from "@emailjs/browser";
 import {
   Mail,
   Phone,
@@ -25,14 +26,25 @@ import {
 import { Button } from "@/components/ui/button";
 import logo from "../../../public/logo1.jpg";
 
+const EMAILJS_PUBLIC_KEY = "9R9VMnwYtqehumZjw";
+const EMAILJS_SERVICE_ID = "service_tvtk2xr";
+const EMAILJS_TEMPLATE_ID = "template_joe8237";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
+  const CONTACT_EMAIL = "contact@visionariesai.com";
+  const INFO_EMAIL = "info@visionariesai.com";
 
   const [email, setEmail] = useState("");
   const [subscribeStatus, setSubscribeStatus] = useState({
     type: "",
     message: "",
   });
+
+  useEffect(() => {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }, []);
 
   const footerLinks = useMemo(
     () => ({
@@ -130,7 +142,7 @@ const Footer = () => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
   };
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
 
     const trimmedEmail = email.trim();
@@ -151,19 +163,55 @@ const Footer = () => {
       return;
     }
 
-    setSubscribeStatus({
-      type: "success",
-      message: "Thank you! You have subscribed successfully.",
-    });
-
-    setEmail("");
-
-    setTimeout(() => {
+    try {
       setSubscribeStatus({
-        type: "",
-        message: "",
+        type: "loading",
+        message: "Sending subscription...",
       });
-    }, 3500);
+
+      const templateParams = {
+        name: "Newsletter Subscriber",
+        email: trimmedEmail,
+        mobile: "-",
+        organizationName: "VisionariesAI Website Footer",
+        subject: `Subject: New Newsletter Subscription
+
+Message:
+A new user subscribed from the VisionariesAI website footer.
+
+Subscriber Email: ${trimmedEmail}
+Send To: ${INFO_EMAIL}
+Submitted From: VisionariesAI Website Footer
+Submitted At: ${new Date().toLocaleString()}`,
+      };
+
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams
+      );
+
+      setSubscribeStatus({
+        type: "success",
+        message: "Thank you! Your subscription was sent successfully.",
+      });
+
+      setEmail("");
+
+      setTimeout(() => {
+        setSubscribeStatus({
+          type: "",
+          message: "",
+        });
+      }, 3500);
+    } catch (error) {
+      console.error("EmailJS subscribe error:", error);
+
+      setSubscribeStatus({
+        type: "error",
+        message: "Unable to send subscription. Please try again.",
+      });
+    }
   };
 
   const handleBackToTop = () => {
@@ -295,7 +343,6 @@ const Footer = () => {
     <footer className="relative overflow-hidden bg-card">
       <div className="h-1.5 bg-gradient-to-r from-primary via-cyan-500 to-blue-600" />
 
-      {/* Newsletter Section */}
       <section className="relative border-b border-border bg-gradient-to-br from-primary/10 via-card to-card">
         <div className="pointer-events-none absolute -left-24 top-0 h-64 w-64 rounded-full bg-primary/10 blur-3xl" />
         <div className="pointer-events-none absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-cyan-500/10 blur-3xl" />
@@ -346,9 +393,14 @@ const Footer = () => {
                 <Button
                   type="submit"
                   className="group h-12 rounded-2xl bg-primary px-6 font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/25 disabled:cursor-not-allowed disabled:opacity-70 sm:min-w-[150px]"
-                  disabled={subscribeStatus.type === "success"}
+                  disabled={subscribeStatus.type === "loading"}
                 >
-                  {subscribeStatus.type === "success" ? (
+                  {subscribeStatus.type === "loading" ? (
+                    <>
+                      Sending...
+                      <Send className="ml-2 h-4 w-4" />
+                    </>
+                  ) : subscribeStatus.type === "success" ? (
                     <>
                       Subscribed
                       <CheckCircle2 className="ml-2 h-4 w-4" />
@@ -367,11 +419,15 @@ const Footer = () => {
                   className={`mt-3 flex items-center gap-2 rounded-xl px-3 py-2 text-sm ${
                     subscribeStatus.type === "success"
                       ? "bg-green-500/10 text-green-600"
+                      : subscribeStatus.type === "loading"
+                      ? "bg-primary/10 text-primary"
                       : "bg-red-500/10 text-red-600"
                   }`}
                 >
                   {subscribeStatus.type === "success" ? (
                     <CheckCircle2 className="h-4 w-4 shrink-0" />
+                  ) : subscribeStatus.type === "loading" ? (
+                    <Send className="h-4 w-4 shrink-0" />
                   ) : (
                     <AlertCircle className="h-4 w-4 shrink-0" />
                   )}
@@ -384,11 +440,9 @@ const Footer = () => {
         </div>
       </section>
 
-      {/* Main Footer Content - Clean Layout */}
       <section className="relative border-b border-border/70">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.18fr_0.78fr_1fr_0.82fr] xl:gap-12">
-            {/* Brand */}
             <div>
               <Link to="/" className="group mb-5 inline-flex items-center gap-3">
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-cyan-500 shadow-lg shadow-primary/20 transition-all duration-500 group-hover:rotate-6 group-hover:scale-105">
@@ -426,7 +480,6 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Quick Links */}
             <div>
               <FooterTitle dotClass="bg-primary">Quick Links</FooterTitle>
 
@@ -445,13 +498,26 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Contact */}
             <div>
               <FooterTitle dotClass="bg-green-500">Contact Us</FooterTitle>
 
               <div className="space-y-4">
-                <InfoRow icon={Mail} label="Email" href="mailto:contact@visionariesai.com">
-                  <span className="break-words">contact@visionariesai.com</span>
+                <InfoRow icon={Mail} label="Emails">
+                  <div className="flex flex-col gap-1">
+                    <a
+                      href={`mailto:${CONTACT_EMAIL}`}
+                      className="break-words transition-colors duration-300 hover:text-primary"
+                    >
+                      {CONTACT_EMAIL}
+                    </a>
+
+                    <a
+                      href={`mailto:${INFO_EMAIL}`}
+                      className="break-words transition-colors duration-300 hover:text-primary"
+                    >
+                      {INFO_EMAIL}
+                    </a>
+                  </div>
                 </InfoRow>
 
                 <InfoRow icon={Phone} label="Phone">
@@ -474,7 +540,6 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Social Media */}
             <div>
               <FooterTitle icon={Share2}>Follow Us</FooterTitle>
 
@@ -507,7 +572,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Locations Bottom Horizontal */}
           <div className="mt-10 border-t border-border/70 pt-8">
             <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <div>
@@ -530,7 +594,6 @@ const Footer = () => {
         </div>
       </section>
 
-      {/* Bottom Section */}
       <section className="bg-background/40">
         <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">

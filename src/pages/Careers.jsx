@@ -119,7 +119,7 @@ const jobs = [
   location: LOCATIONS.hybrid,
   experience: "1-4 years",
   description:
-    "Deliver AI curriculum (Class 3–10), conduct hands-on activities (Scratch/Python), and support schools with training & implementation.",
+    "Deliver AI curriculum (Class 1-10), conduct hands-on activities (Scratch/Python), and support schools with training & implementation.",
   responsibilities: [
     "Teach AI curriculum with activities and projects",
     "Conduct demos, lab sessions, and workshops",

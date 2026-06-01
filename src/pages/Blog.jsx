@@ -33,6 +33,40 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const blogPosts = [
   {
+    id: 26,
+    slug: "aye-board-presented-by-visionariesai",
+    title: "Aye Board Presented by VisionariesAI",
+    excerpt:
+      "Aye Board is an AI-enabled smart classroom board solution for schools, helping teachers deliver digital lessons, interactive teaching, and modern classroom learning.",
+    author: "VisionariesAI Team",
+    dateLabel: "Jun 01, 2026",
+    publishedAt: "2026-06-01",
+    readTime: "7 min read",
+    category: "Education Services",
+    tags: ["Aye Board", "Smart Board", "Smart Classroom"],
+    featured: true,
+    views: 8200,
+    comments: 118,
+    icon: "🖥️",
+  },
+  {
+    id: 27,
+    slug: "scholarlabs-ar-3d-learning-for-schools",
+    title: "ScholAR Labs for Classes 6 to 12",
+    excerpt:
+      "ScholAR Labs helps students from Classes 6 to 12 learn Physics, Chemistry, and Biology through AR, 3D simulations, and interactive classroom experiences.",
+    author: "Education Team",
+    dateLabel: "Jun 01, 2026",
+    publishedAt: "2026-06-01",
+    readTime: "8 min read",
+    category: "Education Services",
+    tags: ["ScholAR Labs", "AR Learning", "3D Simulations"],
+    featured: true,
+    views: 7900,
+    comments: 104,
+    icon: "🧪",
+  },
+  {
     id: 1,
     slug: "rajasab-project-successfully-delivered",
     title: "Rajasab Project Successfully Delivered",
@@ -105,7 +139,7 @@ const blogPosts = [
     slug: "providing-services-to-100-plus-schools",
     title: "Providing Technology Services to 100+ Schools",
     excerpt:
-      "VisionariesAI Labs is supporting 100+ schools with AI curriculum, LMS, school management systems, workshops, and smart education tools.",
+      "VisionariesAI Labs is supporting 100+ schools with AI curriculum, LMS, school management systems, workshops, Aye Board, ScholAR Labs, and smart education tools.",
     author: "VisionariesAI Team",
     dateLabel: "May 20, 2026",
     publishedAt: "2026-05-20",
@@ -461,6 +495,30 @@ const blogPosts = [
 
 const heroSlides = [
   {
+    title: "Aye Board Presented by VisionariesAI",
+    subtitle:
+      "AI-enabled smart classroom board for interactive teaching, digital lessons, and modern school learning.",
+    category: "Education Product",
+    icon: "🖥️",
+    link: "/blog/aye-board-presented-by-visionariesai",
+    views: "8.2K",
+    comments: "118",
+    date: "Jun 01, 2026",
+    gradient: "from-blue-700 via-sky-500 to-cyan-400",
+  },
+  {
+    title: "ScholAR Labs for Classes 6 to 12",
+    subtitle:
+      "AR and 3D learning simulations for Physics, Chemistry, and Biology classroom concepts.",
+    category: "AR / 3D Labs",
+    icon: "🧪",
+    link: "/blog/scholarlabs-ar-3d-learning-for-schools",
+    views: "7.9K",
+    comments: "104",
+    date: "Jun 01, 2026",
+    gradient: "from-violet-700 via-purple-500 to-fuchsia-500",
+  },
+  {
     title: "Rajasab Project Successfully Delivered",
     subtitle: "Complete application setup, deployment and production support.",
     category: "Delivered Project",
@@ -473,7 +531,8 @@ const heroSlides = [
   },
   {
     title: "Email Server Delivered",
-    subtitle: "Professional domain-based email server setup for business communication.",
+    subtitle:
+      "Professional domain-based email server setup for business communication.",
     category: "Server Setup",
     icon: "📧",
     link: "/blog/email-server-delivered-for-business-communication",
@@ -495,7 +554,8 @@ const heroSlides = [
   },
   {
     title: "AI Chatbots Delivered",
-    subtitle: "AI chatbot systems delivered for faster support and automated customer replies.",
+    subtitle:
+      "AI chatbot systems delivered for faster support and automated customer replies.",
     category: "AI Solution",
     icon: "🤖",
     link: "/blog/ai-chatbots-delivered-for-businesses",
@@ -506,7 +566,8 @@ const heroSlides = [
   },
   {
     title: "Technology Services to 100+ Schools",
-    subtitle: "AI curriculum, LMS, workshops, school software and digital transformation.",
+    subtitle:
+      "AI curriculum, LMS, Aye Board, ScholAR Labs, workshops, school software and digital transformation.",
     category: "Education Services",
     icon: "🏫",
     link: "/blog/providing-services-to-100-plus-schools",
@@ -517,7 +578,8 @@ const heroSlides = [
   },
   {
     title: "500+ Satisfied Clients",
-    subtitle: "Trusted by clients across AI, IoT, automation, software and education services.",
+    subtitle:
+      "Trusted by clients across AI, IoT, automation, software and education services.",
     category: "Client Success",
     icon: "🌟",
     link: "/blog/500-plus-satisfied-clients-journey",
@@ -528,7 +590,8 @@ const heroSlides = [
   },
   {
     title: "Workshops at Schools",
-    subtitle: "Practical AI, robotics, IoT, coding and automation workshops for students.",
+    subtitle:
+      "Practical AI, robotics, IoT, coding and automation workshops for students.",
     category: "Workshops",
     icon: "🎓",
     link: "/blog/school-workshops-for-future-ready-students",
@@ -765,7 +828,7 @@ const BlogCard = ({
           </div>
 
           <Button asChild variant="outline" className="w-full justify-between rounded-2xl">
-            <Link >
+            <Link>
               Read Article
               <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
             </Link>
@@ -845,7 +908,7 @@ const HeroSlider = ({ activeSlide, setActiveSlide }) => {
 
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Button asChild className="rounded-2xl bg-white text-slate-900 hover:bg-white/90">
-                  <Link >
+                  <Link>
                     Read Details
                     <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -1095,8 +1158,9 @@ const Blog = () => {
 
                 <p className="mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
                   Explore our delivered projects like Rajasab, email server,
-                  IoT dental project, AI chatbots, school services, workshops,
-                  automation systems, and live applications.
+                  IoT dental project, AI chatbots, Aye Board, ScholAR Labs,
+                  school services, workshops, automation systems, and live
+                  applications.
                 </p>
 
                 <div className="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
@@ -1216,6 +1280,8 @@ const Blog = () => {
 
               <div className="flex flex-wrap gap-2">
                 {[
+                  "Aye Board",
+                  "ScholAR Labs",
                   "Rajasab Project",
                   "AI Chatbots",
                   "100+ Schools",
@@ -1323,6 +1389,8 @@ const Blog = () => {
 
                 <div className="space-y-3">
                   {[
+                    "Aye Board smart classroom solution",
+                    "ScholAR Labs for Classes 6 to 12",
                     "Rajasab project delivered",
                     "Email server delivered",
                     "IoT dental project delivered",
@@ -1429,8 +1497,8 @@ const Blog = () => {
                 <Mail className="mb-4 h-8 w-8" />
                 <h3 className="text-xl font-bold">Stay Updated</h3>
                 <p className="mt-2 text-sm leading-6 text-primary-foreground/80">
-                  Get updates on AI, IoT, school workshops, automation, and live
-                  projects.
+                  Get updates on Aye Board, ScholAR Labs, AI, IoT, school
+                  workshops, automation, and live projects.
                 </p>
 
                 <form onSubmit={handleSubscribe} className="mt-5 space-y-3">
@@ -1464,8 +1532,8 @@ const Blog = () => {
                     Your Idea, Our Solution
                   </p>
                   <h2 className="text-3xl font-bold text-foreground">
-                    Need AI, IoT, automation, school services or application
-                    development?
+                    Need AI, IoT, automation, school services, Aye Board,
+                    ScholAR Labs or application development?
                   </h2>
                   <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
                     VisionariesAI Labs Private Limited supports businesses,
