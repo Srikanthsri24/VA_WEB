@@ -147,7 +147,7 @@ const teamMembers = [
 
   {
     id: 14,
-    name: "Sirisha",
+    name: "Bhagya Sirisha",
     title: "UI/UX Designer & Video Editor",
     group: "Creative",
     focus: ["UI/UX Design", "Video Editing", "Creative Design", "Visual Content"],
