@@ -17,6 +17,7 @@ import {
   Presentation,
   FlaskConical,
   School,
+  Cuboid,
 } from "lucide-react";
 
 const products = [
@@ -91,7 +92,7 @@ const products = [
     description:
       "AI CCTV Monitoring analyzes live and recorded footage to detect normal and abnormal activities in real time with instant alerts and improved campus safety.",
     goal:
-      "Transforms ordinary camera systems into proactive security tools that reduce manual monitoring and improve situational awareness.",
+      "Transform ordinary camera systems into proactive security tools that reduce manual monitoring and improve situational awareness.",
     features: [
       "Multi-camera monitoring",
       "Abnormal activity detection",
@@ -173,7 +174,7 @@ const products = [
     name: "Attendance Management System",
     tag: "Attendance",
     description:
-      "Attendance device + software integrating face recognition, fingerprint scanning, and RFID for secure, accurate identification and reporting.",
+      "Attendance device and software integrating face recognition, fingerprint scanning, and RFID for secure, accurate identification and reporting.",
     goal:
       "Ensure accurate attendance tracking with secure verification for schools and offices.",
     features: [
@@ -215,7 +216,7 @@ const products = [
     name: "Learning Management System (LMS)",
     tag: "LMS",
     description:
-      "A unified learning platform for school education with lessons, assignments, quizzes, projects, and dashboards for students, teachers, and admins.",
+      "A unified learning platform for school education with lessons, assignments, quizzes, projects, and dashboards for students, teachers, and administrators.",
     goal:
       "Make digital learning faster to teach, personalized for learners, and easy to monitor for all roles.",
     features: [
@@ -251,6 +252,52 @@ const products = [
     clients: "Adopted by schools",
     gradient: "from-emerald-500 to-green-600",
   },
+
+  // New Product 1
+  {
+    id: 12,
+    icon: Bot,
+    name: "VisionariesAI Robo Teacher",
+    tag: "AI-Powered Classroom Robot",
+    description:
+      "Robo Teacher is an intelligent classroom robot developed by VisionariesAI to teach lessons, communicate with students, explain concepts, and answer student questions through natural voice interaction.",
+    goal:
+      "Bring intelligent, interactive, and personalized AI teaching support directly into classrooms.",
+    features: [
+      "Interactive classroom teaching",
+      "Instant student doubt clarification",
+      "Natural voice-based interaction",
+      "Curriculum-based explanations",
+      "Quiz and question interaction",
+      "Engaging classroom presentations",
+    ],
+    status: "Available for Demo",
+    clients: "Built for future-ready schools",
+    gradient: "from-cyan-500 via-blue-600 to-indigo-700",
+  },
+
+  // New Product 2
+  {
+    id: 13,
+    icon: Cuboid,
+    name: "3D Object Design & Visualization",
+    tag: "Custom 3D Models & Digital Objects",
+    description:
+      "VisionariesAI creates high-quality 3D objects and interactive digital models for education, product demonstrations, AR and VR applications, simulations, prototypes, and visual learning experiences.",
+    goal:
+      "Turn ideas and complex concepts into clear, realistic, and interactive 3D visual experiences.",
+    features: [
+      "Custom 3D object creation",
+      "Educational 3D learning models",
+      "Product visualization",
+      "AR and VR-ready models",
+      "Realistic materials and textures",
+      "3D printing-ready designs",
+    ],
+    status: "Available",
+    clients: "For education & businesses",
+    gradient: "from-orange-500 via-rose-500 to-purple-600",
+  },
 ];
 
 const Products = () => {
@@ -260,19 +307,23 @@ const Products = () => {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(var(--primary)/0.08)_0%,_transparent_50%)]" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
+          <div className="text-center max-w-4xl mx-auto">
             <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider px-4 py-1.5 rounded-full bg-primary/10 animate-fade-up">
               Our Products
             </span>
 
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mt-6 mb-6 animate-fade-up delay-100">
-              AI Products <span className="gradient-text">for Modern Institutions</span>
+              AI Products{" "}
+              <span className="gradient-text">
+                for Modern Institutions
+              </span>
             </h1>
 
             <p className="text-lg text-muted-foreground animate-fade-up delay-200">
               From Nursery to Class 12, VisionariesAI provides AI curriculum,
-              smart boards, ScholAR Labs, LMS, automation, and advanced
-              technology solutions for schools and businesses.
+              smart boards, Robo Teachers, 3D learning objects, ScholAR Labs,
+              LMS, automation, energy monitoring, and advanced technology
+              solutions for schools and businesses.
             </p>
           </div>
         </div>
@@ -299,6 +350,7 @@ const Products = () => {
                       <div className="flex flex-wrap items-center gap-3 mb-4">
                         <div className="flex items-center gap-2">
                           <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+
                           <span className="text-xs font-medium text-green-500">
                             {product.status}
                           </span>
@@ -313,34 +365,56 @@ const Products = () => {
                         <div
                           className={`w-14 h-14 rounded-xl bg-gradient-to-br ${product.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
                         >
-                          <product.icon className="w-7 h-7 text-foreground" />
+                          <product.icon className="w-7 h-7 text-white" />
                         </div>
 
                         <div>
                           <h2 className="font-display text-2xl font-bold text-foreground">
                             {product.name}
                           </h2>
+
                           <p className="text-primary text-sm font-medium">
                             {product.tag}
                           </p>
                         </div>
                       </div>
 
-                      <p className="text-muted-foreground mb-6">
+                      <p className="text-muted-foreground mb-5 leading-relaxed">
                         {product.description}
                       </p>
 
+                      <div className="mb-6 rounded-xl border border-primary/10 bg-primary/5 p-4">
+                        <p className="text-sm leading-relaxed text-foreground/80">
+                          <span className="font-semibold text-primary">
+                            Our Goal:
+                          </span>{" "}
+                          {product.goal}
+                        </p>
+                      </div>
+
                       <div className="flex flex-wrap gap-4">
-                        <Button variant="hero" size="default" asChild className="group/btn">
+                        <Button
+                          variant="hero"
+                          size="default"
+                          asChild
+                          className="group/btn"
+                        >
                           <Link to="/contact">
                             Get Started
                             <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                           </Link>
                         </Button>
 
-                        <Button variant="outline" size="default" className="group/btn">
-                          Learn More
-                          <ExternalLink className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
+                        <Button
+                          variant="outline"
+                          size="default"
+                          asChild
+                          className="group/btn"
+                        >
+                          <Link to="/contact">
+                            Learn More
+                            <ExternalLink className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
+                          </Link>
                         </Button>
                       </div>
                     </div>
@@ -362,6 +436,7 @@ const Products = () => {
                             style={{ animationDelay: `${i * 50}ms` }}
                           >
                             <CheckCircle className="w-4 h-4 text-primary shrink-0 group-hover/feature:scale-110 transition-transform" />
+
                             <span className="text-sm text-muted-foreground">
                               {feature}
                             </span>
@@ -390,8 +465,8 @@ const Products = () => {
           </div>
 
           <blockquote className="text-xl text-foreground/90 italic mb-6 animate-fade-up">
-            "VisionariesAI products help institutions move towards smart,
-            interactive, and future-ready education."
+            “VisionariesAI products help institutions move towards smart,
+            interactive, automated, and future-ready education.”
           </blockquote>
 
           <p className="font-display font-semibold text-foreground">
@@ -407,11 +482,17 @@ const Products = () => {
           </h2>
 
           <p className="text-lg text-muted-foreground mb-8 animate-fade-up delay-100">
-            Schedule a demo for AI Board, ScholAR Labs, LMS, AI Curriculum,
-            and complete school technology solutions.
+            Schedule a demonstration of Aye Board, Robo Teacher, ScholAR Labs,
+            custom 3D learning objects, LMS, AI Curriculum, and our complete
+            school technology solutions.
           </p>
 
-          <Button variant="glow" size="xl" asChild className="animate-fade-up delay-200">
+          <Button
+            variant="glow"
+            size="xl"
+            asChild
+            className="animate-fade-up delay-200"
+          >
             <Link to="/contact">
               Schedule a Demo
               <ArrowRight className="w-5 h-5" />

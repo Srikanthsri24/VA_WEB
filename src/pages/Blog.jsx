@@ -6,6 +6,7 @@ import {
   ArrowRight,
   Award,
   Bookmark,
+  Bot,
   BriefcaseBusiness,
   Calendar,
   CheckCircle2,
@@ -13,6 +14,7 @@ import {
   ChevronRight,
   Clock,
   Cpu,
+  Cuboid,
   Eye,
   GraduationCap,
   Mail,
@@ -32,6 +34,40 @@ import { toast } from "@/hooks/use-toast";
 import { motion, AnimatePresence } from "framer-motion";
 
 const blogPosts = [
+  {
+    id: 28,
+    slug: "visionariesai-robo-teacher-ai-classroom-robot",
+    title: "VisionariesAI Robo Teacher: An AI Classroom Teaching Robot",
+    excerpt:
+      "Robo Teacher is an AI-powered classroom robot developed by VisionariesAI to teach lessons, interact with students, explain concepts, conduct classroom activities, and answer student doubts through natural voice conversations.",
+    author: "VisionariesAI Robotics Team",
+    dateLabel: "Jul 30, 2026",
+    publishedAt: "2026-07-30",
+    readTime: "8 min read",
+    category: "Robotics & AI",
+    tags: ["Robo Teacher", "AI Classroom Robot", "Student Doubts"],
+    featured: true,
+    views: 0,
+    comments: 0,
+    icon: "🤖",
+  },
+  {
+    id: 29,
+    slug: "custom-3d-objects-design-and-visualization",
+    title: "Custom 3D Objects for Education, AR, VR and Product Visualization",
+    excerpt:
+      "VisionariesAI creates custom 3D objects and interactive digital models for classroom learning, science visualization, AR and VR experiences, product demonstrations, prototypes, simulations, and 3D printing requirements.",
+    author: "VisionariesAI 3D Design Team",
+    dateLabel: "Jul 29, 2026",
+    publishedAt: "2026-07-29",
+    readTime: "7 min read",
+    category: "3D Solutions",
+    tags: ["3D Objects", "3D Visualization", "AR and VR"],
+    featured: true,
+    views: 0,
+    comments: 0,
+    icon: "🧊",
+  },
   {
     id: 26,
     slug: "aye-board-presented-by-visionariesai",
@@ -495,6 +531,30 @@ const blogPosts = [
 
 const heroSlides = [
   {
+    title: "VisionariesAI Robo Teacher",
+    subtitle:
+      "An intelligent classroom robot that teaches lessons, communicates with students, explains topics, conducts learning activities, and answers doubts through natural voice interaction.",
+    category: "AI Classroom Robot",
+    icon: "🤖",
+    link: "/blog/visionariesai-robo-teacher-ai-classroom-robot",
+    views: "New",
+    comments: "0",
+    date: "Jul 30, 2026",
+    gradient: "from-cyan-700 via-blue-600 to-indigo-700",
+  },
+  {
+    title: "Custom 3D Object Design & Visualization",
+    subtitle:
+      "Custom 3D models for education, product visualization, AR and VR experiences, simulations, prototypes, and 3D printing projects.",
+    category: "3D Solutions",
+    icon: "🧊",
+    link: "/blog/custom-3d-objects-design-and-visualization",
+    views: "New",
+    comments: "0",
+    date: "Jul 29, 2026",
+    gradient: "from-orange-600 via-rose-500 to-purple-600",
+  },
+  {
     title: "Aye Board Presented by VisionariesAI",
     subtitle:
       "AI-enabled smart classroom board for interactive teaching, digital lessons, and modern school learning.",
@@ -624,6 +684,16 @@ const CATEGORY_STYLES = {
     chip: "bg-violet-50 text-violet-700 border-violet-200",
     bg: "from-violet-600 to-fuchsia-500",
   },
+  "Robotics & AI": {
+    icon: Bot,
+    chip: "bg-cyan-50 text-cyan-700 border-cyan-200",
+    bg: "from-cyan-700 via-blue-600 to-indigo-700",
+  },
+  "3D Solutions": {
+    icon: Cuboid,
+    chip: "bg-orange-50 text-orange-700 border-orange-200",
+    bg: "from-orange-600 via-rose-500 to-purple-600",
+  },
   "IoT Solutions": {
     icon: Zap,
     chip: "bg-emerald-50 text-emerald-700 border-emerald-200",
@@ -660,6 +730,8 @@ const DEFAULT_CATEGORIES = [
   "All",
   "Delivered Projects",
   "AI Solutions",
+  "Robotics & AI",
+  "3D Solutions",
   "IoT Solutions",
   "Education Services",
   "Workshops",
@@ -828,7 +900,7 @@ const BlogCard = ({
           </div>
 
           <Button asChild variant="outline" className="w-full justify-between rounded-2xl">
-            <Link>
+            <Link to={`/blog/${post.slug}`}>
               Read Article
               <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
             </Link>
@@ -908,7 +980,7 @@ const HeroSlider = ({ activeSlide, setActiveSlide }) => {
 
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Button asChild className="rounded-2xl bg-white text-slate-900 hover:bg-white/90">
-                  <Link>
+                  <Link to={slide.link}>
                     Read Details
                     <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -1159,8 +1231,8 @@ const Blog = () => {
                 <p className="mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
                   Explore our delivered projects like Rajasab, email server,
                   IoT dental project, AI chatbots, Aye Board, ScholAR Labs,
-                  school services, workshops, automation systems, and live
-                  applications.
+                  Robo Teacher, custom 3D objects, school services, workshops,
+                  automation systems, and live applications.
                 </p>
 
                 <div className="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
@@ -1280,6 +1352,8 @@ const Blog = () => {
 
               <div className="flex flex-wrap gap-2">
                 {[
+                  "Robo Teacher",
+                  "3D Objects",
                   "Aye Board",
                   "ScholAR Labs",
                   "Rajasab Project",
@@ -1389,6 +1463,8 @@ const Blog = () => {
 
                 <div className="space-y-3">
                   {[
+                    "Robo Teacher for interactive AI classroom teaching",
+                    "Custom 3D objects and visualization solutions",
                     "Aye Board smart classroom solution",
                     "ScholAR Labs for Classes 6 to 12",
                     "Rajasab project delivered",
@@ -1497,8 +1573,9 @@ const Blog = () => {
                 <Mail className="mb-4 h-8 w-8" />
                 <h3 className="text-xl font-bold">Stay Updated</h3>
                 <p className="mt-2 text-sm leading-6 text-primary-foreground/80">
-                  Get updates on Aye Board, ScholAR Labs, AI, IoT, school
-                  workshops, automation, and live projects.
+                  Get updates on Robo Teacher, custom 3D objects, Aye Board,
+                  ScholAR Labs, AI, IoT, school workshops, automation, and live
+                  projects.
                 </p>
 
                 <form onSubmit={handleSubscribe} className="mt-5 space-y-3">
@@ -1532,8 +1609,9 @@ const Blog = () => {
                     Your Idea, Our Solution
                   </p>
                   <h2 className="text-3xl font-bold text-foreground">
-                    Need AI, IoT, automation, school services, Aye Board,
-                    ScholAR Labs or application development?
+                    Need Robo Teacher, custom 3D objects, AI, IoT, automation,
+                    school services, Aye Board, ScholAR Labs, or application
+                    development?
                   </h2>
                   <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
                     VisionariesAI Labs Private Limited supports businesses,
