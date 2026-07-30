@@ -1614,7 +1614,7 @@ const Blog = () => {
                     development?
                   </h2>
                   <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
-                    VisionariesAI Labs Private Limited supports businesses,
+                    VisionariesAI Labs Pvt Ltd supports businesses,
                     schools, institutions, and individuals with complete
                     technology solutions from planning to deployment.
                   </p>
