@@ -54,13 +54,13 @@ export function createVoiceHandler({ apiKey, allowedOrigin } = {}) {
       recent.push(now);
 
       const form = new FormData();
-      form.set("sdp", new Blob([sdp], { type: "application/sdp" }));
-      form.set("session", new Blob([JSON.stringify({
+      form.set("sdp", sdp);
+      form.set("session", JSON.stringify({
         type: "realtime",
         model: "gpt-realtime",
         instructions,
         audio: { output: { voice: "marin" } },
-      })], { type: "application/json" }));
+      }));
 
       const upstream = await fetch(apiUrl, {
         method: "POST",
@@ -70,6 +70,7 @@ export function createVoiceHandler({ apiKey, allowedOrigin } = {}) {
       });
       if (!upstream.ok) {
         console.warn("OpenAI voice session failed with status", upstream.status);
+        response.setHeader("X-Voice-Upstream-Status", String(upstream.status));
         await upstream.body?.cancel();
         return reply(502);
       }
