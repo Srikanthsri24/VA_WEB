@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: visionariesai-voice
+    runtime: node
+    plan: free
+    buildCommand: node --check server/voice.mjs
+    startCommand: node server/voice.mjs
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "^22.0.0"
+      - key: VOICE_ALLOWED_ORIGIN
+        value: https://visionariesai.com
+      - key: OPENAI_API_KEY
+        sync: false
