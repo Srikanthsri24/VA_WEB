@@ -1,33 +1,5 @@
 [
   {
-    "id": 5,
-    "name": "Gayathri Dubbaka",
-    "title": "Director of VisionicX",
-    "group": "Leadership",
-    "focus": [
-      "VisionicX Strategy",
-      "Technology Direction",
-      "Operations",
-      "Brand Growth"
-    ],
-    "avatar": "VX",
-    "icon": "Briefcase"
-  },
-  {
-    "id": 4,
-    "name": "Geethika J",
-    "title": "Director of Next-Gen",
-    "group": "Leadership",
-    "focus": [
-      "Next-Gen Strategy",
-      "Operations",
-      "Team Coordination",
-      "Growth Planning"
-    ],
-    "avatar": "NG",
-    "icon": "Briefcase"
-  },
-  {
     "id": 1,
     "name": "Raghu Dubbaka",
     "title": "Director",
@@ -69,6 +41,34 @@
     "avatar": "SD",
     "icon": "Rocket",
     "description": "Srikanth Dubbaka leads all of Visionaries AI as Founder & CEO, overseeing company strategy, product direction, delivery, and client success."
+  },
+  {
+    "id": 5,
+    "name": "Gayathri Dubbaka",
+    "title": "Director of VisionicX",
+    "group": "Leadership",
+    "focus": [
+      "VisionicX Strategy",
+      "Technology Direction",
+      "Operations",
+      "Brand Growth"
+    ],
+    "avatar": "VX",
+    "icon": "Briefcase"
+  },
+  {
+    "id": 4,
+    "name": "Geethika J",
+    "title": "Director of Next-Gen",
+    "group": "Leadership",
+    "focus": [
+      "Next-Gen Strategy",
+      "Operations",
+      "Team Coordination",
+      "Growth Planning"
+    ],
+    "avatar": "NG",
+    "icon": "Briefcase"
   },
   {
     "id": 6,
