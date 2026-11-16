@@ -64,55 +64,92 @@
   "products": [
     {
       "name": "Aye Board – Presented by VisionariesAI",
-      "description": "Aye Board is an AI-enabled smart board solution for digital classrooms, interactive teaching, multimedia lessons, and modern school presentations."
+      "description": "Aye Board is an AI-enabled smart board solution for digital classrooms, interactive teaching, multimedia lessons, and modern school presentations.",
+      "id": 1
     },
     {
       "name": "ScholAR Labs Projects",
-      "description": "ScholAR Labs brings 3D and AR-based learning experiences for Science concepts, helping students understand Physics, Chemistry, and Biology through interactive simulations."
+      "description": "ScholAR Labs brings 3D and AR-based learning experiences for Science concepts, helping students understand Physics, Chemistry, and Biology through interactive simulations.",
+      "id": 2
     },
     {
       "name": "Complete School Technology Solutions",
-      "description": "VisionariesAI provides complete technology solutions for schools from Nursery to Class 12, including AI curriculum, LMS, smart classrooms, digital tools, and school automation."
+      "description": "VisionariesAI provides complete technology solutions for schools from Nursery to Class 12, including AI curriculum, LMS, smart classrooms, digital tools, and school automation.",
+      "id": 3
     },
     {
-      "name": "AI-Powered CCTV Monitoring & Smart Surveillance System",
-      "description": "AI CCTV Monitoring analyzes live and recorded footage to detect normal and abnormal activities in real time with instant alerts and improved campus safety."
+      "name": "AI Monitoring System",
+      "description": "AI CCTV Monitoring analyzes live and recorded footage to detect normal and abnormal activities in real time with instant alerts and improved campus safety.",
+      "status": "In Production",
+      "url": "https://visionicx.com/product/1",
+      "image": "https://visionicx.com/assets/AIMonitoringSystem1-DBRtK4AP.png",
+      "id": 4
     },
     {
       "name": "Single-Phase Energy Monitoring System",
-      "description": "Single-phase energy monitoring for homes and small facilities with app-based control, real-time insights, and instant alerts for irregularities."
+      "description": "Single-phase energy monitoring for homes and small facilities with app-based control, real-time insights, and instant alerts for irregularities.",
+      "status": "In Production",
+      "url": "https://visionicx.com/product/2",
+      "image": "https://visionicx.com/assets/singlephase-ClW-jjIh.png",
+      "id": 5
     },
     {
       "name": "Three-Phase Energy Monitoring System",
-      "description": "Three-phase energy monitoring designed for industries and large facilities where balanced energy management and real-time tracking are critical."
+      "description": "Three-phase energy monitoring designed for industries and large facilities where balanced energy management and real-time tracking are critical.",
+      "status": "In Production",
+      "url": "https://visionicx.com/product/3",
+      "image": "https://visionicx.com/assets/threephase-DRsLf2jy.png",
+      "id": 6
     },
     {
       "name": "Universal Management System",
-      "description": "Empower your school with seamless communication, efficient administration, and engaging learning experiences. Simplify operations, enhance engagement, and foster success across schools, colleges, and campuses with our advanced management platform."
+      "description": "Empower your school with seamless communication, efficient administration, and engaging learning experiences. Simplify operations, enhance engagement, and foster success across schools, colleges, and campuses with our advanced management platform.",
+      "status": "In Production",
+      "url": "https://visionicx.com/",
+      "image": "https://visionicx.com/assets/universalmanagement-B9TWAlzt.png",
+      "id": 7
     },
     {
       "name": "Attendance Management System",
-      "description": "Attendance device and software integrating face recognition, fingerprint scanning, and RFID for secure, accurate identification and reporting."
+      "description": "Attendance device and software integrating face recognition, fingerprint scanning, and RFID for secure, accurate identification and reporting.",
+      "status": "In Production",
+      "url": "https://visionicx.com/product/5",
+      "image": "https://visionicx.com/assets/Scanner-T00brYRk.png",
+      "id": 8
     },
     {
       "name": "Ask.VisionariesAI – AI Teaching & Learning Assistant",
-      "description": "AI platform that assists students and teachers with explanations, quizzes, exam creation, evaluation, and instant doubt solving."
+      "description": "AI platform that assists students and teachers with explanations, quizzes, exam creation, evaluation, and instant doubt solving.",
+      "status": "In Production",
+      "url": "https://visionicx.com/product/6",
+      "image": "https://visionicx.com/assets/AiBot1-vYYjBGRD.png",
+      "id": 9
     },
     {
       "name": "Learning Management System (LMS)",
-      "description": "A unified learning platform for school education with lessons, assignments, quizzes, projects, and dashboards for students, teachers, and administrators."
+      "description": "A unified learning platform for school education with lessons, assignments, quizzes, projects, and dashboards for students, teachers, and administrators.",
+      "status": "In Production",
+      "url": "https://visionicx.com/product/7",
+      "image": "https://visionicx.com/assets/Lms1-DuqpmPfw.png",
+      "id": 10
     },
     {
-      "name": "AI Curriculum",
-      "description": "A structured AI-based curriculum for schools from Nursery to Class 12 with age-wise learning, activities, practical projects, coding, robotics, and future-ready skills."
+      "name": "AI Curriculum (Classes 1–10)",
+      "description": "The VisionicX program covers Classes 1–10 with age-appropriate AI, coding, and robotics activities.",
+      "status": "In Production",
+      "url": "https://visionicx.com/product/8",
+      "image": "https://visionicx.com/assets/AICurriculum1-CHSMrm7x.png",
+      "id": 11
     },
     {
       "name": "VisionariesAI Robo Teacher",
-      "description": "Robo Teacher is an intelligent classroom robot developed by VisionariesAI to teach lessons, communicate with students, explain concepts, and answer student questions through natural voice interaction."
+      "description": "Robo Teacher is an intelligent classroom robot developed by VisionariesAI to teach lessons, communicate with students, explain concepts, and answer student questions through natural voice interaction.",
+      "id": 12
     },
     {
       "name": "3D Object Design & Visualization",
-      "description": "VisionariesAI creates high-quality 3D objects and interactive digital models for education, product demonstrations, AR and VR applications, simulations, prototypes, and visual learning experiences."
+      "description": "VisionariesAI creates high-quality 3D objects and interactive digital models for education, product demonstrations, AR and VR applications, simulations, prototypes, and visual learning experiences.",
+      "id": 13
     }
   ],
   "categories": [
@@ -189,5 +226,46 @@
       "description": "Design, build and deploy AI products around a specific business need."
     }
   ],
-  "contact": "Contact the team at https://visionariesai.com/contact or contact@visionariesai.com for quotes, demos, and help resolving software problems."
+  "contact": "Contact the team at https://visionariesai.com/contact or contact@visionariesai.com for quotes, demos, and help resolving software problems.",
+  "reach": [
+    {
+      "value": "100+",
+      "label": "Projects delivered"
+    },
+    {
+      "value": "100+",
+      "label": "Schools live"
+    },
+    {
+      "value": "~50,000",
+      "label": "Students and staff using our applications"
+    }
+  ],
+  "additionalOfferings": [
+    {
+      "name": "Interactive 3D Smart Atlas",
+      "description": "Digital content across all subjects, with interactive 3D material for teaching and learning.",
+      "status": "In Production"
+    },
+    {
+      "name": "AI & Robotics Labs",
+      "description": "Hands-on school labs for learning AI, robotics, coding, and building projects.",
+      "status": "In Production"
+    },
+    {
+      "name": "AI & Robotics Workshops",
+      "description": "Practical sessions for students and educators to explore AI and robotics through hands-on activities.",
+      "status": "Training program"
+    },
+    {
+      "name": "Clinic Management System",
+      "description": "Software for coordinating clinic workflows, including appointments and administration.",
+      "status": "In Production"
+    },
+    {
+      "name": "NGO Management System",
+      "description": "Software for organizing NGO programs and day-to-day operations.",
+      "status": "In Production"
+    }
+  ]
 }

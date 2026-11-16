@@ -1,3 +1,4 @@
+import catalog from "../../server/voice-catalog.json";
 import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -87,7 +88,7 @@ const products = [
   {
     id: 4,
     icon: Monitor,
-    name: "AI-Powered CCTV Monitoring & Smart Surveillance System",
+    name: "AI Monitoring System",
     tag: "AI CCTV & Safety",
     description:
       "AI CCTV Monitoring analyzes live and recorded footage to detect normal and abnormal activities in real time with instant alerts and improved campus safety.",
@@ -234,14 +235,14 @@ const products = [
   {
     id: 11,
     icon: BookOpen,
-    name: "AI Curriculum",
-    tag: "Nursery to 12th AI Learning Path",
+    name: "AI Curriculum (Classes 1–10)",
+    tag: "AI Learning Path",
     description:
-      "A structured AI-based curriculum for schools from Nursery to Class 12 with age-wise learning, activities, practical projects, coding, robotics, and future-ready skills.",
+      "A structured AI-based curriculum for schools from Classes 1 to 10 with age-wise learning, activities, practical projects, coding, robotics, and future-ready skills.",
     goal:
       "Build future-ready digital skills early through progressive AI learning.",
     features: [
-      "Nursery to 12th curriculum",
+      "Classes 1–10 curriculum",
       "Age-wise AI learning",
       "Hands-on activities",
       "Coding & robotics path",
@@ -300,6 +301,8 @@ const products = [
   },
 ];
 
+const productListings = new Map(catalog.products.map((product) => [product.id, product]));
+
 const Products = () => {
   return (
     <Layout>
@@ -320,134 +323,163 @@ const Products = () => {
             </h1>
 
             <p className="text-lg text-muted-foreground animate-fade-up delay-200">
-              From Nursery to Class 12, VisionariesAI provides AI curriculum,
-              smart boards, Robo Teachers, 3D learning objects, ScholAR Labs,
-              LMS, automation, energy monitoring, and advanced technology
-              solutions for schools and businesses.
+              Explore the products VisionariesAI builds and runs in production, from learning and school management to energy monitoring, clinic operations, and NGO management.
             </p>
           </div>
+          <dl className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-3">
+            {catalog.reach.map(({ value, label }) => (
+              <div key={label} className="glass-card p-5 text-center">
+                <dt className="text-sm text-muted-foreground">{label}</dt>
+                <dd className="mt-1 font-display text-3xl font-bold text-primary">{value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <section aria-labelledby="additional-offerings" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <h2 id="additional-offerings" className="mb-5 font-display text-3xl font-bold">More products and programs</h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {catalog.additionalOfferings.map(({ name, description, status }) => (
+            <article key={name} className="glass-card flex flex-col items-start p-6">
+              <span className="text-xs font-semibold text-primary">{status}</span>
+              <h3 className="mt-2 font-display text-xl font-bold">{name}</h3>
+              <p className="mb-5 mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{description}</p>
+              <Link to="/contact" className="text-sm font-semibold text-primary underline underline-offset-4">Ask about {name}</Link>
+            </article>
+          ))}
         </div>
       </section>
 
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-12">
-            {products.map((product, index) => (
-              <div
-                key={product.id}
-                className={`glass-card overflow-hidden hover-lift group ${
-                  index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                }`}
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
+            {products.map((product, index) => {
+              const listing = productListings.get(product.id);
+              return (
                 <div
-                  className={`h-2 bg-gradient-to-r ${product.gradient} group-hover:h-3 transition-all duration-300`}
-                />
+                  key={product.id}
+                  className={`glass-card overflow-hidden hover-lift group ${
+                    index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                  }`}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div
+                    className={`h-2 bg-gradient-to-r ${product.gradient} group-hover:h-3 transition-all duration-300`}
+                  />
 
-                <div className="p-8 lg:p-12">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                    <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                      <div className="flex flex-wrap items-center gap-3 mb-4">
-                        <div className="flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  <div className="p-8 lg:p-12">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                      <div className={index % 2 === 1 ? "lg:order-2" : ""}>
+                        <div className="flex flex-wrap items-center gap-3 mb-4">
+                          <div className="flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
 
-                          <span className="text-xs font-medium text-green-500">
-                            {product.status}
+                            <span className="text-xs font-medium text-green-500">
+                              {product.status}
+                            </span>
+                          </div>
+
+                          <span className="text-xs text-muted-foreground bg-secondary px-2 py-1 rounded-full">
+                            {product.clients}
                           </span>
                         </div>
 
-                        <span className="text-xs text-muted-foreground bg-secondary px-2 py-1 rounded-full">
-                          {product.clients}
-                        </span>
-                      </div>
+                        <div className="flex items-center gap-4 mb-4">
+                          <div
+                            className={`w-14 h-14 rounded-xl bg-gradient-to-br ${product.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                          >
+                            <product.icon className="w-7 h-7 text-white" />
+                          </div>
 
-                      <div className="flex items-center gap-4 mb-4">
-                        <div
-                          className={`w-14 h-14 rounded-xl bg-gradient-to-br ${product.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
-                        >
-                          <product.icon className="w-7 h-7 text-white" />
+                          <div>
+                            <h2 className="font-display text-2xl font-bold text-foreground">
+                              {product.name}
+                            </h2>
+
+                            <p className="text-primary text-sm font-medium">
+                              {product.tag}
+                            </p>
+                          </div>
                         </div>
 
-                        <div>
-                          <h2 className="font-display text-2xl font-bold text-foreground">
-                            {product.name}
-                          </h2>
+                        <p className="text-muted-foreground mb-5 leading-relaxed">
+                          {product.description}
+                        </p>
 
-                          <p className="text-primary text-sm font-medium">
-                            {product.tag}
+                        <div className="mb-6 rounded-xl border border-primary/10 bg-primary/5 p-4">
+                          <p className="text-sm leading-relaxed text-foreground/80">
+                            <span className="font-semibold text-primary">
+                              Our Goal:
+                            </span>{" "}
+                            {product.goal}
                           </p>
                         </div>
-                      </div>
 
-                      <p className="text-muted-foreground mb-5 leading-relaxed">
-                        {product.description}
-                      </p>
-
-                      <div className="mb-6 rounded-xl border border-primary/10 bg-primary/5 p-4">
-                        <p className="text-sm leading-relaxed text-foreground/80">
-                          <span className="font-semibold text-primary">
-                            Our Goal:
-                          </span>{" "}
-                          {product.goal}
-                        </p>
-                      </div>
-
-                      <div className="flex flex-wrap gap-4">
-                        <Button
-                          variant="hero"
-                          size="default"
-                          asChild
-                          className="group/btn"
-                        >
-                          <Link to="/contact">
-                            Get Started
-                            <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                          </Link>
-                        </Button>
-
-                        <Button
-                          variant="outline"
-                          size="default"
-                          asChild
-                          className="group/btn"
-                        >
-                          <Link to="/contact">
-                            Learn More
-                            <ExternalLink className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
-                          </Link>
-                        </Button>
-                      </div>
-                    </div>
-
-                    <div
-                      className={`bg-secondary/30 rounded-xl p-6 ${
-                        index % 2 === 1 ? "lg:order-1" : ""
-                      }`}
-                    >
-                      <h4 className="font-display font-semibold text-foreground mb-4">
-                        Key Features
-                      </h4>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {product.features.map((feature, i) => (
-                          <div
-                            key={feature}
-                            className="flex items-center gap-2 group/feature"
-                            style={{ animationDelay: `${i * 50}ms` }}
+                        <div className="flex flex-wrap gap-4">
+                          <Button
+                            variant="hero"
+                            size="default"
+                            asChild
+                            className="group/btn"
                           >
-                            <CheckCircle className="w-4 h-4 text-primary shrink-0 group-hover/feature:scale-110 transition-transform" />
+                            <Link to="/contact">
+                              Get Started
+                              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                            </Link>
+                          </Button>
 
-                            <span className="text-sm text-muted-foreground">
-                              {feature}
-                            </span>
-                          </div>
-                        ))}
+                          <Button
+                            variant="outline"
+                            size="default"
+                            asChild
+                            className="group/btn"
+                          >
+                            {listing?.url ? (
+                              <a href={listing.url} target="_blank" rel="noopener noreferrer">
+                                Visit VisionicX
+                                <ExternalLink className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
+                              </a>
+                            ) : <Link to="/contact">Learn More</Link>}
+                          </Button>
+                        </div>
+                      </div>
+
+                      <div
+                        className={`bg-secondary/30 rounded-xl p-6 ${
+                          index % 2 === 1 ? "lg:order-1" : ""
+                        }`}
+                      >
+                        {listing?.image && (
+                          <a href={listing.url} target="_blank" rel="noopener noreferrer" className="mb-5 block rounded-lg focus-visible:ring-2 focus-visible:ring-primary">
+                            <img src={listing.image} alt={product.name} loading="lazy" decoding="async" className="aspect-video w-full rounded-lg object-contain" />
+                          </a>
+                        )}
+                        <h4 className="font-display font-semibold text-foreground mb-4">
+                          Key Features
+                        </h4>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {product.features.map((feature, i) => (
+                            <div
+                              key={feature}
+                              className="flex items-center gap-2 group/feature"
+                              style={{ animationDelay: `${i * 50}ms` }}
+                            >
+                              <CheckCircle className="w-4 h-4 text-primary shrink-0 group-hover/feature:scale-110 transition-transform" />
+
+                              <span className="text-sm text-muted-foreground">
+                                {feature}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

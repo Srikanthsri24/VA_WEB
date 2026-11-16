@@ -123,7 +123,7 @@ const products = [
     icon: GraduationCap,
     name: "AI Curriculum (Classes 1-10)",
     description:
-      "A structured, progressive AI syllabus from Classes 3 to 10 with hands-on learning, projects, and real examples.",
+      "A structured, progressive AI syllabus from Classes 1 to 10 with hands-on learning, projects, and real examples.",
     goal:
       "Build future-ready digital skills early through step-by-step AI learning.",
     features: ["Hands-On Learning", "Scratch & Python", "Core AI Domains"],

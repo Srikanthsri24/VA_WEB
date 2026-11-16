@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { AudioLines, MessageCircle, Phone, PhoneOff } from "lucide-react";
+import { AudioLines, ArrowUp, MessageCircle, Phone, PhoneOff } from "lucide-react";
 import { sendContactEmail } from "@/lib/contactEmail";
 import { Button } from "@/components/ui/button";
 import {
@@ -308,83 +308,100 @@ export default function VoiceCall() {
           event.preventDefault();
           opener.current?.focus();
         }}
-        className="z-[10001] max-h-[85dvh] w-[calc(100%-2rem)] overflow-y-auto rounded-2xl p-5 sm:p-7"
+        overlayClassName="z-[10000] bg-slate-950/55 backdrop-blur-sm"
+        closeClassName="right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white opacity-100 hover:bg-white/20 data-[state=open]:bg-white/10 data-[state=open]:text-white"
+        className={`z-[10001] block max-h-[90dvh] w-[calc(100%-1.5rem)] overflow-y-auto rounded-[1.75rem] p-0 shadow-2xl shadow-slate-950/30 ${isChat ? "max-w-2xl" : "max-w-md"}`}
       >
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
-          {isChat ? <MessageCircle aria-hidden="true" className="h-6 w-6" /> : <AudioLines aria-hidden="true" className="h-6 w-6" />}
-        </div>
-        <DialogTitle>{isChat ? "Chat with Visionaries AI" : "Talk to Visionaries AI"}</DialogTitle>
-        <DialogDescription>
-          {isChat
-            ? "Type in your preferred language. Your messages are processed by OpenAI."
-            : "Choose a language when the assistant asks. English is the default. Your microphone audio is sent to OpenAI during the call."}
-        </DialogDescription>
-        {message && <p role="status" className="text-sm text-muted-foreground">{message}</p>}
-        {isChat && (
-          <>
-            <div ref={transcript} role="log" aria-label="Chat messages" className="grid max-h-64 gap-3 overflow-y-auto rounded-xl bg-muted/50 p-3">
-              {messages.map(({ role, text }, index) => (
-                <p key={index} className={`max-w-[90%] whitespace-pre-wrap break-words rounded-xl px-3 py-2 text-sm ${role === "user" ? "justify-self-end bg-primary text-primary-foreground" : "justify-self-start border border-border bg-background"}`}>
-                  <span className="sr-only">{role === "user" ? "You: " : "Visionaries AI: "}</span>{text}
-                </p>
-              ))}
-              {waiting && <p className="text-sm text-muted-foreground">Visionaries AI is replying…</p>}
+        <header className="flex items-center gap-4 bg-gradient-to-br from-slate-950 via-blue-950 to-sky-900 px-5 py-5 pr-14 text-white sm:px-7 sm:pr-16">
+          <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-white/10 text-sky-200 ring-1 ring-white/20">
+            {isChat ? <MessageCircle aria-hidden="true" className="h-5 w-5" /> : <AudioLines aria-hidden="true" className="h-5 w-5" />}
+          </div>
+          <div>
+            <DialogTitle className="font-display text-lg font-bold leading-tight sm:text-xl">{isChat ? "Chat with Visionaries AI" : "Talk to Visionaries AI"}</DialogTitle>
+            <DialogDescription className="mt-1 text-xs text-sky-100/80">{isChat ? "Text assistant" : "Voice assistant"}</DialogDescription>
+          </div>
+        </header>
+        <div className="grid gap-4 p-4 sm:p-6">
+          {!isChat && (
+            <div className="grid justify-items-center gap-4 rounded-2xl border border-border bg-gradient-to-b from-primary/10 to-background px-5 py-7 text-center">
+              <div className={`grid h-16 w-16 place-items-center rounded-full bg-primary/15 text-primary ring-8 ring-primary/5 ${status === "active" ? "motion-safe:animate-pulse" : ""}`}>
+                <AudioLines aria-hidden="true" className="h-8 w-8" />
+              </div>
+              <p role="status" className="max-w-xs text-sm font-medium">{message || "Choose a language when the assistant asks. English is the default."}</p>
+              <p className="text-xs text-muted-foreground">Microphone audio is sent to OpenAI during the call.</p>
             </div>
-            <form onSubmit={sendMessage} className="flex gap-2">
-              <input
-                aria-label="Message"
-                placeholder="Type a message"
-                value={input}
-                onChange={(event) => setInput(event.target.value)}
-                disabled={status !== "active"}
-                maxLength={1500}
-                className="min-w-0 flex-1 rounded-md border border-input bg-background px-3 py-2 text-sm"
-              />
-              <Button type="submit" disabled={status !== "active" || waiting || !input.trim()}>Send</Button>
-            </form>
-          </>
-        )}
-        <div className="flex flex-wrap items-center gap-4">
-          {status === "idle" ? (
-            <Button onClick={() => startCall(isChat)}>{isChat ? "Start chat" : <><Phone className="mr-2 h-4 w-4" />Start call</>}</Button>
-          ) : (
-            <Button variant={isChat ? "outline" : "destructive"} onClick={() => endCall(isChat ? "Chat ended." : "Call ended.")}>
-              {isChat ? "End chat" : <><PhoneOff className="mr-2 h-4 w-4" />End call</>}
+          )}
+          {isChat && message && <p role="status" className="rounded-lg bg-muted px-3 py-2 text-sm text-muted-foreground">{message}</p>}
+          {isChat && (
+            <>
+              <div ref={transcript} role="log" aria-label="Chat messages" className="flex h-[clamp(11rem,34dvh,20rem)] flex-col gap-3 overflow-y-auto rounded-2xl border border-border bg-muted/45 p-3 sm:p-4">
+                {!messages.length && !waiting && (
+                  <p className="my-auto self-center text-center text-sm text-muted-foreground">Ask about our products, services, or team.</p>
+                )}
+                {messages.map(({ role, text }, index) => (
+                  <p key={index} className={`max-w-[90%] whitespace-pre-wrap break-words rounded-xl px-3 py-2 text-sm ${role === "user" ? "self-end rounded-br-md bg-blue-700 text-white" : "self-start rounded-bl-md border border-border bg-background"}`}>
+                    <span className="sr-only">{role === "user" ? "You: " : "Visionaries AI: "}</span>{text}
+                  </p>
+                ))}
+                {waiting && <p className="text-sm text-muted-foreground">Visionaries AI is replying…</p>}
+              </div>
+              <form onSubmit={sendMessage} className="flex items-center gap-2 rounded-xl border border-input bg-background p-1.5 focus-within:ring-2 focus-within:ring-ring">
+                <input
+                  aria-label="Message"
+                  placeholder="Type a message"
+                  value={input}
+                  onChange={(event) => setInput(event.target.value)}
+                  disabled={status !== "active"}
+                  maxLength={1500}
+                  className="min-w-0 flex-1 bg-transparent px-2 py-2 text-base outline-none sm:text-sm"
+                />
+                <Button type="submit" aria-label="Send" size="icon" className="shrink-0 rounded-lg bg-blue-700 text-white hover:bg-blue-800" disabled={status !== "active" || waiting || !input.trim()}><ArrowUp aria-hidden="true" className="h-5 w-5" /></Button>
+              </form>
+            </>
+          )}
+          <div className="flex flex-wrap items-center gap-4 border-t border-border pt-4">
+            {status === "idle" ? (
+              <Button onClick={() => startCall(isChat)}>{isChat ? "Start chat" : <><Phone className="mr-2 h-4 w-4" />Start call</>}</Button>
+            ) : (
+              <Button variant={isChat ? "outline" : "destructive"} onClick={() => endCall(isChat ? "Chat ended." : "Call ended.")}>
+                {isChat ? "End chat" : <><PhoneOff className="mr-2 h-4 w-4" />End call</>}
+              </Button>
+            )}
+            <Link to="/contact" onClick={() => endCall()} className="text-sm underline underline-offset-4">Contact us</Link>
+          </div>
+          {status === "active" && !draft && (
+            <Button variant="outline" size="sm" className="justify-self-start" onClick={() => setDraft(readFollowUp("{}"))}>
+              Request a follow-up
             </Button>
           )}
-          <Link to="/contact" onClick={() => endCall()} className="text-sm underline underline-offset-4">Contact us</Link>
+          {draft && (
+            <form onSubmit={submitFollowUp} className="grid gap-3 border-t border-border pt-4">
+              <h3 className="font-semibold">Review your follow-up request</h3>
+              <p className="text-sm text-muted-foreground">Share your name, email or phone, and what you need help with. These details will go to our team when you send.</p>
+              <fieldset disabled={mailStatus === "Sending…"} className="grid gap-3 sm:grid-cols-2">
+                {followUpFields.map(({ name, label, type, ...attributes }) => {
+                  const Field = name === "message" ? "textarea" : "input";
+                  return (
+                    <label key={name} className={name === "message" ? "grid gap-1 text-sm sm:col-span-2" : "grid gap-1 text-sm"}>
+                      {label}
+                      <Field
+                        name={name}
+                        type={Field === "input" ? type || "text" : undefined}
+                        {...attributes}
+                        value={draft[name]}
+                        onChange={(event) => setDraft({ ...draft, [name]: event.target.value })}
+                        className="min-w-0 rounded-md border border-input bg-background px-3 py-2"
+                      />
+                    </label>
+                  );
+                })}
+                <Button type="submit" className="justify-self-start sm:col-span-2">Send to our team</Button>
+              </fieldset>
+            </form>
+          )}
+          {mailStatus && <p role="status" className="text-sm">{mailStatus}</p>}
+          {isChat && <p className="text-xs text-muted-foreground">Messages are processed by OpenAI.</p>}
         </div>
-        {status === "active" && !draft && (
-          <Button variant="outline" size="sm" className="justify-self-start" onClick={() => setDraft(readFollowUp("{}"))}>
-            Request a follow-up
-          </Button>
-        )}
-        {draft && (
-          <form onSubmit={submitFollowUp} className="grid gap-3 border-t border-border pt-4">
-            <h3 className="font-semibold">Review your follow-up request</h3>
-            <p className="text-sm text-muted-foreground">Share your name, email or phone, and what you need help with. These details will go to our team when you send.</p>
-            <fieldset disabled={mailStatus === "Sending…"} className="grid gap-3 sm:grid-cols-2">
-              {followUpFields.map(({ name, label, type, ...attributes }) => {
-                const Field = name === "message" ? "textarea" : "input";
-                return (
-                  <label key={name} className={name === "message" ? "grid gap-1 text-sm sm:col-span-2" : "grid gap-1 text-sm"}>
-                    {label}
-                    <Field
-                      name={name}
-                      type={Field === "input" ? type || "text" : undefined}
-                      {...attributes}
-                      value={draft[name]}
-                      onChange={(event) => setDraft({ ...draft, [name]: event.target.value })}
-                      className="min-w-0 rounded-md border border-input bg-background px-3 py-2"
-                    />
-                  </label>
-                );
-              })}
-              <Button type="submit" className="justify-self-start sm:col-span-2">Send to our team</Button>
-            </fieldset>
-          </form>
-        )}
-        {mailStatus && <p role="status" className="text-sm">{mailStatus}</p>}
       </DialogContent>
     </Dialog>
   );

@@ -1,3 +1,4 @@
+import catalog from "../../../server/voice-catalog.json";
 import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles, Zap, Shield, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -38,8 +39,7 @@ const Hero = () => {
 
           {/* Subheading */}
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-up delay-200 leading-relaxed">
-            We build cutting-edge AI products and deliver enterprise solutions that drive innovation. 
-            Already powering <span className="text-primary font-medium">100+ institutions</span> across India.
+            We build our own AI and software products for schools, institutions, and businesses across India.
           </p>
 
           {/* CTA Buttons */}
@@ -62,25 +62,24 @@ const Hero = () => {
             ref={statsRef}
             className="grid grid-cols-1 sm:grid-cols-3 gap-6"
           >
-            {[
-              { icon: Zap, value: "50+", label: "Products Delivered", delay: 0 },
-              { icon: Shield, value: "100%", label: "Client Satisfaction", delay: 100 },
-              { icon: Sparkles, value: "24/7", label: "Support Available", delay: 200 },
-            ].map((stat, index) => (
-              <div 
-                key={stat.label}
-                className={`glass-card p-6 text-center hover-lift group transition-all duration-700 ${
-                  statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-                style={{ transitionDelay: `${stat.delay}ms` }}
-              >
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <stat.icon className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
-                  <span className="font-display text-3xl font-bold text-foreground">{stat.value}</span>
+            {catalog.reach.map((stat, index) => {
+              const StatIcon = [Zap, Shield, Sparkles][index];
+              return (
+                <div
+                  key={stat.label}
+                  className={`glass-card p-6 text-center hover-lift group transition-all duration-700 ${
+                    statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <StatIcon className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                    <span className="font-display text-3xl font-bold text-foreground">{stat.value}</span>
+                  </div>
+                  <p className="text-muted-foreground text-sm">{stat.label}</p>
                 </div>
-                <p className="text-muted-foreground text-sm">{stat.label}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
