@@ -15,7 +15,8 @@ export function createVoiceHandler({ apiKey, allowedOrigin } = {}) {
   const maxOfferBytes = 16_384;
   const apiUrl = "https://api.openai.com/v1/realtime/calls";
   const recent = [];
-  const authorization = `Bearer ${apiKey}`;
+  const authorization = `Bearer ${apiKey?.trim()}`;
+  const revision = process.env.RENDER_GIT_COMMIT;
 
   return async (request, response) => {
     const origin = request.headers.origin;
@@ -25,6 +26,7 @@ export function createVoiceHandler({ apiKey, allowedOrigin } = {}) {
       response.end(body);
     };
 
+    if (revision) response.setHeader("X-Voice-Revision", revision);
     if (request.url === "/healthz" && request.method === "GET") return reply(apiKey ? 200 : 503);
     if (request.url !== "/api/voice") return reply(404);
     if (origin !== expectedOrigin) return reply(403);
@@ -86,7 +88,8 @@ export function createVoiceHandler({ apiKey, allowedOrigin } = {}) {
         }, 5 * windowMs).unref();
       }
       reply(200, await upstream.text());
-    } catch {
+    } catch (error) {
+      console.warn("Voice call setup failed", error.name, error.cause?.code);
       reply(502);
     }
   };
