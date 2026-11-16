@@ -1,0 +1,118 @@
+{
+  "services": [
+    {
+      "name": "Custom AI Solutions",
+      "description": "Tailored artificial intelligence solutions designed specifically for your business challenges and opportunities."
+    },
+    {
+      "name": "AI Chatbots & Automation",
+      "description": "Intelligent chatbots and automation solutions to improve support, sales, admissions, and internal workflows."
+    },
+    {
+      "name": "Machine Learning",
+      "description": "Production-ready machine learning models that scale with your business and deliver consistent results."
+    },
+    {
+      "name": "Analytics & Business Intelligence",
+      "description": "Transform raw data into actionable insights that drive strategic business decisions."
+    },
+    {
+      "name": "Data Engineering",
+      "description": "Build robust, scalable data infrastructure that powers your AI initiatives and business intelligence."
+    },
+    {
+      "name": "Cloud AI Integration",
+      "description": "Seamless integration of AI capabilities with major cloud platforms for maximum scalability."
+    },
+    {
+      "name": "Web Development",
+      "description": "Modern websites, admin panels, portals, and dashboards built for speed, scalability, and clean UI."
+    },
+    {
+      "name": "App Development",
+      "description": "High-performance Android & iOS apps with smooth UX and secure backend integration."
+    },
+    {
+      "name": "UI/UX Design",
+      "description": "Beautiful and user-friendly UI/UX with design systems that match your brand and product goals."
+    },
+    {
+      "name": "Custom Software Development",
+      "description": "Build custom software modules, portals, and automation tools tailored to your business processes."
+    },
+    {
+      "name": "Backend & API Development",
+      "description": "Secure backend systems and APIs to connect apps, websites, payments, SMS/WhatsApp, and third-party tools."
+    },
+    {
+      "name": "Systems Integration",
+      "description": "Connect your tools and platforms for a unified, automated workflow across operations."
+    },
+    {
+      "name": "Security & Compliance",
+      "description": "Protect your applications and data with security best practices and compliance-ready setups."
+    },
+    {
+      "name": "Maintenance & Support",
+      "description": "Ongoing support, monitoring, upgrades, and performance improvements for stable operations."
+    },
+    {
+      "name": "Video Editing & Motion Graphics",
+      "description": "Professional editing for product videos, promos, reels, explainers, and brand content."
+    }
+  ],
+  "products": [
+    {
+      "name": "Aye Board – Presented by VisionariesAI",
+      "description": "Aye Board is an AI-enabled smart board solution for digital classrooms, interactive teaching, multimedia lessons, and modern school presentations."
+    },
+    {
+      "name": "ScholAR Labs Projects",
+      "description": "ScholAR Labs brings 3D and AR-based learning experiences for Science concepts, helping students understand Physics, Chemistry, and Biology through interactive simulations."
+    },
+    {
+      "name": "Complete School Technology Solutions",
+      "description": "VisionariesAI provides complete technology solutions for schools from Nursery to Class 12, including AI curriculum, LMS, smart classrooms, digital tools, and school automation."
+    },
+    {
+      "name": "AI-Powered CCTV Monitoring & Smart Surveillance System",
+      "description": "AI CCTV Monitoring analyzes live and recorded footage to detect normal and abnormal activities in real time with instant alerts and improved campus safety."
+    },
+    {
+      "name": "Single-Phase Energy Monitoring System",
+      "description": "Single-phase energy monitoring for homes and small facilities with app-based control, real-time insights, and instant alerts for irregularities."
+    },
+    {
+      "name": "Three-Phase Energy Monitoring System",
+      "description": "Three-phase energy monitoring designed for industries and large facilities where balanced energy management and real-time tracking are critical."
+    },
+    {
+      "name": "Universal Management System",
+      "description": "Empower your school with seamless communication, efficient administration, and engaging learning experiences. Simplify operations, enhance engagement, and foster success across schools, colleges, and campuses with our advanced management platform."
+    },
+    {
+      "name": "Attendance Management System",
+      "description": "Attendance device and software integrating face recognition, fingerprint scanning, and RFID for secure, accurate identification and reporting."
+    },
+    {
+      "name": "Ask.VisionariesAI – AI Teaching & Learning Assistant",
+      "description": "AI platform that assists students and teachers with explanations, quizzes, exam creation, evaluation, and instant doubt solving."
+    },
+    {
+      "name": "Learning Management System (LMS)",
+      "description": "A unified learning platform for school education with lessons, assignments, quizzes, projects, and dashboards for students, teachers, and administrators."
+    },
+    {
+      "name": "AI Curriculum",
+      "description": "A structured AI-based curriculum for schools from Nursery to Class 12 with age-wise learning, activities, practical projects, coding, robotics, and future-ready skills."
+    },
+    {
+      "name": "VisionariesAI Robo Teacher",
+      "description": "Robo Teacher is an intelligent classroom robot developed by VisionariesAI to teach lessons, communicate with students, explain concepts, and answer student questions through natural voice interaction."
+    },
+    {
+      "name": "3D Object Design & Visualization",
+      "description": "VisionariesAI creates high-quality 3D objects and interactive digital models for education, product demonstrations, AR and VR applications, simulations, prototypes, and visual learning experiences."
+    }
+  ]
+}
