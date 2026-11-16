@@ -1,0 +1,4 @@
+**
+!server/
+!server/voice.mjs
+!server/voice-catalog.json
