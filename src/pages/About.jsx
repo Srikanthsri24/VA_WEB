@@ -1,3 +1,4 @@
+import teamDirectory from "../../server/voice-team.json";
 import Layout from "@/components/layout/Layout";
 import {
   Target,
@@ -21,245 +22,8 @@ import {
   Palette,
 } from "lucide-react";
 
-const teamMembers = [
-  {
-    id: 1,
-    name: "Raghu Dubbaka",
-    title: "Director",
-    group: "Leadership",
-    focus: ["Strategy", "Operations Oversight", "Business Growth"],
-    avatar: "D",
-    icon: Briefcase,
-  },
-  {
-    id: 2,
-    name: "Madhuri Dubbaka",
-    title: "Director",
-    group: "Leadership",
-    focus: ["Administration", "People Management", "Finance Oversight"],
-    avatar: "D",
-    icon: Briefcase,
-  },
-  {
-    id: 3,
-    name: "Srikanth Dubbaka",
-    title: "Founder & CEO",
-    group: "Leadership",
-    focus: ["Product Vision", "Client Success", "Go-to-Market", "Partnerships"],
-    avatar: "CEO",
-    icon: Rocket,
-  },
-  {
-    id: 4,
-    name: "Geethika J",
-    title: "Director of Next-Gen",
-    group: "Leadership",
-    focus: ["Next-Gen Strategy", "Operations", "Team Coordination", "Growth Planning"],
-    avatar: "NG",
-    icon: Briefcase,
-  },
-  {
-    id: 5,
-    name: "Gayathri D",
-    title: "Director of VisionicX",
-    group: "Leadership",
-    focus: ["VisionicX Strategy", "Technology Direction", "Operations", "Brand Growth"],
-    avatar: "VX",
-    icon: Briefcase,
-  },
-
-  {
-    id: 6,
-    name: "Shiva Sai Srinivas",
-    title: "Sr. Manager",
-    group: "Management",
-    focus: ["Team Leadership", "Project Planning", "Client Coordination", "Delivery Management"],
-    avatar: "SM",
-    icon: Users,
-  },
-  {
-    id: 7,
-    name: "Harsh Chandan Bendalam",
-    title: "Chief Operational Manager",
-    group: "Management",
-    focus: ["Operations Management", "Team Coordination", "Process Planning", "Execution"],
-    avatar: "COM",
-    icon: UserCog,
-  },
-
-  {
-    id: 8,
-    name: "Ram Krishna & Team",
-    title: "Technician Team",
-    group: "Operations",
-    focus: ["Hardware Installation", "Device Maintenance", "On-site Support", "Networking"],
-    avatar: "OPS",
-    icon: Wrench,
-  },
-
-  {
-    id: 9,
-    name: "Lalith Kumar",
-    title: "Full-Stack Developer",
-    group: "Engineering",
-    focus: ["MERN Stack", "React", "Node.js", "React Native", "API Integration"],
-    avatar: "DEV",
-    icon: Code,
-  },
-  {
-    id: 10,
-    name: "Narasing",
-    title: "Full-Stack Developer",
-    group: "Engineering",
-    focus: ["MERN Stack", "React", "Node.js", "MongoDB", "System Architecture"],
-    avatar: "DEV",
-    icon: Code,
-  },
-  {
-    id: 11,
-    name: "Chandrakala",
-    title: "Python Developer",
-    group: "Engineering",
-    focus: ["Python", "Backend Development", "API Development", "Database Integration"],
-    avatar: "PY",
-    icon: Code,
-  },
-
-  {
-    id: 12,
-    name: "Harsh & Team",
-    title: "AI Developer Team",
-    group: "AI & Data",
-    focus: ["Machine Learning", "Computer Vision", "Model Training", "AI Integrations"],
-    avatar: "AI",
-    icon: Brain,
-  },
-
-  {
-    id: 13,
-    name: "Anil Sajja",
-    title: "AI Trainer",
-    group: "AI Training",
-    focus: ["AI Training", "Student Workshops", "Teacher Training", "Practical Sessions"],
-    avatar: "TR",
-    icon: GraduationCap,
-  },
-
-  {
-    id: 14,
-    name: "Bhagya Sirisha",
-    title: "UI/UX Designer & Video Editor",
-    group: "Creative",
-    focus: ["UI/UX Design", "Video Editing", "Creative Design", "Visual Content"],
-    avatar: "UX",
-    icon: Palette,
-  },
-  {
-    id: 15,
-    name: "Uday & Team",
-    title: "Editorial Team",
-    group: "Editorial",
-    focus: ["Content Editing", "Proofreading", "Academic Content", "Book Formatting"],
-    avatar: "ED",
-    icon: Video,
-  },
-
-  {
-    id: 16,
-    name: "Pothala Santhosi",
-    title: "Test Engineer",
-    group: "QA",
-    focus: ["Manual Testing", "Test Case Design", "Bug Reporting", "Release Validation"],
-    avatar: "QA",
-    icon: FlaskConical,
-  },
-  {
-    id: 17,
-    name: "Nikitha",
-    title: "Automation Engineer",
-    group: "QA",
-    focus: ["Test Automation", "Selenium / Playwright", "API Testing", "Performance Testing"],
-    avatar: "AT",
-    icon: FlaskConical,
-  },
-
-  {
-    id: 18,
-    name: "Gopal & Team",
-    title: "Business Development Team",
-    group: "Business",
-    focus: ["Client Acquisition", "Institution Partnerships", "Product Demos", "Sales Strategy"],
-    avatar: "BD",
-    icon: Briefcase,
-  },
-
-  {
-    id: 19,
-    name: "Arangi Murali & Team",
-    title: "Marketing Team",
-    group: "Marketing",
-    focus: ["Field Marketing", "Brand Promotion", "School Campaigns", "Lead Generation"],
-    avatar: "MK",
-    icon: Megaphone,
-  },
-  {
-    id: 20,
-    name: "Chaitanya",
-    title: "Marketing Executive",
-    group: "Marketing",
-    focus: ["Content Marketing", "Social Media", "Lead Generation", "SEO"],
-    avatar: "MK",
-    icon: Briefcase,
-  },
-
-  {
-    id: 21,
-    name: "Girish & Team",
-    title: "Digital Marketing Team",
-    group: "Digital Marketing",
-    focus: ["Social Media", "Digital Campaigns", "Brand Promotion", "Lead Generation"],
-    avatar: "DM",
-    icon: Megaphone,
-  },
-
-  {
-    id: 22,
-    name: "Ratnakar & Team",
-    title: "Support Team",
-    group: "Support",
-    focus: ["Client Support", "Issue Resolution", "Product Training", "Onboarding"],
-    avatar: "SP",
-    icon: Headphones,
-  },
-
-  {
-    id: 23,
-    name: "Thejesh & Team",
-    title: "Accountants Team",
-    group: "Finance",
-    focus: ["Accounting", "Billing", "GST & Tax Filing", "Financial Reporting"],
-    avatar: "AC",
-    icon: Calculator,
-  },
-  {
-    id: 24,
-    name: "Hari Krishna",
-    title: "Chartered Accountant",
-    group: "Finance",
-    focus: ["Accounting & Compliance", "Auditing", "Taxation", "Financial Reporting"],
-    avatar: "CA",
-    icon: Calculator,
-  },
-  {
-    id: 25,
-    name: "Midhun",
-    title: "Chartered Accountant",
-    group: "Finance",
-    focus: ["GST & Tax Filing", "Payroll", "Financial Planning", "Regulatory Compliance"],
-    avatar: "CA",
-    icon: Calculator,
-  },
-];
+const teamIcons = { Briefcase, Rocket, Users, UserCog, Wrench, Code, Brain, GraduationCap, Palette, Video, FlaskConical, Megaphone, Headphones, Calculator };
+const teamMembers = teamDirectory.map((member) => ({ ...member, icon: teamIcons[member.icon] }));
 
 const values = [
   {
@@ -495,9 +259,7 @@ const About = () => {
             </h2>
 
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Our diverse team brings expertise across leadership, engineering,
-              AI, business development, management, operations, creative design,
-              marketing, finance, and support.
+              Founder & CEO Srikanth Dubbaka leads Visionaries AI across strategy, product, delivery, and client success. Meet the people who help him lead and deliver that work.
             </p>
           </div>
 
@@ -566,8 +328,7 @@ const About = () => {
 
                       <div className="relative mt-6">
                         <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                          Focused on{" "}
-                          {member.focus.slice(0, 2).join(" and ").toLowerCase()}.
+                          {member.description || `Focused on ${member.focus.slice(0, 2).join(" and ").toLowerCase()}.`}
                         </p>
 
                         <div className="flex flex-wrap gap-2">

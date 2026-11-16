@@ -65,7 +65,7 @@ const ServicesPreview = () => {
             What We <span className="gradient-text">Offer</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            From concept to deployment, we provide end-to-end AI services that transform your business operations.
+            Explore education technology, AI, software development, and creative services. Have a software problem? Our team can help.
           </p>
         </div>
 

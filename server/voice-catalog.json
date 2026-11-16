@@ -114,5 +114,80 @@
       "name": "3D Object Design & Visualization",
       "description": "VisionariesAI creates high-quality 3D objects and interactive digital models for education, product demonstrations, AR and VR applications, simulations, prototypes, and visual learning experiences."
     }
-  ]
+  ],
+  "categories": [
+    {
+      "name": "School Management & Education Technology",
+      "description": "Student records, attendance, learning platforms and technology for school operations."
+    },
+    {
+      "name": "AI & Robotics Curriculum and Labs",
+      "description": "AI and robotics curriculum, hands-on lab projects and technology for practical learning."
+    },
+    {
+      "name": "Interactive 3D Smart Atlas",
+      "description": "Interactive 3D geography and map-based learning experiences."
+    },
+    {
+      "name": "AI Chatbots and Voice Calling",
+      "description": "Conversational assistants for websites, messaging, support and browser voice calls."
+    },
+    {
+      "name": "AI Sales and Business Automation",
+      "description": "Automate lead follow-up, sales workflows and repetitive business tasks."
+    },
+    {
+      "name": "Website Development",
+      "description": "Design and build websites and web applications for businesses and institutions."
+    },
+    {
+      "name": "Mobile Application Development",
+      "description": "Build mobile apps for customer, staff and institutional workflows."
+    },
+    {
+      "name": "Custom ERP and CRM Software",
+      "description": "Build software for business operations, customer relationships and reporting."
+    },
+    {
+      "name": "Cloud and API Solutions",
+      "description": "Connect systems with APIs and support cloud deployment and integration."
+    },
+    {
+      "name": "AI Video Production",
+      "description": "Create AI-assisted videos, edits and motion graphics."
+    },
+    {
+      "name": "Social Media Creatives",
+      "description": "Design platform-ready graphics and campaign assets for social media."
+    },
+    {
+      "name": "Brochures, Branding and Graphic Design",
+      "description": "Design brochures, visual identities and digital or print collateral."
+    },
+    {
+      "name": "Digital Marketing",
+      "description": "Support digital campaigns, promotion and audience growth."
+    },
+    {
+      "name": "Healthcare and Clinic Technology",
+      "description": "Build tools for clinic workflows, appointments and operational coordination."
+    },
+    {
+      "name": "Real Estate Technology",
+      "description": "Build property websites, lead workflows and tools for managing enquiries."
+    },
+    {
+      "name": "Restaurant, Hotel and Retail Solutions",
+      "description": "Support booking, ordering, inventory and customer workflows with tailored software."
+    },
+    {
+      "name": "Government Exam Preparation Technology",
+      "description": "Build learning platforms, practice tools and dashboards for exam preparation."
+    },
+    {
+      "name": "Custom AI Product Development",
+      "description": "Design, build and deploy AI products around a specific business need."
+    }
+  ],
+  "contact": "Contact the team at https://visionariesai.com/contact or contact@visionariesai.com for quotes, demos, and help resolving software problems."
 }

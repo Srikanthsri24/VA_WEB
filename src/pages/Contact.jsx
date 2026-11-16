@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-import emailjs from "@emailjs/browser";
+import { useMemo, useState } from "react";
+import { sendContactEmail } from "@/lib/contactEmail";
 
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -16,10 +16,6 @@ import {
   ExternalLink,
   ArrowRight,
 } from "lucide-react";
-
-const EMAILJS_PUBLIC_KEY = "9R9VMnwYtqehumZjw";
-const EMAILJS_SERVICE_ID = "service_tvtk2xr";
-const EMAILJS_TEMPLATE_ID = "template_joe8237";
 
 /** ✅ Two branches */
 const BRANCHES = [
@@ -59,10 +55,6 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [activeBranch, setActiveBranch] = useState(BRANCHES[0].key);
-
-  useEffect(() => {
-    emailjs.init(EMAILJS_PUBLIC_KEY);
-  }, []);
 
   const activeBranchObj = useMemo(
     () => BRANCHES.find((b) => b.key === activeBranch) || BRANCHES[0],
@@ -124,15 +116,10 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const templateParams = {
-        name: formData.name?.trim(),
-        email: formData.email?.trim(),
-        mobile: formData.phone?.trim(),
-        organizationName: formData.company?.trim(),
-        subject: `Subject: ${getSubjectLabel(formData.subject)}\n\nMessage:\n${formData.message?.trim()}`,
-      };
-
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+      await sendContactEmail({
+        ...formData,
+        subject: getSubjectLabel(formData.subject),
+      });
 
       toast({
         title: "Message Sent!",

@@ -1,3 +1,4 @@
+import catalog from "../../server/voice-catalog.json";
 import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -321,6 +322,24 @@ const Services = () => {
             <p className="text-lg text-muted-foreground leading-relaxed">
               From strategy to design, development, deployment, and support — we deliver complete solutions that grow your business.
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8" aria-labelledby="service-categories">
+        <div className="rounded-3xl border border-border bg-card p-6 sm:p-10">
+          <h2 id="service-categories" className="mb-6 font-display text-3xl font-bold">Service categories</h2>
+          <ul className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {catalog.categories.map(({ name, description }) => (
+              <li key={name} className="rounded-xl border border-border/70 bg-background p-4">
+                <h3 className="mb-1 font-semibold">{name}</h3>
+                <p className="text-sm text-muted-foreground">{description}</p>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <p className="text-muted-foreground">Have a software problem? Tell us what you need to fix.</p>
+            <Button asChild><Link to="/contact">Contact us <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
           </div>
         </div>
       </section>

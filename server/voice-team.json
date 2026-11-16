@@ -1,0 +1,391 @@
+[
+  {
+    "id": 1,
+    "name": "Raghu Dubbaka",
+    "title": "Director",
+    "group": "Leadership",
+    "focus": [
+      "Strategy",
+      "Operations Oversight",
+      "Business Growth"
+    ],
+    "avatar": "RD",
+    "icon": "Briefcase",
+    "description": "Driving product vision and aligning school management, learning, AI, and energy into a unified campus platform."
+  },
+  {
+    "id": 2,
+    "name": "Madhuri Dubbaka",
+    "title": "Director",
+    "group": "Leadership",
+    "focus": [
+      "Administration",
+      "People Management",
+      "Finance Oversight"
+    ],
+    "avatar": "MD",
+    "icon": "Briefcase",
+    "description": "Driving product vision and aligning school management, learning, AI, and energy into a unified campus platform."
+  },
+  {
+    "id": 3,
+    "name": "Srikanth Dubbaka",
+    "title": "Founder & CEO",
+    "group": "Leadership",
+    "focus": [
+      "Product Vision",
+      "Client Success",
+      "Go-to-Market",
+      "Partnerships"
+    ],
+    "avatar": "SD",
+    "icon": "Rocket",
+    "description": "Srikanth Dubbaka leads all of Visionaries AI as Founder & CEO, overseeing company strategy, product direction, delivery, and client success."
+  },
+  {
+    "id": 4,
+    "name": "Geethika J",
+    "title": "Director of Next-Gen",
+    "group": "Leadership",
+    "focus": [
+      "Next-Gen Strategy",
+      "Operations",
+      "Team Coordination",
+      "Growth Planning"
+    ],
+    "avatar": "NG",
+    "icon": "Briefcase"
+  },
+  {
+    "id": 5,
+    "name": "Gayathri D",
+    "title": "Director of VisionicX",
+    "group": "Leadership",
+    "focus": [
+      "VisionicX Strategy",
+      "Technology Direction",
+      "Operations",
+      "Brand Growth"
+    ],
+    "avatar": "VX",
+    "icon": "Briefcase"
+  },
+  {
+    "id": 6,
+    "name": "Shiva Sai Srinivas",
+    "title": "Sr. Manager",
+    "group": "Management",
+    "focus": [
+      "Team Leadership",
+      "Project Planning",
+      "Client Coordination",
+      "Process Improvement",
+      "Delivery Management"
+    ],
+    "avatar": "SS",
+    "icon": "Users"
+  },
+  {
+    "id": 7,
+    "name": "Harsh Chandan Bendalam",
+    "title": "Chief Operational Manager",
+    "group": "Management",
+    "focus": [
+      "Operations Management",
+      "Team Coordination",
+      "Process Planning",
+      "Execution"
+    ],
+    "avatar": "COM",
+    "icon": "UserCog"
+  },
+  {
+    "id": 8,
+    "name": "Ram Krishna & Team",
+    "title": "Technician",
+    "group": "Operations",
+    "focus": [
+      "Hardware Installation",
+      "Device Maintenance",
+      "On-site Support",
+      "Networking"
+    ],
+    "avatar": "RK",
+    "icon": "Wrench",
+    "description": "Supports hardware rollouts, device maintenance, and daily operations across branches."
+  },
+  {
+    "id": 9,
+    "name": "Lalith Kumar",
+    "title": "Full-Stack Developer",
+    "group": "Engineering",
+    "focus": [
+      "MERN Stack",
+      "React",
+      "Node.js",
+      "React Native",
+      "API Integration",
+      "Express",
+      "MongoDB"
+    ],
+    "avatar": "LK",
+    "icon": "Code"
+  },
+  {
+    "id": 10,
+    "name": "Narasing",
+    "title": "Full-Stack Developer",
+    "group": "Engineering",
+    "focus": [
+      "MERN Stack",
+      "React",
+      "Node.js",
+      "MongoDB",
+      "System Architecture",
+      "Express",
+      "React Native"
+    ],
+    "avatar": "N",
+    "icon": "Code"
+  },
+  {
+    "id": 11,
+    "name": "Chandrakala",
+    "title": "Python Developer",
+    "group": "Engineering",
+    "focus": [
+      "Python",
+      "Backend Development",
+      "API Development",
+      "Database Integration"
+    ],
+    "avatar": "PY",
+    "icon": "Code"
+  },
+  {
+    "id": 12,
+    "name": "Harsh & Team",
+    "title": "AI Developer Team",
+    "group": "AI & Data",
+    "focus": [
+      "Machine Learning",
+      "Computer Vision",
+      "Model Training",
+      "AI Integrations"
+    ],
+    "avatar": "H&",
+    "icon": "Brain"
+  },
+  {
+    "id": 13,
+    "name": "Anil Sajja",
+    "title": "AI Trainer",
+    "group": "AI Training",
+    "focus": [
+      "AI Training",
+      "Student Workshops",
+      "Teacher Training",
+      "Practical Sessions"
+    ],
+    "avatar": "TR",
+    "icon": "GraduationCap"
+  },
+  {
+    "id": 14,
+    "name": "Bhagya Sirisha",
+    "title": "UI/UX Designer & Video Editor",
+    "group": "Creative",
+    "focus": [
+      "UI/UX Design",
+      "Video Editing",
+      "Creative Design",
+      "Visual Content"
+    ],
+    "avatar": "UX",
+    "icon": "Palette"
+  },
+  {
+    "id": 15,
+    "name": "Uday & Team",
+    "title": "Editorial Team",
+    "group": "Editorial",
+    "focus": [
+      "Content Editing",
+      "Proofreading",
+      "Academic Content",
+      "Book Formatting"
+    ],
+    "avatar": "ED",
+    "icon": "Video"
+  },
+  {
+    "id": 16,
+    "name": "Pothala Santhosi",
+    "title": "Test Engineer",
+    "group": "QA",
+    "focus": [
+      "Manual Testing",
+      "Test Case Design",
+      "Bug Reporting",
+      "Release Validation"
+    ],
+    "avatar": "PS",
+    "icon": "FlaskConical"
+  },
+  {
+    "id": 17,
+    "name": "Nikitha",
+    "title": "Automation Engineer",
+    "group": "QA",
+    "focus": [
+      "Test Automation",
+      "Selenium / Playwright",
+      "API Testing",
+      "Performance Testing"
+    ],
+    "avatar": "N",
+    "icon": "FlaskConical"
+  },
+  {
+    "id": 18,
+    "name": "Gopal & Team",
+    "title": "Business Development Team",
+    "group": "Business",
+    "focus": [
+      "Client Acquisition",
+      "Institution Partnerships",
+      "Product Demos",
+      "Sales Strategy"
+    ],
+    "avatar": "BD",
+    "icon": "Briefcase"
+  },
+  {
+    "id": 19,
+    "name": "Arangi Murali & Team",
+    "title": "Marketing Team",
+    "group": "Marketing",
+    "focus": [
+      "Field Marketing",
+      "Brand Promotion",
+      "School Campaigns",
+      "Lead Generation"
+    ],
+    "avatar": "MK",
+    "icon": "Megaphone"
+  },
+  {
+    "id": 20,
+    "name": "Chaitanya",
+    "title": "Marketing Executive",
+    "group": "Marketing",
+    "focus": [
+      "Content Marketing",
+      "Social Media",
+      "Lead Generation",
+      "SEO"
+    ],
+    "avatar": "MK",
+    "icon": "Briefcase"
+  },
+  {
+    "id": 21,
+    "name": "Girish & Team",
+    "title": "Digital Marketing Team",
+    "group": "Digital Marketing",
+    "focus": [
+      "Social Media",
+      "Digital Campaigns",
+      "Brand Promotion",
+      "Lead Generation"
+    ],
+    "avatar": "DM",
+    "icon": "Megaphone"
+  },
+  {
+    "id": 22,
+    "name": "Ratnakar & Team",
+    "title": "Support Team",
+    "group": "Support",
+    "focus": [
+      "Client Support",
+      "Issue Resolution",
+      "Product Training",
+      "Onboarding"
+    ],
+    "avatar": "R&",
+    "icon": "Headphones"
+  },
+  {
+    "id": 23,
+    "name": "Thejesh & Team",
+    "title": "Accountants Team",
+    "group": "Finance",
+    "focus": [
+      "Accounting",
+      "Billing",
+      "GST & Tax Filing",
+      "Financial Reporting"
+    ],
+    "avatar": "AC",
+    "icon": "Calculator"
+  },
+  {
+    "id": 24,
+    "name": "Hari Krishna",
+    "title": "Chartered Accountant (CA)",
+    "group": "Finance",
+    "focus": [
+      "Accounting & Compliance",
+      "Auditing",
+      "Taxation",
+      "Financial Reporting"
+    ],
+    "avatar": "HK",
+    "icon": "Calculator"
+  },
+  {
+    "id": 25,
+    "name": "Midhun",
+    "title": "Chartered Accountant (CA)",
+    "group": "Finance",
+    "focus": [
+      "GST & Tax Filing",
+      "Payroll & Advisory",
+      "Financial Planning",
+      "Regulatory Compliance"
+    ],
+    "avatar": "M",
+    "icon": "Calculator"
+  },
+  {
+    "id": 26,
+    "name": "Gayathri",
+    "title": "DevOps Engineer",
+    "group": "Engineering",
+    "focus": [
+      "CI/CD Pipelines",
+      "Cloud Infrastructure",
+      "Server Monitoring",
+      "Deployments",
+      "Security & Backups"
+    ],
+    "avatar": "G",
+    "icon": "Code"
+  },
+  {
+    "id": 27,
+    "name": "Jallu Gopal",
+    "title": "Business Developer",
+    "group": "Business",
+    "focus": [
+      "Client Acquisition",
+      "Institution Partnerships",
+      "Product Demos",
+      "Market Research",
+      "Sales Strategy"
+    ],
+    "avatar": "JG",
+    "icon": "Briefcase"
+  }
+]
