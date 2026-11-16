@@ -36,6 +36,8 @@ jobs:
         run: npm ci
 
       - name: Build Vite application
+        env:
+          VITE_VOICE_API_URL: ${{ vars.VITE_VOICE_API_URL }}
         run: npm run build
 
       - name: Verify production build

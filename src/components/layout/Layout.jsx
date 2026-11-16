@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import PageTransition from "./PageTransition";
+import VoiceCall from "../VoiceCall";
 import QuickActions from "../QuickActions";
 
 const Layout = ({ children }) => {
@@ -15,6 +16,7 @@ const Layout = ({ children }) => {
       <Footer />
 
       <QuickActions />
+      <VoiceCall />
     </div>
   );
 };
